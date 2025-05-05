@@ -1,29 +1,29 @@
 {
   "contractName": "CalledByVm",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/CalledByVm.sol\":\"CalledByVm\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/CalledByVm.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ncontract CalledByVm {\\n  modifier onlyVm() {\\n    require(msg.sender == address(0), \\\"Only VM can call\\\");\\n    _;\\n  }\\n}\\n\",\"keccak256\":\"0xb94d2b580a505f5d4ef51bb14b12b6fa19d69e4fa94c96f2f105091673a0a0a4\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220425fa4dbd2264964c8f16e9180db55ee6c53a7a13136f4213e37b6463e62a23564736f6c63430008130033",
-  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220425fa4dbd2264964c8f16e9180db55ee6c53a7a13136f4213e37b6463e62a23564736f6c63430008130033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/CalledByVm.sol\":\"CalledByVm\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/CalledByVm.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ncontract CalledByVm {\\n  modifier onlyVm() {\\n    require(msg.sender == address(0), \\\"Only VM can call\\\");\\n    _;\\n  }\\n}\\n\",\"keccak256\":\"0xb94d2b580a505f5d4ef51bb14b12b6fa19d69e4fa94c96f2f105091673a0a0a4\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212209c3f964fbabe1ce25433692e50fe62d0849b2f0eb3ba452c524e7d7a8103e98264736f6c63430008130033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212209c3f964fbabe1ce25433692e50fe62d0849b2f0eb3ba452c524e7d7a8103e98264736f6c63430008130033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "76:115:12:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "76:115:12:-:0;;;;;",
+  "sourceMap": "76:115:57:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "76:115:57:-:0;;;;;",
   "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ncontract CalledByVm {\n  modifier onlyVm() {\n    require(msg.sender == address(0), \"Only VM can call\");\n    _;\n  }\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts/common/CalledByVm.sol",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/CalledByVm.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/CalledByVm.sol",
     "exportedSymbols": {
       "CalledByVm": [
-        2344
+        16290
       ]
     },
-    "id": 2345,
+    "id": 16291,
     "license": "LGPL-3.0-only",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2328,
+        "id": 16274,
         "literals": [
           "solidity",
           ">=",
@@ -34,7 +34,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "42:32:12"
+        "src": "42:32:57"
       },
       {
         "abstract": false,
@@ -43,19 +43,19 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2344,
+        "id": 16290,
         "linearizedBaseContracts": [
-          2344
+          16290
         ],
         "name": "CalledByVm",
-        "nameLocation": "85:10:12",
+        "nameLocation": "85:10:57",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 2342,
+              "id": 16288,
               "nodeType": "Block",
-              "src": "118:71:12",
+              "src": "118:71:57",
               "statements": [
                 {
                   "expression": {
@@ -65,33 +65,33 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2337,
+                        "id": 16283,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 2331,
+                            "id": 16277,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967281,
-                            "src": "132:3:12",
+                            "src": "132:3:57",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 2332,
+                          "id": 16278,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "memberLocation": "136:6:12",
+                          "memberLocation": "136:6:57",
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
-                          "src": "132:10:12",
+                          "src": "132:10:57",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -103,14 +103,14 @@
                           "arguments": [
                             {
                               "hexValue": "30",
-                              "id": 2335,
+                              "id": 16281,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "154:1:12",
+                              "src": "154:1:57",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
                                 "typeString": "int_const 0"
@@ -125,26 +125,26 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2334,
+                            "id": 16280,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "146:7:12",
+                            "src": "146:7:57",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": {
-                              "id": 2333,
+                              "id": 16279,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
-                              "src": "146:7:12",
+                              "src": "146:7:57",
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 2336,
+                          "id": 16282,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -153,14 +153,14 @@
                           "nameLocations": [],
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "146:10:12",
+                          "src": "146:10:57",
                           "tryCall": false,
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "132:24:12",
+                        "src": "132:24:57",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -168,14 +168,14 @@
                       },
                       {
                         "hexValue": "4f6e6c7920564d2063616e2063616c6c",
-                        "id": 2338,
+                        "id": 16284,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "158:18:12",
+                        "src": "158:18:57",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_952607dfd16d11dfdf90c18f6142a68af14c41694106cb4ca9d22c7c3186d750",
                           "typeString": "literal_string \"Only VM can call\""
@@ -194,7 +194,7 @@
                           "typeString": "literal_string \"Only VM can call\""
                         }
                       ],
-                      "id": 2330,
+                      "id": 16276,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -202,13 +202,13 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "124:7:12",
+                      "src": "124:7:57",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 2339,
+                    "id": 16285,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -217,45 +217,45 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "124:53:12",
+                    "src": "124:53:57",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2340,
+                  "id": 16286,
                   "nodeType": "ExpressionStatement",
-                  "src": "124:53:12"
+                  "src": "124:53:57"
                 },
                 {
-                  "id": 2341,
+                  "id": 16287,
                   "nodeType": "PlaceholderStatement",
-                  "src": "183:1:12"
+                  "src": "183:1:57"
                 }
               ]
             },
-            "id": 2343,
+            "id": 16289,
             "name": "onlyVm",
-            "nameLocation": "109:6:12",
+            "nameLocation": "109:6:57",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 2329,
+              "id": 16275,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "115:2:12"
+              "src": "115:2:57"
             },
-            "src": "100:89:12",
+            "src": "100:89:57",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 2345,
-        "src": "76:115:12",
+        "scope": 16291,
+        "src": "76:115:57",
         "usedErrors": []
       }
     ],
-    "src": "42:150:12"
+    "src": "42:150:57"
   },
   "compiler": {
     "name": "solc",
@@ -263,7 +263,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:07.422Z",
+  "updatedAt": "2025-05-05T17:49:34.228Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

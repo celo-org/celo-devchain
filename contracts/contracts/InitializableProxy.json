@@ -1,0 +1,1250 @@
+{
+  "contractName": "InitializableProxy",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "ImplementationSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerSet",
+      "type": "event"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "_getImplementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "_getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "callbackData",
+          "type": "bytes"
+        }
+      ],
+      "name": "_setAndInitializeImplementation",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "_setImplementation",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "_transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "_initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"ImplementationSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnerSet\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[],\"name\":\"_getImplementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"_getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"_initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"callbackData\",\"type\":\"bytes\"}],\"name\":\"_setAndInitializeImplementation\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"_setImplementation\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"_transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.\",\"methods\":{\"_initialize(address)\":{\"details\":\"Note that anyone is allowed to set the proxy owner if it is set to the null address.\",\"params\":{\"owner\":\"The address allowed to repoint the proxy to a new implementation.\"}},\"_setAndInitializeImplementation(address,bytes)\":{\"details\":\"Throws if the initialization callback fails.If the target contract does not need initialization, use setImplementation instead.\",\"params\":{\"callbackData\":\"The abi-encoded function call to perform in the implementation contract.\",\"implementation\":\"Address of the new target contract.\"}},\"_setImplementation(address)\":{\"details\":\"If the target contract needs to be initialized, call setAndInitializeImplementation instead.\",\"params\":{\"implementation\":\"Address of the new target contract.\"}},\"_transferOwnership(address)\":{\"params\":{\"newOwner\":\"Address of the new owner account.\"}},\"constructor\":{\"details\":\"This contract is intended to be the target of delegatecalls from EIP-1167 proxies.     As such, we take precautions here to ensure that this contract can never be pointed to     an implementation, which would then risk that this contract could be selfdestructed,     which would \\\"brick\\\" all EIP-1167 clones of this contract.\"}},\"title\":\"A Proxy utilizing the Unstructured Storage pattern.\"},\"userdoc\":{\"methods\":{\"_getImplementation()\":{\"notice\":\"Returns the implementation address.\"},\"_getOwner()\":{\"notice\":\"Returns the Proxy owner's address.\"},\"_initialize(address)\":{\"notice\":\"Sets the proxy owner if it hasn't already been set.\"},\"_setAndInitializeImplementation(address,bytes)\":{\"notice\":\"Sets the address of the implementation contract and calls into it.\"},\"_setImplementation(address)\":{\"notice\":\"Sets the address of the implementation contract.\"},\"_transferOwnership(address)\":{\"notice\":\"Transfers ownership of Proxy to a new owner.\"},\"constructor\":\"Sets proxy ownership to an unrecoverable address.\"}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/InitializableProxy.sol\":\"InitializableProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"openzeppelin-solidity/contracts/utils/Address.sol\":{\"content\":\"pragma solidity ^0.5.5;\\n\\n/**\\n * @dev Collection of functions related to the address type\\n */\\nlibrary Address {\\n    /**\\n     * @dev Returns true if `account` is a contract.\\n     *\\n     * [IMPORTANT]\\n     * ====\\n     * It is unsafe to assume that an address for which this function returns\\n     * false is an externally-owned account (EOA) and not a contract.\\n     *\\n     * Among others, `isContract` will return false for the following \\n     * types of addresses:\\n     *\\n     *  - an externally-owned account\\n     *  - a contract in construction\\n     *  - an address where a contract will be created\\n     *  - an address where a contract lived, but was destroyed\\n     * ====\\n     */\\n    function isContract(address account) internal view returns (bool) {\\n        // According to EIP-1052, 0x0 is the value returned for not-yet created accounts\\n        // and 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 is returned\\n        // for accounts without code, i.e. `keccak256('')`\\n        bytes32 codehash;\\n        bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;\\n        // solhint-disable-next-line no-inline-assembly\\n        assembly { codehash := extcodehash(account) }\\n        return (codehash != accountHash && codehash != 0x0);\\n    }\\n\\n    /**\\n     * @dev Converts an `address` into `address payable`. Note that this is\\n     * simply a type cast: the actual underlying value is not changed.\\n     *\\n     * _Available since v2.4.0._\\n     */\\n    function toPayable(address account) internal pure returns (address payable) {\\n        return address(uint160(account));\\n    }\\n\\n    /**\\n     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to\\n     * `recipient`, forwarding all available gas and reverting on errors.\\n     *\\n     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost\\n     * of certain opcodes, possibly making contracts go over the 2300 gas limit\\n     * imposed by `transfer`, making them unable to receive funds via\\n     * `transfer`. {sendValue} removes this limitation.\\n     *\\n     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].\\n     *\\n     * IMPORTANT: because control is transferred to `recipient`, care must be\\n     * taken to not create reentrancy vulnerabilities. Consider using\\n     * {ReentrancyGuard} or the\\n     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].\\n     *\\n     * _Available since v2.4.0._\\n     */\\n    function sendValue(address payable recipient, uint256 amount) internal {\\n        require(address(this).balance >= amount, \\\"Address: insufficient balance\\\");\\n\\n        // solhint-disable-next-line avoid-call-value\\n        (bool success, ) = recipient.call.value(amount)(\\\"\\\");\\n        require(success, \\\"Address: unable to send value, recipient may have reverted\\\");\\n    }\\n}\\n\",\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\"},\"project:/contracts/common/InitializableProxy.sol\":{\"content\":\"pragma solidity ^0.5.13;\\n\\nimport \\\"./Proxy.sol\\\";\\n\\n/**\\n * @title A Proxy utilizing the Unstructured Storage pattern.\\n * @dev This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.\\n */\\ncontract InitializableProxy is Proxy {\\n  /**\\n   * @notice Sets proxy ownership to an unrecoverable address.\\n   * @dev This contract is intended to be the target of delegatecalls from EIP-1167 proxies.\\n   *      As such, we take precautions here to ensure that this contract can never be pointed to\\n   *      an implementation, which would then risk that this contract could be selfdestructed,\\n   *      which would \\\"brick\\\" all EIP-1167 clones of this contract.\\n   */\\n  constructor() public {\\n    // We cannot set the owner to 0x0 as that is both explicitly prevented in `_setOwner`, and as\\n    // that would result in `_initialize` being callable, exposing the very vulnerability this\\n    // constructor is intended to prevent.\\n    _setOwner(address(0x1));\\n  }\\n\\n  /**\\n   * @notice Sets the proxy owner if it hasn't already been set.\\n   * @param owner The address allowed to repoint the proxy to a new implementation.\\n   * @dev Note that anyone is allowed to set the proxy owner if it is set to the null address.\\n   */\\n  function _initialize(address owner) external {\\n    require(_getOwner() == address(0), \\\"Owner already set\\\");\\n    _setOwner(owner);\\n  }\\n}\\n\",\"keccak256\":\"0xb8f29d8f745cc0657551d45a7c1aee9aa71be5ad4b282d4a7e28dfc10dda9dc0\"},\"project:/contracts/common/Proxy.sol\":{\"content\":\"pragma solidity ^0.5.13;\\n/* solhint-disable no-inline-assembly, no-complex-fallback, avoid-low-level-calls */\\n\\nimport \\\"openzeppelin-solidity/contracts/utils/Address.sol\\\";\\n\\n/**\\n * @title A Proxy utilizing the Unstructured Storage pattern.\\n */\\ncontract Proxy {\\n  // Used to store the address of the owner.\\n  bytes32 private constant OWNER_POSITION = bytes32(uint256(keccak256(\\\"eip1967.proxy.admin\\\")) - 1);\\n  // Used to store the address of the implementation contract.\\n  bytes32 private constant IMPLEMENTATION_POSITION =\\n    bytes32(uint256(keccak256(\\\"eip1967.proxy.implementation\\\")) - 1);\\n\\n  event OwnerSet(address indexed owner);\\n  event ImplementationSet(address indexed implementation);\\n\\n  /**\\n   * @notice Throws if called by any account other than the owner.\\n   */\\n  modifier onlyOwner() {\\n    require(msg.sender == _getOwner(), \\\"sender was not owner\\\");\\n    _;\\n  }\\n\\n  constructor() public {\\n    _setOwner(msg.sender);\\n  }\\n\\n  /**\\n   * @notice Delegates calls to the implementation contract.\\n   */\\n  function() external payable {\\n    bytes32 implementationPosition = IMPLEMENTATION_POSITION;\\n\\n    address implementationAddress;\\n\\n    // Load the address of the implementation contract from an explicit storage slot.\\n    assembly {\\n      implementationAddress := sload(implementationPosition)\\n    }\\n\\n    // Avoid checking if address is a contract or executing delegated call when\\n    // implementation address is 0x0\\n    require(implementationAddress != address(0), \\\"No Implementation set\\\");\\n    require(Address.isContract(implementationAddress), \\\"Invalid contract address\\\");\\n\\n    assembly {\\n      // Extract the position of the transaction data (i.e. function ID and arguments).\\n      let newCallDataPosition := mload(0x40)\\n      mstore(0x40, add(newCallDataPosition, calldatasize))\\n      calldatacopy(newCallDataPosition, 0, calldatasize)\\n\\n      // Call the smart contract at `implementationAddress` in the context of the proxy contract,\\n      // with the same msg.sender and value.\\n      let delegatecallSuccess := delegatecall(\\n        gas,\\n        implementationAddress,\\n        newCallDataPosition,\\n        calldatasize,\\n        0,\\n        0\\n      )\\n\\n      // Copy the return value of the call so it can be returned.\\n      let returnDataSize := returndatasize\\n      let returnDataPosition := mload(0x40)\\n      mstore(0x40, add(returnDataPosition, returnDataSize))\\n      returndatacopy(returnDataPosition, 0, returnDataSize)\\n\\n      // Revert or return depending on whether or not the call was successful.\\n      switch delegatecallSuccess\\n      case 0 {\\n        revert(returnDataPosition, returnDataSize)\\n      }\\n      default {\\n        return(returnDataPosition, returnDataSize)\\n      }\\n    }\\n  }\\n\\n  /**\\n   * @notice Transfers ownership of Proxy to a new owner.\\n   * @param newOwner Address of the new owner account.\\n   */\\n  function _transferOwnership(address newOwner) external onlyOwner {\\n    _setOwner(newOwner);\\n  }\\n\\n  /**\\n   * @notice Sets the address of the implementation contract and calls into it.\\n   * @param implementation Address of the new target contract.\\n   * @param callbackData The abi-encoded function call to perform in the implementation\\n   * contract.\\n   * @dev Throws if the initialization callback fails.\\n   * @dev If the target contract does not need initialization, use\\n   * setImplementation instead.\\n   */\\n  function _setAndInitializeImplementation(\\n    address implementation,\\n    bytes calldata callbackData\\n  ) external payable onlyOwner {\\n    _setImplementation(implementation);\\n    bool success;\\n    bytes memory returnValue;\\n    (success, returnValue) = implementation.delegatecall(callbackData);\\n    require(success, \\\"initialization callback failed\\\");\\n  }\\n\\n  /**\\n   * @notice Returns the implementation address.\\n   */\\n  function _getImplementation() external view returns (address implementation) {\\n    bytes32 implementationPosition = IMPLEMENTATION_POSITION;\\n    // Load the address of the implementation contract from an explicit storage slot.\\n    assembly {\\n      implementation := sload(implementationPosition)\\n    }\\n  }\\n\\n  /**\\n   * @notice Sets the address of the implementation contract.\\n   * @param implementation Address of the new target contract.\\n   * @dev If the target contract needs to be initialized, call\\n   * setAndInitializeImplementation instead.\\n   */\\n  function _setImplementation(address implementation) public onlyOwner {\\n    bytes32 implementationPosition = IMPLEMENTATION_POSITION;\\n\\n    require(Address.isContract(implementation), \\\"Invalid contract address\\\");\\n\\n    // Store the address of the implementation contract in an explicit storage slot.\\n    assembly {\\n      sstore(implementationPosition, implementation)\\n    }\\n\\n    emit ImplementationSet(implementation);\\n  }\\n\\n  /**\\n   * @notice Returns the Proxy owner's address.\\n   */\\n  function _getOwner() public view returns (address owner) {\\n    bytes32 position = OWNER_POSITION;\\n    // Load the address of the contract owner from an explicit storage slot.\\n    assembly {\\n      owner := sload(position)\\n    }\\n  }\\n\\n  function _setOwner(address newOwner) internal {\\n    require(newOwner != address(0), \\\"owner cannot be 0\\\");\\n    bytes32 position = OWNER_POSITION;\\n    // Store the address of the contract owner in an explicit storage slot.\\n    assembly {\\n      sstore(position, newOwner)\\n    }\\n    emit OwnerSet(newOwner);\\n  }\\n}\\n\",\"keccak256\":\"0xdc37b373733511ee2ead52cb5eab6a978abc125e513927f5c0be6685002e4f80\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506100203361003560201b60201c565b610030600161003560201b60201c565b610165565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100d8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f6f776e65722063616e6e6f74206265203000000000000000000000000000000081525060200191505060405180910390fd5b6000600160405180807f656970313936372e70726f78792e61646d696e000000000000000000000000008152506013019050604051809103902060001c0360001b90508181558173ffffffffffffffffffffffffffffffffffffffff167f50146d0e3c60aa1d17a70635b05494f864e86144a2201275021014fbf08bafe260405160405180910390a25050565b610b33806101746000396000f3fe6080604052600436106100555760003560e01c806303386ba3146101f2578063319775c41461028b57806342404e07146102dc578063bb913f4114610333578063d29d44ee14610384578063f7e6af80146103d5575b6000600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b9050600081549050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610141576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f4e6f20496d706c656d656e746174696f6e20736574000000000000000000000081525060200191505060405180910390fd5b61014a8161042c565b6101bc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260188152602001807f496e76616c696420636f6e74726163742061646472657373000000000000000081525060200191505060405180910390fd5b60405136810160405236600082376000803683855af43d604051818101604052816000823e82600081146101ee578282f35b8282fd5b6102896004803603604081101561020857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561024557600080fd5b82018360208201111561025757600080fd5b8035906020019184600183028401116401000000008311171561027957600080fd5b9091929391929390505050610477565b005b34801561029757600080fd5b506102da600480360360208110156102ae57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061061d565b005b3480156102e857600080fd5b506102f16106d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561033f57600080fd5b506103826004803603602081101561035657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061071e565b005b34801561039057600080fd5b506103d3600480360360208110156103a757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506108ce565b005b3480156103e157600080fd5b506103ea610982565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060007fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47060001b9050833f915080821415801561046e57506000801b8214155b92505050919050565b61047f610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461051f576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b6105288361071e565b600060608473ffffffffffffffffffffffffffffffffffffffff168484604051808383808284378083019250505092505050600060405180830381855af49150503d8060008114610595576040519150601f19603f3d011682016040523d82523d6000602084013e61059a565b606091505b50809250819350505081610616576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601e8152602001807f696e697469616c697a6174696f6e2063616c6c6261636b206661696c6564000081525060200191505060405180910390fd5b5050505050565b600073ffffffffffffffffffffffffffffffffffffffff1661063d610982565b73ffffffffffffffffffffffffffffffffffffffff16146106c6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f4f776e657220616c72656164792073657400000000000000000000000000000081525060200191505060405180910390fd5b6106cf816109ce565b50565b600080600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b9050805491505090565b610726610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146107c6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b6000600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b90506108128261042c565b610884576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260188152602001807f496e76616c696420636f6e74726163742061646472657373000000000000000081525060200191505060405180910390fd5b8181558173ffffffffffffffffffffffffffffffffffffffff167fab64f92ab780ecbf4f3866f57cee465ff36c89450dcce20237ca7a8d81fb7d1360405160405180910390a25050565b6108d6610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610976576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b61097f816109ce565b50565b600080600160405180807f656970313936372e70726f78792e61646d696e000000000000000000000000008152506013019050604051809103902060001c0360001b9050805491505090565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610a71576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f6f776e65722063616e6e6f74206265203000000000000000000000000000000081525060200191505060405180910390fd5b6000600160405180807f656970313936372e70726f78792e61646d696e000000000000000000000000008152506013019050604051809103902060001c0360001b90508181558173ffffffffffffffffffffffffffffffffffffffff167f50146d0e3c60aa1d17a70635b05494f864e86144a2201275021014fbf08bafe260405160405180910390a2505056fea265627a7a72315820a1690183deabb99fd5cbf42bf84df10d94f4eef81a9b7aeb257291845ea90b9364736f6c634300050d0032",
+  "deployedBytecode": "0x6080604052600436106100555760003560e01c806303386ba3146101f2578063319775c41461028b57806342404e07146102dc578063bb913f4114610333578063d29d44ee14610384578063f7e6af80146103d5575b6000600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b9050600081549050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610141576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f4e6f20496d706c656d656e746174696f6e20736574000000000000000000000081525060200191505060405180910390fd5b61014a8161042c565b6101bc576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260188152602001807f496e76616c696420636f6e74726163742061646472657373000000000000000081525060200191505060405180910390fd5b60405136810160405236600082376000803683855af43d604051818101604052816000823e82600081146101ee578282f35b8282fd5b6102896004803603604081101561020857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561024557600080fd5b82018360208201111561025757600080fd5b8035906020019184600183028401116401000000008311171561027957600080fd5b9091929391929390505050610477565b005b34801561029757600080fd5b506102da600480360360208110156102ae57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061061d565b005b3480156102e857600080fd5b506102f16106d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561033f57600080fd5b506103826004803603602081101561035657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061071e565b005b34801561039057600080fd5b506103d3600480360360208110156103a757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506108ce565b005b3480156103e157600080fd5b506103ea610982565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060007fc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a47060001b9050833f915080821415801561046e57506000801b8214155b92505050919050565b61047f610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461051f576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b6105288361071e565b600060608473ffffffffffffffffffffffffffffffffffffffff168484604051808383808284378083019250505092505050600060405180830381855af49150503d8060008114610595576040519150601f19603f3d011682016040523d82523d6000602084013e61059a565b606091505b50809250819350505081610616576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601e8152602001807f696e697469616c697a6174696f6e2063616c6c6261636b206661696c6564000081525060200191505060405180910390fd5b5050505050565b600073ffffffffffffffffffffffffffffffffffffffff1661063d610982565b73ffffffffffffffffffffffffffffffffffffffff16146106c6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f4f776e657220616c72656164792073657400000000000000000000000000000081525060200191505060405180910390fd5b6106cf816109ce565b50565b600080600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b9050805491505090565b610726610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146107c6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b6000600160405180807f656970313936372e70726f78792e696d706c656d656e746174696f6e00000000815250601c019050604051809103902060001c0360001b90506108128261042c565b610884576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260188152602001807f496e76616c696420636f6e74726163742061646472657373000000000000000081525060200191505060405180910390fd5b8181558173ffffffffffffffffffffffffffffffffffffffff167fab64f92ab780ecbf4f3866f57cee465ff36c89450dcce20237ca7a8d81fb7d1360405160405180910390a25050565b6108d6610982565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610976576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f73656e64657220776173206e6f74206f776e657200000000000000000000000081525060200191505060405180910390fd5b61097f816109ce565b50565b600080600160405180807f656970313936372e70726f78792e61646d696e000000000000000000000000008152506013019050604051809103902060001c0360001b9050805491505090565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610a71576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f6f776e65722063616e6e6f74206265203000000000000000000000000000000081525060200191505060405180910390fd5b6000600160405180807f656970313936372e70726f78792e61646d696e000000000000000000000000008152506013019050604051809103902060001c0360001b90508181558173ffffffffffffffffffffffffffffffffffffffff167f50146d0e3c60aa1d17a70635b05494f864e86144a2201275021014fbf08bafe260405160405180910390a2505056fea265627a7a72315820a1690183deabb99fd5cbf42bf84df10d94f4eef81a9b7aeb257291845ea90b9364736f6c634300050d0032",
+  "sourceMap": "207:1155:29:-;;;676:291;8:9:-1;5:2;;;30:1;27;20:12;5:2;676:291:29;900:21:34;910:10;900:9;;;:21;;:::i;:::-;939:23:29;957:3;939:9;;;:23;;:::i;:::-;207:1155;;5032:307:34;5112:1;5092:22;;:8;:22;;;;5084:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5142:16;400:1;364:32;;;;;;;;;;;;;;;;;;;356:41;;:45;348:54;;5142:33;;5291:8;5281;5274:26;5325:8;5316:18;;;;;;;;;;;;5032:307;;:::o;207:1155:29:-;;;;;;;",
+  "deployedSourceMap": "207:1155:29:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1037:30:34;585:1;540:41;;;;;;;;;;;;;;;;;;;532:50;;:54;524:63;;1037:56;;1100:29;1270:22;1264:29;1239:54;;1463:1;1430:35;;:21;:35;;;;1422:69;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1505:41;1524:21;1505:18;:41::i;:::-;1497:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1720:4;1714:11;1770:12;1749:19;1745:38;1739:4;1732:52;1828:12;1825:1;1804:19;1791:50;2147:1;2136;2114:12;2085:19;2054:21;2041:3;2019:137;2252:14;2305:4;2299:11;2354:14;2334:18;2330:39;2324:4;2317:53;2415:14;2412:1;2392:18;2377:53;2524:19;2555:1;2550:67;;;;2669:14;2649:18;2642:42;2550:67;2594:14;2574:18;2567:42;3342:354;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3342:354:34;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;3342:354:34;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;3342:354:34;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;3342:354:34;;;;;;;;;;;;:::i;:::-;;1227:133:29;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1227:133:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1227:133:29;;;;;;;;;;;;;;;;;;;:::i;:::-;;3761:305:34;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3761:305:34;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;4315:419;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4315:419:34;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;4315:419:34;;;;;;;;;;;;;;;;;;;:::i;:::-;;2831:95;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2831:95:34;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2831:95:34;;;;;;;;;;;;;;;;;;;:::i;:::-;;4798:230;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4798:230:34;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;686:610:8;746:4;1004:16;1030:19;1052:66;1030:88;;;;1219:7;1207:20;1195:32;;1258:11;1246:8;:23;;:42;;;;;1285:3;1273:15;;:8;:15;;1246:42;1238:51;;;;686:610;;;:::o;3342:354:34:-;821:11;:9;:11::i;:::-;807:25;;:10;:25;;;799:58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3481:34;3500:14;3481:18;:34::i;:::-;3521:12;3539:24;3594:14;:27;;3622:12;;3594:41;;;;;30:3:-1;22:6;14;1:33;57:3;49:6;45:16;35:26;;3594:41:34;;;;;;;;;;;;;;;;;;;;14:1:-1;21;16:31;;;;75:4;69:11;64:16;;144:4;140:9;133:4;115:16;111:27;107:43;104:1;100:51;94:4;87:65;169:16;166:1;159:27;225:16;222:1;215:4;212:1;208:12;193:49;7:242;;16:31;36:4;31:9;;7:242;;3569:66:34;;;;;;;;3649:7;3641:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;863:1;;3342:354;;;:::o;1227:133:29:-;1309:1;1286:25;;:11;:9;:11::i;:::-;:25;;;1278:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1339:16;1349:5;1339:9;:16::i;:::-;1227:133;:::o;3761:305:34:-;3814:22;3844:30;585:1;540:41;;;;;;;;;;;;;;;;;;;532:50;;:54;524:63;;3844:56;;4033:22;4027:29;4009:47;;4001:61;;:::o;4315:419::-;821:11;:9;:11::i;:::-;807:25;;:10;:25;;;799:58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4390:30;585:1;540:41;;;;;;;;;;;;;;;;;;;532:50;;:54;524:63;;4390:56;;4461:34;4480:14;4461:18;:34::i;:::-;4453:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4664:14;4640:22;4633:46;4714:14;4696:33;;;;;;;;;;;;863:1;4315:419;:::o;2831:95::-;821:11;:9;:11::i;:::-;807:25;;:10;:25;;;799:58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2902:19;2912:8;2902:9;:19::i;:::-;2831:95;:::o;4798:230::-;4840:13;4861:16;400:1;364:32;;;;;;;;;;;;;;;;;;;356:41;;:45;348:54;;4861:33;;5009:8;5003:15;4994:24;;4986:38;;:::o;5032:307::-;5112:1;5092:22;;:8;:22;;;;5084:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5142:16;400:1;364:32;;;;;;;;;;;;;;;;;;;356:41;;:45;348:54;;5142:33;;5291:8;5281;5274:26;5325:8;5316:18;;;;;;;;;;;;5032:307;;:::o",
+  "source": "pragma solidity ^0.5.13;\n\nimport \"./Proxy.sol\";\n\n/**\n * @title A Proxy utilizing the Unstructured Storage pattern.\n * @dev This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.\n */\ncontract InitializableProxy is Proxy {\n  /**\n   * @notice Sets proxy ownership to an unrecoverable address.\n   * @dev This contract is intended to be the target of delegatecalls from EIP-1167 proxies.\n   *      As such, we take precautions here to ensure that this contract can never be pointed to\n   *      an implementation, which would then risk that this contract could be selfdestructed,\n   *      which would \"brick\" all EIP-1167 clones of this contract.\n   */\n  constructor() public {\n    // We cannot set the owner to 0x0 as that is both explicitly prevented in `_setOwner`, and as\n    // that would result in `_initialize` being callable, exposing the very vulnerability this\n    // constructor is intended to prevent.\n    _setOwner(address(0x1));\n  }\n\n  /**\n   * @notice Sets the proxy owner if it hasn't already been set.\n   * @param owner The address allowed to repoint the proxy to a new implementation.\n   * @dev Note that anyone is allowed to set the proxy owner if it is set to the null address.\n   */\n  function _initialize(address owner) external {\n    require(_getOwner() == address(0), \"Owner already set\");\n    _setOwner(owner);\n  }\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/InitializableProxy.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/InitializableProxy.sol",
+    "exportedSymbols": {
+      "InitializableProxy": [
+        9606
+      ]
+    },
+    "id": 9607,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9572,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".13"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:29"
+      },
+      {
+        "absolutePath": "project:/contracts/common/Proxy.sol",
+        "file": "./Proxy.sol",
+        "id": 9573,
+        "nodeType": "ImportDirective",
+        "scope": 9607,
+        "sourceUnit": 11382,
+        "src": "26:21:29",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 9574,
+              "name": "Proxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 11381,
+              "src": "238:5:29",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Proxy_$11381",
+                "typeString": "contract Proxy"
+              }
+            },
+            "id": 9575,
+            "nodeType": "InheritanceSpecifier",
+            "src": "238:5:29"
+          }
+        ],
+        "contractDependencies": [
+          11381
+        ],
+        "contractKind": "contract",
+        "documentation": "@title A Proxy utilizing the Unstructured Storage pattern.\n@dev This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.",
+        "fullyImplemented": true,
+        "id": 9606,
+        "linearizedBaseContracts": [
+          9606,
+          11381
+        ],
+        "name": "InitializableProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 9584,
+              "nodeType": "Block",
+              "src": "697:270:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "307831",
+                            "id": 9580,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "957:3:29",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_1_by_1",
+                              "typeString": "int_const 1"
+                            },
+                            "value": "0x1"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_rational_1_by_1",
+                              "typeString": "int_const 1"
+                            }
+                          ],
+                          "id": 9579,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "949:7:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": "address"
+                        },
+                        "id": 9581,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "949:12:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 9578,
+                      "name": "_setOwner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 11380,
+                      "src": "939:9:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 9582,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "939:23:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 9583,
+                  "nodeType": "ExpressionStatement",
+                  "src": "939:23:29"
+                }
+              ]
+            },
+            "documentation": "@notice Sets proxy ownership to an unrecoverable address.\n@dev This contract is intended to be the target of delegatecalls from EIP-1167 proxies.\n     As such, we take precautions here to ensure that this contract can never be pointed to\n     an implementation, which would then risk that this contract could be selfdestructed,\n     which would \"brick\" all EIP-1167 clones of this contract.",
+            "id": 9585,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9576,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "687:2:29"
+            },
+            "returnParameters": {
+              "id": 9577,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "697:0:29"
+            },
+            "scope": 9606,
+            "src": "676:291:29",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 9604,
+              "nodeType": "Block",
+              "src": "1272:88:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 9596,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 9591,
+                            "name": "_getOwner",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 11356,
+                            "src": "1286:9:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                              "typeString": "function () view returns (address)"
+                            }
+                          },
+                          "id": 9592,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1286:11:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 9594,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1309:1:29",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 9593,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1301:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": "address"
+                          },
+                          "id": 9595,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1301:10:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "1286:25:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4f776e657220616c726561647920736574",
+                        "id": 9597,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1313:19:29",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0cb8b89218358f6d040fadfd98cd075d05ecff1d81e4df7791823c99ed902f6c",
+                          "typeString": "literal_string \"Owner already set\""
+                        },
+                        "value": "Owner already set"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0cb8b89218358f6d040fadfd98cd075d05ecff1d81e4df7791823c99ed902f6c",
+                          "typeString": "literal_string \"Owner already set\""
+                        }
+                      ],
+                      "id": 9590,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        59926,
+                        59927
+                      ],
+                      "referencedDeclaration": 59927,
+                      "src": "1278:7:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 9598,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1278:55:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 9599,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1278:55:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 9601,
+                        "name": "owner",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9587,
+                        "src": "1349:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 9600,
+                      "name": "_setOwner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 11380,
+                      "src": "1339:9:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 9602,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1339:16:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 9603,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1339:16:29"
+                }
+              ]
+            },
+            "documentation": "@notice Sets the proxy owner if it hasn't already been set.\n@param owner The address allowed to repoint the proxy to a new implementation.\n@dev Note that anyone is allowed to set the proxy owner if it is set to the null address.",
+            "id": 9605,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9588,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9587,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9605,
+                  "src": "1248:13:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9586,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1248:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1247:15:29"
+            },
+            "returnParameters": {
+              "id": 9589,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1272:0:29"
+            },
+            "scope": 9606,
+            "src": "1227:133:29",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9607,
+        "src": "207:1155:29"
+      }
+    ],
+    "src": "0:1363:29"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/InitializableProxy.sol",
+      "exportedSymbols": {
+        "InitializableProxy": [
+          9606
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".13"
+          ]
+        },
+        "id": 9572,
+        "name": "PragmaDirective",
+        "src": "0:24:29"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 11382,
+          "absolutePath": "project:/contracts/common/Proxy.sol",
+          "file": "./Proxy.sol",
+          "scope": 9607,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 9573,
+        "name": "ImportDirective",
+        "src": "26:21:29"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            11381
+          ],
+          "contractKind": "contract",
+          "documentation": "@title A Proxy utilizing the Unstructured Storage pattern.\n@dev This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            9606,
+            11381
+          ],
+          "name": "InitializableProxy",
+          "scope": 9607
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Proxy",
+                  "referencedDeclaration": 11381,
+                  "type": "contract Proxy"
+                },
+                "id": 9574,
+                "name": "UserDefinedTypeName",
+                "src": "238:5:29"
+              }
+            ],
+            "id": 9575,
+            "name": "InheritanceSpecifier",
+            "src": "238:5:29"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Sets proxy ownership to an unrecoverable address.\n@dev This contract is intended to be the target of delegatecalls from EIP-1167 proxies.\n     As such, we take precautions here to ensure that this contract can never be pointed to\n     an implementation, which would then risk that this contract could be selfdestructed,\n     which would \"brick\" all EIP-1167 clones of this contract.",
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 9606,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 9576,
+                "name": "ParameterList",
+                "src": "687:2:29"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 9577,
+                "name": "ParameterList",
+                "src": "697:0:29"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11380,
+                              "type": "function (address)",
+                              "value": "_setOwner"
+                            },
+                            "id": 9578,
+                            "name": "Identifier",
+                            "src": "939:9:29"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "address payable",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_rational_1_by_1",
+                                      "typeString": "int_const 1"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)",
+                                  "value": "address"
+                                },
+                                "id": 9579,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "949:7:29"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "307831",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 1",
+                                  "value": "0x1"
+                                },
+                                "id": 9580,
+                                "name": "Literal",
+                                "src": "957:3:29"
+                              }
+                            ],
+                            "id": 9581,
+                            "name": "FunctionCall",
+                            "src": "949:12:29"
+                          }
+                        ],
+                        "id": 9582,
+                        "name": "FunctionCall",
+                        "src": "939:23:29"
+                      }
+                    ],
+                    "id": 9583,
+                    "name": "ExpressionStatement",
+                    "src": "939:23:29"
+                  }
+                ],
+                "id": 9584,
+                "name": "Block",
+                "src": "697:270:29"
+              }
+            ],
+            "id": 9585,
+            "name": "FunctionDefinition",
+            "src": "676:291:29"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Sets the proxy owner if it hasn't already been set.\n@param owner The address allowed to repoint the proxy to a new implementation.\n@dev Note that anyone is allowed to set the proxy owner if it is set to the null address.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "_initialize",
+              "scope": 9606,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "owner",
+                      "scope": 9605,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 9586,
+                        "name": "ElementaryTypeName",
+                        "src": "1248:7:29"
+                      }
+                    ],
+                    "id": 9587,
+                    "name": "VariableDeclaration",
+                    "src": "1248:13:29"
+                  }
+                ],
+                "id": 9588,
+                "name": "ParameterList",
+                "src": "1247:15:29"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 9589,
+                "name": "ParameterList",
+                "src": "1272:0:29"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_0cb8b89218358f6d040fadfd98cd075d05ecff1d81e4df7791823c99ed902f6c",
+                                  "typeString": "literal_string \"Owner already set\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                59926,
+                                59927
+                              ],
+                              "referencedDeclaration": 59927,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 9590,
+                            "name": "Identifier",
+                            "src": "1278:7:29"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "address",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 11356,
+                                      "type": "function () view returns (address)",
+                                      "value": "_getOwner"
+                                    },
+                                    "id": 9591,
+                                    "name": "Identifier",
+                                    "src": "1286:9:29"
+                                  }
+                                ],
+                                "id": 9592,
+                                "name": "FunctionCall",
+                                "src": "1286:11:29"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "address payable",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_rational_0_by_1",
+                                          "typeString": "int_const 0"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)",
+                                      "value": "address"
+                                    },
+                                    "id": 9593,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "1301:7:29"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "30",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 0",
+                                      "value": "0"
+                                    },
+                                    "id": 9594,
+                                    "name": "Literal",
+                                    "src": "1309:1:29"
+                                  }
+                                ],
+                                "id": 9595,
+                                "name": "FunctionCall",
+                                "src": "1301:10:29"
+                              }
+                            ],
+                            "id": 9596,
+                            "name": "BinaryOperation",
+                            "src": "1286:25:29"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4f776e657220616c726561647920736574",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Owner already set\"",
+                              "value": "Owner already set"
+                            },
+                            "id": 9597,
+                            "name": "Literal",
+                            "src": "1313:19:29"
+                          }
+                        ],
+                        "id": 9598,
+                        "name": "FunctionCall",
+                        "src": "1278:55:29"
+                      }
+                    ],
+                    "id": 9599,
+                    "name": "ExpressionStatement",
+                    "src": "1278:55:29"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11380,
+                              "type": "function (address)",
+                              "value": "_setOwner"
+                            },
+                            "id": 9600,
+                            "name": "Identifier",
+                            "src": "1339:9:29"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 9587,
+                              "type": "address",
+                              "value": "owner"
+                            },
+                            "id": 9601,
+                            "name": "Identifier",
+                            "src": "1349:5:29"
+                          }
+                        ],
+                        "id": 9602,
+                        "name": "FunctionCall",
+                        "src": "1339:16:29"
+                      }
+                    ],
+                    "id": 9603,
+                    "name": "ExpressionStatement",
+                    "src": "1339:16:29"
+                  }
+                ],
+                "id": 9604,
+                "name": "Block",
+                "src": "1272:88:29"
+              }
+            ],
+            "id": 9605,
+            "name": "FunctionDefinition",
+            "src": "1227:133:29"
+          }
+        ],
+        "id": 9606,
+        "name": "ContractDefinition",
+        "src": "207:1155:29"
+      }
+    ],
+    "id": 9607,
+    "name": "SourceUnit",
+    "src": "0:1363:29"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.112Z",
+  "devdoc": {
+    "details": "This proxy is intended to be used in conjunction with EIP-1167 minimal proxies.",
+    "methods": {
+      "_initialize(address)": {
+        "details": "Note that anyone is allowed to set the proxy owner if it is set to the null address.",
+        "params": {
+          "owner": "The address allowed to repoint the proxy to a new implementation."
+        }
+      },
+      "_setAndInitializeImplementation(address,bytes)": {
+        "details": "Throws if the initialization callback fails.If the target contract does not need initialization, use setImplementation instead.",
+        "params": {
+          "callbackData": "The abi-encoded function call to perform in the implementation contract.",
+          "implementation": "Address of the new target contract."
+        }
+      },
+      "_setImplementation(address)": {
+        "details": "If the target contract needs to be initialized, call setAndInitializeImplementation instead.",
+        "params": {
+          "implementation": "Address of the new target contract."
+        }
+      },
+      "_transferOwnership(address)": {
+        "params": {
+          "newOwner": "Address of the new owner account."
+        }
+      },
+      "constructor": {
+        "details": "This contract is intended to be the target of delegatecalls from EIP-1167 proxies.     As such, we take precautions here to ensure that this contract can never be pointed to     an implementation, which would then risk that this contract could be selfdestructed,     which would \"brick\" all EIP-1167 clones of this contract."
+      }
+    },
+    "title": "A Proxy utilizing the Unstructured Storage pattern."
+  },
+  "userdoc": {
+    "methods": {
+      "_getImplementation()": {
+        "notice": "Returns the implementation address."
+      },
+      "_getOwner()": {
+        "notice": "Returns the Proxy owner's address."
+      },
+      "_initialize(address)": {
+        "notice": "Sets the proxy owner if it hasn't already been set."
+      },
+      "_setAndInitializeImplementation(address,bytes)": {
+        "notice": "Sets the address of the implementation contract and calls into it."
+      },
+      "_setImplementation(address)": {
+        "notice": "Sets the address of the implementation contract."
+      },
+      "_transferOwnership(address)": {
+        "notice": "Transfers ownership of Proxy to a new owner."
+      },
+      "constructor": "Sets proxy ownership to an unrecoverable address."
+    }
+  }
+}

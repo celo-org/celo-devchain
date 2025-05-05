@@ -1,0 +1,785 @@
+{
+  "contractName": "IScoreManagerGovernance",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "group",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "score",
+          "type": "uint256"
+        }
+      ],
+      "name": "setGroupScore",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "validator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "score",
+          "type": "uint256"
+        }
+      ],
+      "name": "setValidatorScore",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "setScoreManagerSetter",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getScoreManagerSetter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getScoreManagerSetter\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"group\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"score\",\"type\":\"uint256\"}],\"name\":\"setGroupScore\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"setScoreManagerSetter\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"validator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"score\",\"type\":\"uint256\"}],\"name\":\"setValidatorScore\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IScoreManagerGovernance.sol\":\"IScoreManagerGovernance\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/IScoreManagerGovernance.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\n// import \\\"./IScoreManager.sol\\\";\\n// TODO make import when everything is ported to Solidity 0.8\\n\\ninterface IScoreManagerGovernance {\\n  function setGroupScore(address group, uint256 score) external;\\n  function setValidatorScore(address validator, uint256 score) external;\\n  function setScoreManagerSetter(address) external;\\n  function getScoreManagerSetter() external view returns (address);\\n}\\n\",\"keccak256\":\"0x9f9e0aafde24dad09daa3f30c3bed96da3feb8e0ea993750b100c24981c73560\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\n// import \"./IScoreManager.sol\";\n// TODO make import when everything is ported to Solidity 0.8\n\ninterface IScoreManagerGovernance {\n  function setGroupScore(address group, uint256 score) external;\n  function setValidatorScore(address validator, uint256 score) external;\n  function setScoreManagerSetter(address) external;\n  function getScoreManagerSetter() external view returns (address);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/IScoreManagerGovernance.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/interfaces/IScoreManagerGovernance.sol",
+    "exportedSymbols": {
+      "IScoreManagerGovernance": [
+        15115
+      ]
+    },
+    "id": 15116,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15090,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:32:68"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 15115,
+        "linearizedBaseContracts": [
+          15115
+        ],
+        "name": "IScoreManagerGovernance",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 15097,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setGroupScore",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15095,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15092,
+                  "name": "group",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15097,
+                  "src": "233:13:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15091,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:68",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15094,
+                  "name": "score",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15097,
+                  "src": "248:13:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15093,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "248:7:68",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "232:30:68"
+            },
+            "returnParameters": {
+              "id": 15096,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "271:0:68"
+            },
+            "scope": 15115,
+            "src": "210:62:68",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 15104,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setValidatorScore",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15102,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15099,
+                  "name": "validator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15104,
+                  "src": "302:17:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15098,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "302:7:68",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15101,
+                  "name": "score",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15104,
+                  "src": "321:13:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15100,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "321:7:68",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "301:34:68"
+            },
+            "returnParameters": {
+              "id": 15103,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "344:0:68"
+            },
+            "scope": 15115,
+            "src": "275:70:68",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 15109,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setScoreManagerSetter",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15107,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15106,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15109,
+                  "src": "379:7:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15105,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "379:7:68",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "378:9:68"
+            },
+            "returnParameters": {
+              "id": 15108,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "396:0:68"
+            },
+            "scope": 15115,
+            "src": "348:49:68",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 15114,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getScoreManagerSetter",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15110,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "430:2:68"
+            },
+            "returnParameters": {
+              "id": 15113,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15112,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15114,
+                  "src": "456:7:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15111,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "456:7:68",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "455:9:68"
+            },
+            "scope": 15115,
+            "src": "400:65:68",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 15116,
+        "src": "172:295:68"
+      }
+    ],
+    "src": "42:426:68"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/interfaces/IScoreManagerGovernance.sol",
+      "exportedSymbols": {
+        "IScoreManagerGovernance": [
+          15115
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 15090,
+        "name": "PragmaDirective",
+        "src": "42:32:68"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            15115
+          ],
+          "name": "IScoreManagerGovernance",
+          "scope": 15116
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setGroupScore",
+              "scope": 15115,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "group",
+                      "scope": 15097,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 15091,
+                        "name": "ElementaryTypeName",
+                        "src": "233:7:68"
+                      }
+                    ],
+                    "id": 15092,
+                    "name": "VariableDeclaration",
+                    "src": "233:13:68"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "score",
+                      "scope": 15097,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 15093,
+                        "name": "ElementaryTypeName",
+                        "src": "248:7:68"
+                      }
+                    ],
+                    "id": 15094,
+                    "name": "VariableDeclaration",
+                    "src": "248:13:68"
+                  }
+                ],
+                "id": 15095,
+                "name": "ParameterList",
+                "src": "232:30:68"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15096,
+                "name": "ParameterList",
+                "src": "271:0:68"
+              }
+            ],
+            "id": 15097,
+            "name": "FunctionDefinition",
+            "src": "210:62:68"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setValidatorScore",
+              "scope": 15115,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "validator",
+                      "scope": 15104,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 15098,
+                        "name": "ElementaryTypeName",
+                        "src": "302:7:68"
+                      }
+                    ],
+                    "id": 15099,
+                    "name": "VariableDeclaration",
+                    "src": "302:17:68"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "score",
+                      "scope": 15104,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 15100,
+                        "name": "ElementaryTypeName",
+                        "src": "321:7:68"
+                      }
+                    ],
+                    "id": 15101,
+                    "name": "VariableDeclaration",
+                    "src": "321:13:68"
+                  }
+                ],
+                "id": 15102,
+                "name": "ParameterList",
+                "src": "301:34:68"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15103,
+                "name": "ParameterList",
+                "src": "344:0:68"
+              }
+            ],
+            "id": 15104,
+            "name": "FunctionDefinition",
+            "src": "275:70:68"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setScoreManagerSetter",
+              "scope": 15115,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 15109,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 15105,
+                        "name": "ElementaryTypeName",
+                        "src": "379:7:68"
+                      }
+                    ],
+                    "id": 15106,
+                    "name": "VariableDeclaration",
+                    "src": "379:7:68"
+                  }
+                ],
+                "id": 15107,
+                "name": "ParameterList",
+                "src": "378:9:68"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15108,
+                "name": "ParameterList",
+                "src": "396:0:68"
+              }
+            ],
+            "id": 15109,
+            "name": "FunctionDefinition",
+            "src": "348:49:68"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getScoreManagerSetter",
+              "scope": 15115,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15110,
+                "name": "ParameterList",
+                "src": "430:2:68"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 15114,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 15111,
+                        "name": "ElementaryTypeName",
+                        "src": "456:7:68"
+                      }
+                    ],
+                    "id": 15112,
+                    "name": "VariableDeclaration",
+                    "src": "456:7:68"
+                  }
+                ],
+                "id": 15113,
+                "name": "ParameterList",
+                "src": "455:9:68"
+              }
+            ],
+            "id": 15114,
+            "name": "FunctionDefinition",
+            "src": "400:65:68"
+          }
+        ],
+        "id": 15115,
+        "name": "ContractDefinition",
+        "src": "172:295:68"
+      }
+    ],
+    "id": 15116,
+    "name": "SourceUnit",
+    "src": "42:426:68"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.158Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

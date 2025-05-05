@@ -1,0 +1,899 @@
+{
+  "contractName": "Initializable",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "testingDeployment",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "initialized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"testingDeployment\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"initialized\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"constructor\":{\"params\":{\"testingDeployment\":\"When set to true, allows the `initialize` function to be called, which is useful in testing when not setting up with a Proxy.\"}}},\"title\":\"Used with proxied contracts that have an `initialize` function.\"},\"userdoc\":{\"methods\":{\"constructor\":\"By default, ensures that the `initialize` function cannot be called on the logic contract.\"},\"notice\":\"Ensures the `initialize` function:        - gets called only once        - cannot be called on the logic contract.\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/Initializable.sol\":\"Initializable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/Initializable.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\n/**\\n * @title Used with proxied contracts that have an `initialize` function.\\n * @notice Ensures the `initialize` function:\\n *         - gets called only once\\n *         - cannot be called on the logic contract.\\n */\\ncontract Initializable {\\n  bool public initialized;\\n\\n  /**\\n   * @notice Ensures the initializer function cannot be called more than once.\\n   */\\n  modifier initializer() {\\n    require(!initialized, \\\"contract already initialized\\\");\\n    initialized = true;\\n    _;\\n  }\\n\\n  /**\\n   * @notice By default, ensures that the `initialize` function cannot be called\\n   * on the logic contract.\\n   * @param testingDeployment When set to true, allows the `initialize` function\\n   * to be called, which is useful in testing when not setting up with a Proxy.\\n   */\\n  constructor(bool testingDeployment) public {\\n    if (!testingDeployment) {\\n      initialized = true;\\n    }\\n  }\\n}\\n\",\"keccak256\":\"0x8de2ab8706668982998c5a995bdc3d8ff20a1ec8519bf49cec9e464f62c57bb9\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516101073803806101078339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806100645760016000806101000a81548160ff0219169083151502179055505b506094806100736000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063158ef93e14602d575b600080fd5b6033604d565b604051808215151515815260200191505060405180910390f35b6000809054906101000a900460ff168156fea265627a7a72315820eed6c6cc911b37099b000d89dd6fe0a222f9f9249cb19872aaf6ebf32247e64364736f6c634300050d0032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063158ef93e14602d575b600080fd5b6033604d565b604051808215151515815260200191505060405180910390f35b6000809054906101000a900460ff168156fea265627a7a72315820eed6c6cc911b37099b000d89dd6fe0a222f9f9249cb19872aaf6ebf32247e64364736f6c634300050d0032",
+  "sourceMap": "292:662:28:-;;;842:110;8:9:-1;5:2;;;30:1;27;20:12;5:2;842:110:28;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;842:110:28;;;;;;;;;;;;;;;;896:17;891:57;;937:4;923:11;;:18;;;;;;;;;;;;;;;;;;891:57;842:110;292:662;;;;;;",
+  "deployedSourceMap": "292:662:28:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;292:662:28;;;;;;;;;;;;;;;;;;;319:23;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\n/**\n * @title Used with proxied contracts that have an `initialize` function.\n * @notice Ensures the `initialize` function:\n *         - gets called only once\n *         - cannot be called on the logic contract.\n */\ncontract Initializable {\n  bool public initialized;\n\n  /**\n   * @notice Ensures the initializer function cannot be called more than once.\n   */\n  modifier initializer() {\n    require(!initialized, \"contract already initialized\");\n    initialized = true;\n    _;\n  }\n\n  /**\n   * @notice By default, ensures that the `initialize` function cannot be called\n   * on the logic contract.\n   * @param testingDeployment When set to true, allows the `initialize` function\n   * to be called, which is useful in testing when not setting up with a Proxy.\n   */\n  constructor(bool testingDeployment) public {\n    if (!testingDeployment) {\n      initialized = true;\n    }\n  }\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/Initializable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/Initializable.sol",
+    "exportedSymbols": {
+      "Initializable": [
+        9570
+      ]
+    },
+    "id": 9571,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9539,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:32:28"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Used with proxied contracts that have an `initialize` function.\n@notice Ensures the `initialize` function:\n        - gets called only once\n        - cannot be called on the logic contract.",
+        "fullyImplemented": true,
+        "id": 9570,
+        "linearizedBaseContracts": [
+          9570
+        ],
+        "name": "Initializable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 9541,
+            "name": "initialized",
+            "nodeType": "VariableDeclaration",
+            "scope": 9570,
+            "src": "319:23:28",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 9540,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "319:4:28",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 9554,
+              "nodeType": "Block",
+              "src": "461:95:28",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 9545,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "475:12:28",
+                        "subExpression": {
+                          "argumentTypes": null,
+                          "id": 9544,
+                          "name": "initialized",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 9541,
+                          "src": "476:11:28",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "636f6e747261637420616c726561647920696e697469616c697a6564",
+                        "id": 9546,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "489:30:28",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0eaa08b63d5ee9e058835eb2dc7a36f8bcf5c2ea6d8d745d8265f9e4063fd134",
+                          "typeString": "literal_string \"contract already initialized\""
+                        },
+                        "value": "contract already initialized"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0eaa08b63d5ee9e058835eb2dc7a36f8bcf5c2ea6d8d745d8265f9e4063fd134",
+                          "typeString": "literal_string \"contract already initialized\""
+                        }
+                      ],
+                      "id": 9543,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        59926,
+                        59927
+                      ],
+                      "referencedDeclaration": 59927,
+                      "src": "467:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 9547,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "467:53:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 9548,
+                  "nodeType": "ExpressionStatement",
+                  "src": "467:53:28"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 9551,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 9549,
+                      "name": "initialized",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9541,
+                      "src": "526:11:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "74727565",
+                      "id": 9550,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "540:4:28",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "526:18:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 9552,
+                  "nodeType": "ExpressionStatement",
+                  "src": "526:18:28"
+                },
+                {
+                  "id": 9553,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "550:1:28"
+                }
+              ]
+            },
+            "documentation": "@notice Ensures the initializer function cannot be called more than once.",
+            "id": 9555,
+            "name": "initializer",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 9542,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "458:2:28"
+            },
+            "src": "438:118:28",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 9568,
+              "nodeType": "Block",
+              "src": "885:67:28",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "id": 9561,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "895:18:28",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "id": 9560,
+                      "name": "testingDeployment",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9557,
+                      "src": "896:17:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 9567,
+                  "nodeType": "IfStatement",
+                  "src": "891:57:28",
+                  "trueBody": {
+                    "id": 9566,
+                    "nodeType": "Block",
+                    "src": "915:33:28",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 9564,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 9562,
+                            "name": "initialized",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 9541,
+                            "src": "923:11:28",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "hexValue": "74727565",
+                            "id": 9563,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "937:4:28",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "923:18:28",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 9565,
+                        "nodeType": "ExpressionStatement",
+                        "src": "923:18:28"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice By default, ensures that the `initialize` function cannot be called\non the logic contract.\n@param testingDeployment When set to true, allows the `initialize` function\nto be called, which is useful in testing when not setting up with a Proxy.",
+            "id": 9569,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9558,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9557,
+                  "name": "testingDeployment",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9569,
+                  "src": "854:22:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 9556,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "853:24:28"
+            },
+            "returnParameters": {
+              "id": 9559,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "885:0:28"
+            },
+            "scope": 9570,
+            "src": "842:110:28",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 9571,
+        "src": "292:662:28"
+      }
+    ],
+    "src": "42:913:28"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/Initializable.sol",
+      "exportedSymbols": {
+        "Initializable": [
+          9570
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 9539,
+        "name": "PragmaDirective",
+        "src": "42:32:28"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Used with proxied contracts that have an `initialize` function.\n@notice Ensures the `initialize` function:\n        - gets called only once\n        - cannot be called on the logic contract.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            9570
+          ],
+          "name": "Initializable",
+          "scope": 9571
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "initialized",
+              "scope": 9570,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bool",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bool",
+                  "type": "bool"
+                },
+                "id": 9540,
+                "name": "ElementaryTypeName",
+                "src": "319:4:28"
+              }
+            ],
+            "id": 9541,
+            "name": "VariableDeclaration",
+            "src": "319:23:28"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Ensures the initializer function cannot be called more than once.",
+              "name": "initializer",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 9542,
+                "name": "ParameterList",
+                "src": "458:2:28"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_0eaa08b63d5ee9e058835eb2dc7a36f8bcf5c2ea6d8d745d8265f9e4063fd134",
+                                  "typeString": "literal_string \"contract already initialized\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                59926,
+                                59927
+                              ],
+                              "referencedDeclaration": 59927,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 9543,
+                            "name": "Identifier",
+                            "src": "467:7:28"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "!",
+                              "prefix": true,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 9541,
+                                  "type": "bool",
+                                  "value": "initialized"
+                                },
+                                "id": 9544,
+                                "name": "Identifier",
+                                "src": "476:11:28"
+                              }
+                            ],
+                            "id": 9545,
+                            "name": "UnaryOperation",
+                            "src": "475:12:28"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "636f6e747261637420616c726561647920696e697469616c697a6564",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"contract already initialized\"",
+                              "value": "contract already initialized"
+                            },
+                            "id": 9546,
+                            "name": "Literal",
+                            "src": "489:30:28"
+                          }
+                        ],
+                        "id": 9547,
+                        "name": "FunctionCall",
+                        "src": "467:53:28"
+                      }
+                    ],
+                    "id": 9548,
+                    "name": "ExpressionStatement",
+                    "src": "467:53:28"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 9541,
+                              "type": "bool",
+                              "value": "initialized"
+                            },
+                            "id": 9549,
+                            "name": "Identifier",
+                            "src": "526:11:28"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "74727565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "bool",
+                              "type": "bool",
+                              "value": "true"
+                            },
+                            "id": 9550,
+                            "name": "Literal",
+                            "src": "540:4:28"
+                          }
+                        ],
+                        "id": 9551,
+                        "name": "Assignment",
+                        "src": "526:18:28"
+                      }
+                    ],
+                    "id": 9552,
+                    "name": "ExpressionStatement",
+                    "src": "526:18:28"
+                  },
+                  {
+                    "id": 9553,
+                    "name": "PlaceholderStatement",
+                    "src": "550:1:28"
+                  }
+                ],
+                "id": 9554,
+                "name": "Block",
+                "src": "461:95:28"
+              }
+            ],
+            "id": 9555,
+            "name": "ModifierDefinition",
+            "src": "438:118:28"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice By default, ensures that the `initialize` function cannot be called\non the logic contract.\n@param testingDeployment When set to true, allows the `initialize` function\nto be called, which is useful in testing when not setting up with a Proxy.",
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 9570,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "testingDeployment",
+                      "scope": 9569,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 9556,
+                        "name": "ElementaryTypeName",
+                        "src": "854:4:28"
+                      }
+                    ],
+                    "id": 9557,
+                    "name": "VariableDeclaration",
+                    "src": "854:22:28"
+                  }
+                ],
+                "id": 9558,
+                "name": "ParameterList",
+                "src": "853:24:28"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 9559,
+                "name": "ParameterList",
+                "src": "885:0:28"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "!",
+                          "prefix": true,
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 9557,
+                              "type": "bool",
+                              "value": "testingDeployment"
+                            },
+                            "id": 9560,
+                            "name": "Identifier",
+                            "src": "896:17:28"
+                          }
+                        ],
+                        "id": 9561,
+                        "name": "UnaryOperation",
+                        "src": "895:18:28"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "bool"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 9541,
+                                      "type": "bool",
+                                      "value": "initialized"
+                                    },
+                                    "id": 9562,
+                                    "name": "Identifier",
+                                    "src": "923:11:28"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "74727565",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "bool",
+                                      "type": "bool",
+                                      "value": "true"
+                                    },
+                                    "id": 9563,
+                                    "name": "Literal",
+                                    "src": "937:4:28"
+                                  }
+                                ],
+                                "id": 9564,
+                                "name": "Assignment",
+                                "src": "923:18:28"
+                              }
+                            ],
+                            "id": 9565,
+                            "name": "ExpressionStatement",
+                            "src": "923:18:28"
+                          }
+                        ],
+                        "id": 9566,
+                        "name": "Block",
+                        "src": "915:33:28"
+                      }
+                    ],
+                    "id": 9567,
+                    "name": "IfStatement",
+                    "src": "891:57:28"
+                  }
+                ],
+                "id": 9568,
+                "name": "Block",
+                "src": "885:67:28"
+              }
+            ],
+            "id": 9569,
+            "name": "FunctionDefinition",
+            "src": "842:110:28"
+          }
+        ],
+        "id": 9570,
+        "name": "ContractDefinition",
+        "src": "292:662:28"
+      }
+    ],
+    "id": 9571,
+    "name": "SourceUnit",
+    "src": "42:913:28"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.112Z",
+  "devdoc": {
+    "methods": {
+      "constructor": {
+        "params": {
+          "testingDeployment": "When set to true, allows the `initialize` function to be called, which is useful in testing when not setting up with a Proxy."
+        }
+      }
+    },
+    "title": "Used with proxied contracts that have an `initialize` function."
+  },
+  "userdoc": {
+    "methods": {
+      "constructor": "By default, ensures that the `initialize` function cannot be called on the logic contract."
+    },
+    "notice": "Ensures the `initialize` function:        - gets called only once        - cannot be called on the logic contract."
+  }
+}

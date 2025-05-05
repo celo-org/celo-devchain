@@ -1,0 +1,509 @@
+{
+  "contractName": "IOdisPayments",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "payInCUSD",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "totalPaidCUSD",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"payInCUSD\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"totalPaidCUSD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/identity/interfaces/IOdisPayments.sol\":\"IOdisPayments\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/identity/interfaces/IOdisPayments.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IOdisPayments {\\n  function payInCUSD(address account, uint256 value) external;\\n  function totalPaidCUSD(address) external view returns (uint256);\\n}\\n\",\"keccak256\":\"0x6187dcd21218cb39bbca5fd6e3138e4560c6b4b7f8434bb533f1d6a48fe95a13\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n\ninterface IOdisPayments {\n  function payInCUSD(address account, uint256 value) external;\n  function totalPaidCUSD(address) external view returns (uint256);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/identity/interfaces/IOdisPayments.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/identity/interfaces/IOdisPayments.sol",
+    "exportedSymbols": {
+      "IOdisPayments": [
+        51236
+      ]
+    },
+    "id": 51237,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 51221,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:171"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 51236,
+        "linearizedBaseContracts": [
+          51236
+        ],
+        "name": "IOdisPayments",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 51228,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payInCUSD",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 51226,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 51223,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 51228,
+                  "src": "81:15:171",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 51222,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "81:7:171",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 51225,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 51228,
+                  "src": "98:13:171",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51224,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "98:7:171",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "80:32:171"
+            },
+            "returnParameters": {
+              "id": 51227,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "121:0:171"
+            },
+            "scope": 51236,
+            "src": "62:60:171",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 51235,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalPaidCUSD",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 51231,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 51230,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 51235,
+                  "src": "148:7:171",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 51229,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "148:7:171",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "147:9:171"
+            },
+            "returnParameters": {
+              "id": 51234,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 51233,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 51235,
+                  "src": "180:7:171",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51232,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "180:7:171",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "179:9:171"
+            },
+            "scope": 51236,
+            "src": "125:64:171",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 51237,
+        "src": "34:157:171"
+      }
+    ],
+    "src": "0:192:171"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/identity/interfaces/IOdisPayments.sol",
+      "exportedSymbols": {
+        "IOdisPayments": [
+          51236
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 51221,
+        "name": "PragmaDirective",
+        "src": "0:32:171"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            51236
+          ],
+          "name": "IOdisPayments",
+          "scope": 51237
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "payInCUSD",
+              "scope": 51236,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "account",
+                      "scope": 51228,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 51222,
+                        "name": "ElementaryTypeName",
+                        "src": "81:7:171"
+                      }
+                    ],
+                    "id": 51223,
+                    "name": "VariableDeclaration",
+                    "src": "81:15:171"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "value",
+                      "scope": 51228,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 51224,
+                        "name": "ElementaryTypeName",
+                        "src": "98:7:171"
+                      }
+                    ],
+                    "id": 51225,
+                    "name": "VariableDeclaration",
+                    "src": "98:13:171"
+                  }
+                ],
+                "id": 51226,
+                "name": "ParameterList",
+                "src": "80:32:171"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 51227,
+                "name": "ParameterList",
+                "src": "121:0:171"
+              }
+            ],
+            "id": 51228,
+            "name": "FunctionDefinition",
+            "src": "62:60:171"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "totalPaidCUSD",
+              "scope": 51236,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 51235,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 51229,
+                        "name": "ElementaryTypeName",
+                        "src": "148:7:171"
+                      }
+                    ],
+                    "id": 51230,
+                    "name": "VariableDeclaration",
+                    "src": "148:7:171"
+                  }
+                ],
+                "id": 51231,
+                "name": "ParameterList",
+                "src": "147:9:171"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 51235,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 51232,
+                        "name": "ElementaryTypeName",
+                        "src": "180:7:171"
+                      }
+                    ],
+                    "id": 51233,
+                    "name": "VariableDeclaration",
+                    "src": "180:7:171"
+                  }
+                ],
+                "id": 51234,
+                "name": "ParameterList",
+                "src": "179:9:171"
+              }
+            ],
+            "id": 51235,
+            "name": "FunctionDefinition",
+            "src": "125:64:171"
+          }
+        ],
+        "id": 51236,
+        "name": "ContractDefinition",
+        "src": "34:157:171"
+      }
+    ],
+    "id": 51237,
+    "name": "SourceUnit",
+    "src": "0:192:171"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.519Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

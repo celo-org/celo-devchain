@@ -1,0 +1,889 @@
+{
+  "contractName": "IEpochRewardsInitializer",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "registryAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "targetVotingYieldInitial",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "targetVotingYieldMax",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "targetVotingYieldAdjustmentFactor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardsMultiplierMax",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardsMultiplierUnderspendAdjustmentFactor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardsMultiplierOverspendAdjustmentFactor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_targetVotingGoldFraction",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_targetValidatorEpochPayment",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_communityRewardFraction",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_carbonOffsettingPartner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_carbonOffsettingFraction",
+          "type": "uint256"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"registryAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"targetVotingYieldInitial\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"targetVotingYieldMax\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"targetVotingYieldAdjustmentFactor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rewardsMultiplierMax\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rewardsMultiplierUnderspendAdjustmentFactor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rewardsMultiplierOverspendAdjustmentFactor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_targetVotingGoldFraction\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_targetValidatorEpochPayment\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_communityRewardFraction\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_carbonOffsettingPartner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_carbonOffsettingFraction\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/governance/interfaces/IEpochRewardsInitializer.sol\":\"IEpochRewardsInitializer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/governance/interfaces/IEpochRewardsInitializer.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IEpochRewardsInitializer {\\n  function initialize(\\n    address registryAddress,\\n    uint256 targetVotingYieldInitial,\\n    uint256 targetVotingYieldMax,\\n    uint256 targetVotingYieldAdjustmentFactor,\\n    uint256 rewardsMultiplierMax,\\n    uint256 rewardsMultiplierUnderspendAdjustmentFactor,\\n    uint256 rewardsMultiplierOverspendAdjustmentFactor,\\n    uint256 _targetVotingGoldFraction,\\n    uint256 _targetValidatorEpochPayment,\\n    uint256 _communityRewardFraction,\\n    address _carbonOffsettingPartner,\\n    uint256 _carbonOffsettingFraction\\n  ) external;\\n}\\n\",\"keccak256\":\"0xaba6adad7d0fb5641cb4e3d0d9de181213b5dd8933390229f4e95c89094fda6b\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n\ninterface IEpochRewardsInitializer {\n  function initialize(\n    address registryAddress,\n    uint256 targetVotingYieldInitial,\n    uint256 targetVotingYieldMax,\n    uint256 targetVotingYieldAdjustmentFactor,\n    uint256 rewardsMultiplierMax,\n    uint256 rewardsMultiplierUnderspendAdjustmentFactor,\n    uint256 rewardsMultiplierOverspendAdjustmentFactor,\n    uint256 _targetVotingGoldFraction,\n    uint256 _targetValidatorEpochPayment,\n    uint256 _communityRewardFraction,\n    address _carbonOffsettingPartner,\n    uint256 _carbonOffsettingFraction\n  ) external;\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/governance/interfaces/IEpochRewardsInitializer.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/governance/interfaces/IEpochRewardsInitializer.sol",
+    "exportedSymbols": {
+      "IEpochRewardsInitializer": [
+        43005
+      ]
+    },
+    "id": 43006,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 42977,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:129"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 43005,
+        "linearizedBaseContracts": [
+          43005
+        ],
+        "name": "IEpochRewardsInitializer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 43004,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 43002,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42979,
+                  "name": "registryAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "98:23:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42978,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "98:7:129",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42981,
+                  "name": "targetVotingYieldInitial",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "127:32:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42980,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "127:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42983,
+                  "name": "targetVotingYieldMax",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "165:28:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42982,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "165:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42985,
+                  "name": "targetVotingYieldAdjustmentFactor",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "199:41:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42984,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "199:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42987,
+                  "name": "rewardsMultiplierMax",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "246:28:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42986,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "246:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42989,
+                  "name": "rewardsMultiplierUnderspendAdjustmentFactor",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "280:51:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42988,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "280:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42991,
+                  "name": "rewardsMultiplierOverspendAdjustmentFactor",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "337:50:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42990,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "337:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42993,
+                  "name": "_targetVotingGoldFraction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "393:33:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42992,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "393:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42995,
+                  "name": "_targetValidatorEpochPayment",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "432:36:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42994,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "432:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42997,
+                  "name": "_communityRewardFraction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "474:32:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42996,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "474:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42999,
+                  "name": "_carbonOffsettingPartner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "512:32:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42998,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "512:7:129",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43001,
+                  "name": "_carbonOffsettingFraction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43004,
+                  "src": "550:33:129",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 43000,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:129",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "92:495:129"
+            },
+            "returnParameters": {
+              "id": 43003,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "596:0:129"
+            },
+            "scope": 43005,
+            "src": "73:524:129",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 43006,
+        "src": "34:565:129"
+      }
+    ],
+    "src": "0:600:129"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/governance/interfaces/IEpochRewardsInitializer.sol",
+      "exportedSymbols": {
+        "IEpochRewardsInitializer": [
+          43005
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 42977,
+        "name": "PragmaDirective",
+        "src": "0:32:129"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            43005
+          ],
+          "name": "IEpochRewardsInitializer",
+          "scope": 43006
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "initialize",
+              "scope": 43005,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "registryAddress",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 42978,
+                        "name": "ElementaryTypeName",
+                        "src": "98:7:129"
+                      }
+                    ],
+                    "id": 42979,
+                    "name": "VariableDeclaration",
+                    "src": "98:23:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "targetVotingYieldInitial",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42980,
+                        "name": "ElementaryTypeName",
+                        "src": "127:7:129"
+                      }
+                    ],
+                    "id": 42981,
+                    "name": "VariableDeclaration",
+                    "src": "127:32:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "targetVotingYieldMax",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42982,
+                        "name": "ElementaryTypeName",
+                        "src": "165:7:129"
+                      }
+                    ],
+                    "id": 42983,
+                    "name": "VariableDeclaration",
+                    "src": "165:28:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "targetVotingYieldAdjustmentFactor",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42984,
+                        "name": "ElementaryTypeName",
+                        "src": "199:7:129"
+                      }
+                    ],
+                    "id": 42985,
+                    "name": "VariableDeclaration",
+                    "src": "199:41:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "rewardsMultiplierMax",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42986,
+                        "name": "ElementaryTypeName",
+                        "src": "246:7:129"
+                      }
+                    ],
+                    "id": 42987,
+                    "name": "VariableDeclaration",
+                    "src": "246:28:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "rewardsMultiplierUnderspendAdjustmentFactor",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42988,
+                        "name": "ElementaryTypeName",
+                        "src": "280:7:129"
+                      }
+                    ],
+                    "id": 42989,
+                    "name": "VariableDeclaration",
+                    "src": "280:51:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "rewardsMultiplierOverspendAdjustmentFactor",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42990,
+                        "name": "ElementaryTypeName",
+                        "src": "337:7:129"
+                      }
+                    ],
+                    "id": 42991,
+                    "name": "VariableDeclaration",
+                    "src": "337:50:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_targetVotingGoldFraction",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42992,
+                        "name": "ElementaryTypeName",
+                        "src": "393:7:129"
+                      }
+                    ],
+                    "id": 42993,
+                    "name": "VariableDeclaration",
+                    "src": "393:33:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_targetValidatorEpochPayment",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42994,
+                        "name": "ElementaryTypeName",
+                        "src": "432:7:129"
+                      }
+                    ],
+                    "id": 42995,
+                    "name": "VariableDeclaration",
+                    "src": "432:36:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_communityRewardFraction",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 42996,
+                        "name": "ElementaryTypeName",
+                        "src": "474:7:129"
+                      }
+                    ],
+                    "id": 42997,
+                    "name": "VariableDeclaration",
+                    "src": "474:32:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_carbonOffsettingPartner",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 42998,
+                        "name": "ElementaryTypeName",
+                        "src": "512:7:129"
+                      }
+                    ],
+                    "id": 42999,
+                    "name": "VariableDeclaration",
+                    "src": "512:32:129"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_carbonOffsettingFraction",
+                      "scope": 43004,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 43000,
+                        "name": "ElementaryTypeName",
+                        "src": "550:7:129"
+                      }
+                    ],
+                    "id": 43001,
+                    "name": "VariableDeclaration",
+                    "src": "550:33:129"
+                  }
+                ],
+                "id": 43002,
+                "name": "ParameterList",
+                "src": "92:495:129"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 43003,
+                "name": "ParameterList",
+                "src": "596:0:129"
+              }
+            ],
+            "id": 43004,
+            "name": "FunctionDefinition",
+            "src": "73:524:129"
+          }
+        ],
+        "id": 43005,
+        "name": "ContractDefinition",
+        "src": "34:565:129"
+      }
+    ],
+    "id": 43006,
+    "name": "SourceUnit",
+    "src": "0:600:129"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.450Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

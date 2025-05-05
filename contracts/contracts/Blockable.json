@@ -1,0 +1,2686 @@
+{
+  "contractName": "Blockable",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_blockedBy",
+          "type": "address"
+        }
+      ],
+      "name": "BlockedBySet",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_blockedBy",
+          "type": "address"
+        }
+      ],
+      "name": "setBlockedByContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isBlocked",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBlockedByContract",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "blockedBy",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_blockedBy\",\"type\":\"address\"}],\"name\":\"BlockedBySet\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"getBlockedByContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"blockedBy\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isBlocked\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_blockedBy\",\"type\":\"address\"}],\"name\":\"setBlockedByContract\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.*\",\"methods\":{\"isBlocked()\":{\"details\":\"The function returns false if no blocking contract has been set.\",\"return\":\"Returns true if the contract is blocked, otherwise false.\"}},\"title\":\"Blockable Contract\"},\"userdoc\":{\"methods\":{\"getBlockedByContract()\":{\"notice\":\"Returns the address of the contract imposing the block.\"},\"isBlocked()\":{\"notice\":\"Checks if the contract is currently blocked.\"}},\"notice\":\"This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface.\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/Blockable.sol\":\"Blockable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/Blockable.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\nimport \\\"./interfaces/IBlockable.sol\\\";\\nimport \\\"./interfaces/IBlocker.sol\\\";\\n\\n/**\\n * @title Blockable Contract\\n * @notice This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface.\\n * @dev This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.\\n **/\\ncontract Blockable is IBlockable {\\n  // using directly memory slot so contracts can inherit from this contract withtout breaking storage layout\\n  bytes32 private constant BLOCKEDBY_POSITION =\\n    bytes32(uint256(keccak256(\\\"blocked_by_position\\\")) - 1);\\n\\n  event BlockedBySet(address indexed _blockedBy);\\n\\n  /**\\n   * @notice Modifier to ensure the function is only executed when the contract is not blocked.\\n   * @dev Reverts with an error if the contract is blocked.\\n   */\\n  modifier onlyWhenNotBlocked() {\\n    require(!_isBlocked(), \\\"Contract is blocked from performing this action\\\");\\n    _;\\n  }\\n\\n  /**\\n   * @notice Checks if the contract is currently blocked.\\n   * @return Returns true if the contract is blocked, otherwise false.\\n   * @dev The function returns false if no blocking contract has been set.\\n   */\\n  function isBlocked() external view returns (bool) {\\n    return _isBlocked();\\n  }\\n\\n  /**\\n   * @notice Returns the address of the contract imposing the block.\\n   */\\n  function getBlockedByContract() public view returns (address blockedBy) {\\n    bytes32 blockedByPosition = BLOCKEDBY_POSITION;\\n    assembly {\\n      blockedBy := sload(blockedByPosition)\\n    }\\n    return blockedBy;\\n  }\\n\\n  /**\\n   * @notice Sets the address of the contract allowed to impose a block.\\n   * @param _blockedBy The address of the contract that will impose a block.\\n   */\\n  function _setBlockedBy(address _blockedBy) internal {\\n    bytes32 blockedByPosition = BLOCKEDBY_POSITION;\\n    assembly {\\n      sstore(blockedByPosition, _blockedBy)\\n    }\\n\\n    emit BlockedBySet(_blockedBy);\\n  }\\n\\n  /**\\n   * @notice Checks if the contract is currently blocked.\\n   */\\n  function _isBlocked() internal view returns (bool) {\\n    if (getBlockedByContract() == address(0)) {\\n      return false;\\n    }\\n    return IBlocker(getBlockedByContract()).isBlocked();\\n  }\\n}\\n\",\"keccak256\":\"0x1c1858c65522ab0ed771d2107d80738dfb8791eb04d06b92e9b6628e79c68d8c\"},\"project:/contracts/common/interfaces/IBlockable.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IBlockable {\\n  function setBlockedByContract(address _blockedBy) external;\\n  function isBlocked() external view returns (bool);\\n  function getBlockedByContract() external view returns (address);\\n}\\n\",\"keccak256\":\"0x9fe23c7d5279c474067bfd621e0572b5930a9412437d40fad59c95f5c3178fee\"},\"project:/contracts/common/interfaces/IBlocker.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IBlocker {\\n  function isBlocked() external view returns (bool);\\n}\\n\",\"keccak256\":\"0xc0ccc127654de079dfaa49754e42e7087dbaca6c81561230a96d74958e791882\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n\nimport \"./interfaces/IBlockable.sol\";\nimport \"./interfaces/IBlocker.sol\";\n\n/**\n * @title Blockable Contract\n * @notice This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface.\n * @dev This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.\n **/\ncontract Blockable is IBlockable {\n  // using directly memory slot so contracts can inherit from this contract withtout breaking storage layout\n  bytes32 private constant BLOCKEDBY_POSITION =\n    bytes32(uint256(keccak256(\"blocked_by_position\")) - 1);\n\n  event BlockedBySet(address indexed _blockedBy);\n\n  /**\n   * @notice Modifier to ensure the function is only executed when the contract is not blocked.\n   * @dev Reverts with an error if the contract is blocked.\n   */\n  modifier onlyWhenNotBlocked() {\n    require(!_isBlocked(), \"Contract is blocked from performing this action\");\n    _;\n  }\n\n  /**\n   * @notice Checks if the contract is currently blocked.\n   * @return Returns true if the contract is blocked, otherwise false.\n   * @dev The function returns false if no blocking contract has been set.\n   */\n  function isBlocked() external view returns (bool) {\n    return _isBlocked();\n  }\n\n  /**\n   * @notice Returns the address of the contract imposing the block.\n   */\n  function getBlockedByContract() public view returns (address blockedBy) {\n    bytes32 blockedByPosition = BLOCKEDBY_POSITION;\n    assembly {\n      blockedBy := sload(blockedByPosition)\n    }\n    return blockedBy;\n  }\n\n  /**\n   * @notice Sets the address of the contract allowed to impose a block.\n   * @param _blockedBy The address of the contract that will impose a block.\n   */\n  function _setBlockedBy(address _blockedBy) internal {\n    bytes32 blockedByPosition = BLOCKEDBY_POSITION;\n    assembly {\n      sstore(blockedByPosition, _blockedBy)\n    }\n\n    emit BlockedBySet(_blockedBy);\n  }\n\n  /**\n   * @notice Checks if the contract is currently blocked.\n   */\n  function _isBlocked() internal view returns (bool) {\n    if (getBlockedByContract() == address(0)) {\n      return false;\n    }\n    return IBlocker(getBlockedByContract()).isBlocked();\n  }\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/Blockable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/Blockable.sol",
+    "exportedSymbols": {
+      "Blockable": [
+        5521
+      ]
+    },
+    "id": 5522,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5430,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:16"
+      },
+      {
+        "absolutePath": "project:/contracts/common/interfaces/IBlockable.sol",
+        "file": "./interfaces/IBlockable.sol",
+        "id": 5431,
+        "nodeType": "ImportDirective",
+        "scope": 5522,
+        "sourceUnit": 14495,
+        "src": "34:37:16",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/common/interfaces/IBlocker.sol",
+        "file": "./interfaces/IBlocker.sol",
+        "id": 5432,
+        "nodeType": "ImportDirective",
+        "scope": 5522,
+        "sourceUnit": 14503,
+        "src": "72:35:16",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5433,
+              "name": "IBlockable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 14494,
+              "src": "436:10:16",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IBlockable_$14494",
+                "typeString": "contract IBlockable"
+              }
+            },
+            "id": 5434,
+            "nodeType": "InheritanceSpecifier",
+            "src": "436:10:16"
+          }
+        ],
+        "contractDependencies": [
+          14494
+        ],
+        "contractKind": "contract",
+        "documentation": "@title Blockable Contract\n@notice This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface.\n@dev This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.*",
+        "fullyImplemented": false,
+        "id": 5521,
+        "linearizedBaseContracts": [
+          5521,
+          14494
+        ],
+        "name": "Blockable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 5445,
+            "name": "BLOCKEDBY_POSITION",
+            "nodeType": "VariableDeclaration",
+            "scope": 5521,
+            "src": "560:104:16",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 5435,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "560:7:16",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "commonType": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "id": 5443,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "leftExpression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "626c6f636b65645f62795f706f736974696f6e",
+                            "id": 5439,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "636:21:16",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_36f658f017183a4deea658fe51f70506dd5d95ce5cf1438daeb9272420db9b85",
+                              "typeString": "literal_string \"blocked_by_position\""
+                            },
+                            "value": "blocked_by_position"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_36f658f017183a4deea658fe51f70506dd5d95ce5cf1438daeb9272420db9b85",
+                              "typeString": "literal_string \"blocked_by_position\""
+                            }
+                          ],
+                          "id": 5438,
+                          "name": "keccak256",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 59917,
+                          "src": "626:9:16",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                            "typeString": "function (bytes memory) pure returns (bytes32)"
+                          }
+                        },
+                        "id": 5440,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "626:32:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 5437,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "618:7:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_uint256_$",
+                        "typeString": "type(uint256)"
+                      },
+                      "typeName": "uint256"
+                    },
+                    "id": 5441,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "618:41:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "BinaryOperation",
+                  "operator": "-",
+                  "rightExpression": {
+                    "argumentTypes": null,
+                    "hexValue": "31",
+                    "id": 5442,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "662:1:16",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_1_by_1",
+                      "typeString": "int_const 1"
+                    },
+                    "value": "1"
+                  },
+                  "src": "618:45:16",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                ],
+                "id": 5436,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "610:7:16",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_bytes32_$",
+                  "typeString": "type(bytes32)"
+                },
+                "typeName": "bytes32"
+              },
+              "id": 5444,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "610:54:16",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 5449,
+            "name": "BlockedBySet",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 5448,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5447,
+                  "indexed": true,
+                  "name": "_blockedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5449,
+                  "src": "688:26:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5446,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "688:7:16",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "687:28:16"
+            },
+            "src": "669:47:16"
+          },
+          {
+            "body": {
+              "id": 5459,
+              "nodeType": "Block",
+              "src": "918:91:16",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5454,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "932:13:16",
+                        "subExpression": {
+                          "argumentTypes": null,
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 5452,
+                            "name": "_isBlocked",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5520,
+                            "src": "933:10:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                              "typeString": "function () view returns (bool)"
+                            }
+                          },
+                          "id": 5453,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "933:12:16",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "436f6e747261637420697320626c6f636b65642066726f6d20706572666f726d696e67207468697320616374696f6e",
+                        "id": 5455,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "947:49:16",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_d77ec3c565e8e5885caaf75de63c257bb123d5b1e8ae111596ac87feaeeebdd1",
+                          "typeString": "literal_string \"Contract is blocked from performing this action\""
+                        },
+                        "value": "Contract is blocked from performing this action"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_d77ec3c565e8e5885caaf75de63c257bb123d5b1e8ae111596ac87feaeeebdd1",
+                          "typeString": "literal_string \"Contract is blocked from performing this action\""
+                        }
+                      ],
+                      "id": 5451,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        59926,
+                        59927
+                      ],
+                      "referencedDeclaration": 59927,
+                      "src": "924:7:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 5456,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "924:73:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5457,
+                  "nodeType": "ExpressionStatement",
+                  "src": "924:73:16"
+                },
+                {
+                  "id": 5458,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1003:1:16"
+                }
+              ]
+            },
+            "documentation": "@notice Modifier to ensure the function is only executed when the contract is not blocked.\n@dev Reverts with an error if the contract is blocked.",
+            "id": 5460,
+            "name": "onlyWhenNotBlocked",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 5450,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "915:2:16"
+            },
+            "src": "888:121:16",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5468,
+              "nodeType": "Block",
+              "src": "1279:30:16",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 5465,
+                      "name": "_isBlocked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5520,
+                      "src": "1292:10:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                        "typeString": "function () view returns (bool)"
+                      }
+                    },
+                    "id": 5466,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1292:12:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5464,
+                  "id": 5467,
+                  "nodeType": "Return",
+                  "src": "1285:19:16"
+                }
+              ]
+            },
+            "documentation": "@notice Checks if the contract is currently blocked.\n@return Returns true if the contract is blocked, otherwise false.\n@dev The function returns false if no blocking contract has been set.",
+            "id": 5469,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isBlocked",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5461,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1247:2:16"
+            },
+            "returnParameters": {
+              "id": 5464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5463,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5469,
+                  "src": "1273:4:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5462,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1273:4:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1272:6:16"
+            },
+            "scope": 5521,
+            "src": "1229:80:16",
+            "stateMutability": "view",
+            "superFunction": 14488,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5481,
+              "nodeType": "Block",
+              "src": "1466:144:16",
+              "statements": [
+                {
+                  "assignments": [
+                    5475
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 5475,
+                      "name": "blockedByPosition",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 5481,
+                      "src": "1472:25:16",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 5474,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1472:7:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 5477,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 5476,
+                    "name": "BLOCKEDBY_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5445,
+                    "src": "1500:18:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1472:46:16"
+                },
+                {
+                  "externalReferences": [
+                    {
+                      "blockedBy": {
+                        "declaration": 5472,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1541:9:16",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "blockedByPosition": {
+                        "declaration": 5475,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1560:17:16",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 5478,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    blockedBy := sload(blockedByPosition)\n}",
+                  "src": "1524:60:16"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5479,
+                    "name": "blockedBy",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5472,
+                    "src": "1596:9:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 5473,
+                  "id": 5480,
+                  "nodeType": "Return",
+                  "src": "1589:16:16"
+                }
+              ]
+            },
+            "documentation": "@notice Returns the address of the contract imposing the block.",
+            "id": 5482,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBlockedByContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5470,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1423:2:16"
+            },
+            "returnParameters": {
+              "id": 5473,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5472,
+                  "name": "blockedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5482,
+                  "src": "1447:17:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5471,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1447:7:16",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1446:19:16"
+            },
+            "scope": 5521,
+            "src": "1394:216:16",
+            "stateMutability": "view",
+            "superFunction": 14493,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5496,
+              "nodeType": "Block",
+              "src": "1828:158:16",
+              "statements": [
+                {
+                  "assignments": [
+                    5488
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 5488,
+                      "name": "blockedByPosition",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 5496,
+                      "src": "1834:25:16",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 5487,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1834:7:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 5490,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 5489,
+                    "name": "BLOCKEDBY_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5445,
+                    "src": "1862:18:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1834:46:16"
+                },
+                {
+                  "externalReferences": [
+                    {
+                      "blockedByPosition": {
+                        "declaration": 5488,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1910:17:16",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_blockedBy": {
+                        "declaration": 5484,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1929:10:16",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 5491,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    sstore(blockedByPosition, _blockedBy)\n}",
+                  "src": "1886:60:16"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5493,
+                        "name": "_blockedBy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5484,
+                        "src": "1970:10:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5492,
+                      "name": "BlockedBySet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5449,
+                      "src": "1957:12:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 5494,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1957:24:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5495,
+                  "nodeType": "EmitStatement",
+                  "src": "1952:29:16"
+                }
+              ]
+            },
+            "documentation": "@notice Sets the address of the contract allowed to impose a block.\n@param _blockedBy The address of the contract that will impose a block.",
+            "id": 5497,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_setBlockedBy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5485,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5484,
+                  "name": "_blockedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5497,
+                  "src": "1799:18:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5483,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1799:7:16",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1798:20:16"
+            },
+            "returnParameters": {
+              "id": 5486,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1828:0:16"
+            },
+            "scope": 5521,
+            "src": "1776:210:16",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5519,
+              "nodeType": "Block",
+              "src": "2111:136:16",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 5507,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 5502,
+                        "name": "getBlockedByContract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5482,
+                        "src": "2121:20:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                          "typeString": "function () view returns (address)"
+                        }
+                      },
+                      "id": 5503,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2121:22:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 5505,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2155:1:16",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          }
+                        ],
+                        "id": 5504,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "2147:7:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": "address"
+                      },
+                      "id": 5506,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2147:10:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "2121:36:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 5511,
+                  "nodeType": "IfStatement",
+                  "src": "2117:69:16",
+                  "trueBody": {
+                    "id": 5510,
+                    "nodeType": "Block",
+                    "src": "2159:27:16",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "hexValue": "66616c7365",
+                          "id": 5508,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2174:5:16",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "false"
+                        },
+                        "functionReturnParameters": 5501,
+                        "id": 5509,
+                        "nodeType": "Return",
+                        "src": "2167:12:16"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 5513,
+                              "name": "getBlockedByContract",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5482,
+                              "src": "2207:20:16",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                                "typeString": "function () view returns (address)"
+                              }
+                            },
+                            "id": 5514,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2207:22:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 5512,
+                          "name": "IBlocker",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14502,
+                          "src": "2198:8:16",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IBlocker_$14502_$",
+                            "typeString": "type(contract IBlocker)"
+                          }
+                        },
+                        "id": 5515,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2198:32:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IBlocker_$14502",
+                          "typeString": "contract IBlocker"
+                        }
+                      },
+                      "id": 5516,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "isBlocked",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 14501,
+                      "src": "2198:42:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_bool_$",
+                        "typeString": "function () view external returns (bool)"
+                      }
+                    },
+                    "id": 5517,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2198:44:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5501,
+                  "id": 5518,
+                  "nodeType": "Return",
+                  "src": "2191:51:16"
+                }
+              ]
+            },
+            "documentation": "@notice Checks if the contract is currently blocked.",
+            "id": 5520,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_isBlocked",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5498,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2079:2:16"
+            },
+            "returnParameters": {
+              "id": 5501,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5500,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5520,
+                  "src": "2105:4:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5499,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2105:4:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2104:6:16"
+            },
+            "scope": 5521,
+            "src": "2060:187:16",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 5522,
+        "src": "414:1835:16"
+      }
+    ],
+    "src": "0:2250:16"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/Blockable.sol",
+      "exportedSymbols": {
+        "Blockable": [
+          5521
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 5430,
+        "name": "PragmaDirective",
+        "src": "0:32:16"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14495,
+          "absolutePath": "project:/contracts/common/interfaces/IBlockable.sol",
+          "file": "./interfaces/IBlockable.sol",
+          "scope": 5522,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 5431,
+        "name": "ImportDirective",
+        "src": "34:37:16"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14503,
+          "absolutePath": "project:/contracts/common/interfaces/IBlocker.sol",
+          "file": "./interfaces/IBlocker.sol",
+          "scope": 5522,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 5432,
+        "name": "ImportDirective",
+        "src": "72:35:16"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            14494
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Blockable Contract\n@notice This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface.\n@dev This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.*",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            5521,
+            14494
+          ],
+          "name": "Blockable",
+          "scope": 5522
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IBlockable",
+                  "referencedDeclaration": 14494,
+                  "type": "contract IBlockable"
+                },
+                "id": 5433,
+                "name": "UserDefinedTypeName",
+                "src": "436:10:16"
+              }
+            ],
+            "id": 5434,
+            "name": "InheritanceSpecifier",
+            "src": "436:10:16"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "BLOCKEDBY_POSITION",
+              "scope": 5521,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32",
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes32",
+                  "type": "bytes32"
+                },
+                "id": 5435,
+                "name": "ElementaryTypeName",
+                "src": "560:7:16"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "isStructConstructorCall": false,
+                  "lValueRequested": false,
+                  "names": [
+                    null
+                  ],
+                  "type": "bytes32",
+                  "type_conversion": true
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "type": "type(bytes32)",
+                      "value": "bytes32"
+                    },
+                    "id": 5436,
+                    "name": "ElementaryTypeNameExpression",
+                    "src": "610:7:16"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "operator": "-",
+                      "type": "uint256"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(uint256)",
+                              "value": "uint256"
+                            },
+                            "id": 5437,
+                            "name": "ElementaryTypeNameExpression",
+                            "src": "618:7:16"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bytes32",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_stringliteral_36f658f017183a4deea658fe51f70506dd5d95ce5cf1438daeb9272420db9b85",
+                                      "typeString": "literal_string \"blocked_by_position\""
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 59917,
+                                  "type": "function (bytes memory) pure returns (bytes32)",
+                                  "value": "keccak256"
+                                },
+                                "id": 5438,
+                                "name": "Identifier",
+                                "src": "626:9:16"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "626c6f636b65645f62795f706f736974696f6e",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"blocked_by_position\"",
+                                  "value": "blocked_by_position"
+                                },
+                                "id": 5439,
+                                "name": "Literal",
+                                "src": "636:21:16"
+                              }
+                            ],
+                            "id": 5440,
+                            "name": "FunctionCall",
+                            "src": "626:32:16"
+                          }
+                        ],
+                        "id": 5441,
+                        "name": "FunctionCall",
+                        "src": "618:41:16"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "31",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "number",
+                          "type": "int_const 1",
+                          "value": "1"
+                        },
+                        "id": 5442,
+                        "name": "Literal",
+                        "src": "662:1:16"
+                      }
+                    ],
+                    "id": 5443,
+                    "name": "BinaryOperation",
+                    "src": "618:45:16"
+                  }
+                ],
+                "id": 5444,
+                "name": "FunctionCall",
+                "src": "610:54:16"
+              }
+            ],
+            "id": 5445,
+            "name": "VariableDeclaration",
+            "src": "560:104:16"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BlockedBySet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "_blockedBy",
+                      "scope": 5449,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 5446,
+                        "name": "ElementaryTypeName",
+                        "src": "688:7:16"
+                      }
+                    ],
+                    "id": 5447,
+                    "name": "VariableDeclaration",
+                    "src": "688:26:16"
+                  }
+                ],
+                "id": 5448,
+                "name": "ParameterList",
+                "src": "687:28:16"
+              }
+            ],
+            "id": 5449,
+            "name": "EventDefinition",
+            "src": "669:47:16"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Modifier to ensure the function is only executed when the contract is not blocked.\n@dev Reverts with an error if the contract is blocked.",
+              "name": "onlyWhenNotBlocked",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5450,
+                "name": "ParameterList",
+                "src": "915:2:16"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_d77ec3c565e8e5885caaf75de63c257bb123d5b1e8ae111596ac87feaeeebdd1",
+                                  "typeString": "literal_string \"Contract is blocked from performing this action\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                59926,
+                                59927
+                              ],
+                              "referencedDeclaration": 59927,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 5451,
+                            "name": "Identifier",
+                            "src": "924:7:16"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "!",
+                              "prefix": true,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "bool",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5520,
+                                      "type": "function () view returns (bool)",
+                                      "value": "_isBlocked"
+                                    },
+                                    "id": 5452,
+                                    "name": "Identifier",
+                                    "src": "933:10:16"
+                                  }
+                                ],
+                                "id": 5453,
+                                "name": "FunctionCall",
+                                "src": "933:12:16"
+                              }
+                            ],
+                            "id": 5454,
+                            "name": "UnaryOperation",
+                            "src": "932:13:16"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "436f6e747261637420697320626c6f636b65642066726f6d20706572666f726d696e67207468697320616374696f6e",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Contract is blocked from performing this action\"",
+                              "value": "Contract is blocked from performing this action"
+                            },
+                            "id": 5455,
+                            "name": "Literal",
+                            "src": "947:49:16"
+                          }
+                        ],
+                        "id": 5456,
+                        "name": "FunctionCall",
+                        "src": "924:73:16"
+                      }
+                    ],
+                    "id": 5457,
+                    "name": "ExpressionStatement",
+                    "src": "924:73:16"
+                  },
+                  {
+                    "id": 5458,
+                    "name": "PlaceholderStatement",
+                    "src": "1003:1:16"
+                  }
+                ],
+                "id": 5459,
+                "name": "Block",
+                "src": "918:91:16"
+              }
+            ],
+            "id": 5460,
+            "name": "ModifierDefinition",
+            "src": "888:121:16"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Checks if the contract is currently blocked.\n@return Returns true if the contract is blocked, otherwise false.\n@dev The function returns false if no blocking contract has been set.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isBlocked",
+              "scope": 5521,
+              "stateMutability": "view",
+              "superFunction": 14488,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5461,
+                "name": "ParameterList",
+                "src": "1247:2:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 5469,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 5462,
+                        "name": "ElementaryTypeName",
+                        "src": "1273:4:16"
+                      }
+                    ],
+                    "id": 5463,
+                    "name": "VariableDeclaration",
+                    "src": "1273:4:16"
+                  }
+                ],
+                "id": 5464,
+                "name": "ParameterList",
+                "src": "1272:6:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 5464
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5520,
+                              "type": "function () view returns (bool)",
+                              "value": "_isBlocked"
+                            },
+                            "id": 5465,
+                            "name": "Identifier",
+                            "src": "1292:10:16"
+                          }
+                        ],
+                        "id": 5466,
+                        "name": "FunctionCall",
+                        "src": "1292:12:16"
+                      }
+                    ],
+                    "id": 5467,
+                    "name": "Return",
+                    "src": "1285:19:16"
+                  }
+                ],
+                "id": 5468,
+                "name": "Block",
+                "src": "1279:30:16"
+              }
+            ],
+            "id": 5469,
+            "name": "FunctionDefinition",
+            "src": "1229:80:16"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Returns the address of the contract imposing the block.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getBlockedByContract",
+              "scope": 5521,
+              "stateMutability": "view",
+              "superFunction": 14493,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5470,
+                "name": "ParameterList",
+                "src": "1423:2:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "blockedBy",
+                      "scope": 5482,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 5471,
+                        "name": "ElementaryTypeName",
+                        "src": "1447:7:16"
+                      }
+                    ],
+                    "id": 5472,
+                    "name": "VariableDeclaration",
+                    "src": "1447:17:16"
+                  }
+                ],
+                "id": 5473,
+                "name": "ParameterList",
+                "src": "1446:19:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        5475
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "blockedByPosition",
+                          "scope": 5481,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bytes32",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 5474,
+                            "name": "ElementaryTypeName",
+                            "src": "1472:7:16"
+                          }
+                        ],
+                        "id": 5475,
+                        "name": "VariableDeclaration",
+                        "src": "1472:25:16"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 5445,
+                          "type": "bytes32",
+                          "value": "BLOCKEDBY_POSITION"
+                        },
+                        "id": 5476,
+                        "name": "Identifier",
+                        "src": "1500:18:16"
+                      }
+                    ],
+                    "id": 5477,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1472:46:16"
+                  },
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "blockedBy": {
+                            "declaration": 5472,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1541:9:16",
+                            "valueSize": 1
+                          }
+                        },
+                        {
+                          "blockedByPosition": {
+                            "declaration": 5475,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1560:17:16",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    blockedBy := sload(blockedByPosition)\n}"
+                    },
+                    "children": [],
+                    "id": 5478,
+                    "name": "InlineAssembly",
+                    "src": "1524:60:16"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 5473
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 5472,
+                          "type": "address",
+                          "value": "blockedBy"
+                        },
+                        "id": 5479,
+                        "name": "Identifier",
+                        "src": "1596:9:16"
+                      }
+                    ],
+                    "id": 5480,
+                    "name": "Return",
+                    "src": "1589:16:16"
+                  }
+                ],
+                "id": 5481,
+                "name": "Block",
+                "src": "1466:144:16"
+              }
+            ],
+            "id": 5482,
+            "name": "FunctionDefinition",
+            "src": "1394:216:16"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Sets the address of the contract allowed to impose a block.\n@param _blockedBy The address of the contract that will impose a block.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "_setBlockedBy",
+              "scope": 5521,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_blockedBy",
+                      "scope": 5497,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 5483,
+                        "name": "ElementaryTypeName",
+                        "src": "1799:7:16"
+                      }
+                    ],
+                    "id": 5484,
+                    "name": "VariableDeclaration",
+                    "src": "1799:18:16"
+                  }
+                ],
+                "id": 5485,
+                "name": "ParameterList",
+                "src": "1798:20:16"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5486,
+                "name": "ParameterList",
+                "src": "1828:0:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        5488
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "blockedByPosition",
+                          "scope": 5496,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bytes32",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 5487,
+                            "name": "ElementaryTypeName",
+                            "src": "1834:7:16"
+                          }
+                        ],
+                        "id": 5488,
+                        "name": "VariableDeclaration",
+                        "src": "1834:25:16"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 5445,
+                          "type": "bytes32",
+                          "value": "BLOCKEDBY_POSITION"
+                        },
+                        "id": 5489,
+                        "name": "Identifier",
+                        "src": "1862:18:16"
+                      }
+                    ],
+                    "id": 5490,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1834:46:16"
+                  },
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "blockedByPosition": {
+                            "declaration": 5488,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1910:17:16",
+                            "valueSize": 1
+                          }
+                        },
+                        {
+                          "_blockedBy": {
+                            "declaration": 5484,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1929:10:16",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    sstore(blockedByPosition, _blockedBy)\n}"
+                    },
+                    "children": [],
+                    "id": 5491,
+                    "name": "InlineAssembly",
+                    "src": "1886:60:16"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5449,
+                              "type": "function (address)",
+                              "value": "BlockedBySet"
+                            },
+                            "id": 5492,
+                            "name": "Identifier",
+                            "src": "1957:12:16"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5484,
+                              "type": "address",
+                              "value": "_blockedBy"
+                            },
+                            "id": 5493,
+                            "name": "Identifier",
+                            "src": "1970:10:16"
+                          }
+                        ],
+                        "id": 5494,
+                        "name": "FunctionCall",
+                        "src": "1957:24:16"
+                      }
+                    ],
+                    "id": 5495,
+                    "name": "EmitStatement",
+                    "src": "1952:29:16"
+                  }
+                ],
+                "id": 5496,
+                "name": "Block",
+                "src": "1828:158:16"
+              }
+            ],
+            "id": 5497,
+            "name": "FunctionDefinition",
+            "src": "1776:210:16"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Checks if the contract is currently blocked.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "_isBlocked",
+              "scope": 5521,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5498,
+                "name": "ParameterList",
+                "src": "2079:2:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 5520,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 5499,
+                        "name": "ElementaryTypeName",
+                        "src": "2105:4:16"
+                      }
+                    ],
+                    "id": 5500,
+                    "name": "VariableDeclaration",
+                    "src": "2105:4:16"
+                  }
+                ],
+                "id": 5501,
+                "name": "ParameterList",
+                "src": "2104:6:16"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "==",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "address",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5482,
+                                  "type": "function () view returns (address)",
+                                  "value": "getBlockedByContract"
+                                },
+                                "id": 5502,
+                                "name": "Identifier",
+                                "src": "2121:20:16"
+                              }
+                            ],
+                            "id": 5503,
+                            "name": "FunctionCall",
+                            "src": "2121:22:16"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "address payable",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_rational_0_by_1",
+                                      "typeString": "int_const 0"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)",
+                                  "value": "address"
+                                },
+                                "id": 5504,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "2147:7:16"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "30",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 0",
+                                  "value": "0"
+                                },
+                                "id": 5505,
+                                "name": "Literal",
+                                "src": "2155:1:16"
+                              }
+                            ],
+                            "id": 5506,
+                            "name": "FunctionCall",
+                            "src": "2147:10:16"
+                          }
+                        ],
+                        "id": 5507,
+                        "name": "BinaryOperation",
+                        "src": "2121:36:16"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 5501
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "66616c7365",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "false"
+                                },
+                                "id": 5508,
+                                "name": "Literal",
+                                "src": "2174:5:16"
+                              }
+                            ],
+                            "id": 5509,
+                            "name": "Return",
+                            "src": "2167:12:16"
+                          }
+                        ],
+                        "id": 5510,
+                        "name": "Block",
+                        "src": "2159:27:16"
+                      }
+                    ],
+                    "id": 5511,
+                    "name": "IfStatement",
+                    "src": "2117:69:16"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 5501
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "isBlocked",
+                              "referencedDeclaration": 14501,
+                              "type": "function () view external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "contract IBlocker",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 14502,
+                                      "type": "type(contract IBlocker)",
+                                      "value": "IBlocker"
+                                    },
+                                    "id": 5512,
+                                    "name": "Identifier",
+                                    "src": "2198:8:16"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "arguments": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "address",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            null
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5482,
+                                          "type": "function () view returns (address)",
+                                          "value": "getBlockedByContract"
+                                        },
+                                        "id": 5513,
+                                        "name": "Identifier",
+                                        "src": "2207:20:16"
+                                      }
+                                    ],
+                                    "id": 5514,
+                                    "name": "FunctionCall",
+                                    "src": "2207:22:16"
+                                  }
+                                ],
+                                "id": 5515,
+                                "name": "FunctionCall",
+                                "src": "2198:32:16"
+                              }
+                            ],
+                            "id": 5516,
+                            "name": "MemberAccess",
+                            "src": "2198:42:16"
+                          }
+                        ],
+                        "id": 5517,
+                        "name": "FunctionCall",
+                        "src": "2198:44:16"
+                      }
+                    ],
+                    "id": 5518,
+                    "name": "Return",
+                    "src": "2191:51:16"
+                  }
+                ],
+                "id": 5519,
+                "name": "Block",
+                "src": "2111:136:16"
+              }
+            ],
+            "id": 5520,
+            "name": "FunctionDefinition",
+            "src": "2060:187:16"
+          }
+        ],
+        "id": 5521,
+        "name": "ContractDefinition",
+        "src": "414:1835:16"
+      }
+    ],
+    "id": 5522,
+    "name": "SourceUnit",
+    "src": "0:2250:16"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.081Z",
+  "devdoc": {
+    "details": "This contract uses an external IBlocker contract to determine if it is blocked. The owner can set the blocking contract.*",
+    "methods": {
+      "isBlocked()": {
+        "details": "The function returns false if no blocking contract has been set.",
+        "return": "Returns true if the contract is blocked, otherwise false."
+      }
+    },
+    "title": "Blockable Contract"
+  },
+  "userdoc": {
+    "methods": {
+      "getBlockedByContract()": {
+        "notice": "Returns the address of the contract imposing the block."
+      },
+      "isBlocked()": {
+        "notice": "Checks if the contract is currently blocked."
+      }
+    },
+    "notice": "This contract allows certain actions to be blocked based on the logic of another contract implementing the IBlocker interface."
+  }
+}

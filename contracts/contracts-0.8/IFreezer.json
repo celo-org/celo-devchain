@@ -1,0 +1,321 @@
+{
+  "contractName": "IFreezer",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        }
+      ],
+      "name": "freeze",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        }
+      ],
+      "name": "unfreeze",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isFrozen",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"}],\"name\":\"freeze\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isFrozen\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"}],\"name\":\"unfreeze\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IFreezer.sol\":\"IFreezer\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/IFreezer.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IFreezer {\\n  function freeze(address target) external;\\n  function unfreeze(address target) external;\\n  function isFrozen(address) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x31cee67b005413c61d6aa90d2899e6a37257cd4c026d8422249b397131a10755\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ninterface IFreezer {\n  function freeze(address target) external;\n  function unfreeze(address target) external;\n  function isFrozen(address) external view returns (bool);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/IFreezer.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/interfaces/IFreezer.sol",
+    "exportedSymbols": {
+      "IFreezer": [
+        17535
+      ]
+    },
+    "id": 17536,
+    "license": "LGPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 17517,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:32:67"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IFreezer",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 17535,
+        "linearizedBaseContracts": [
+          17535
+        ],
+        "name": "IFreezer",
+        "nameLocation": "86:8:67",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "8d1fdf2f",
+            "id": 17522,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "freeze",
+            "nameLocation": "108:6:67",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17520,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17519,
+                  "mutability": "mutable",
+                  "name": "target",
+                  "nameLocation": "123:6:67",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17522,
+                  "src": "115:14:67",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17518,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:67",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "114:16:67"
+            },
+            "returnParameters": {
+              "id": 17521,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "139:0:67"
+            },
+            "scope": 17535,
+            "src": "99:41:67",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "45c8b1a6",
+            "id": 17527,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "unfreeze",
+            "nameLocation": "152:8:67",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17525,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17524,
+                  "mutability": "mutable",
+                  "name": "target",
+                  "nameLocation": "169:6:67",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17527,
+                  "src": "161:14:67",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17523,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "161:7:67",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "160:16:67"
+            },
+            "returnParameters": {
+              "id": 17526,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "185:0:67"
+            },
+            "scope": 17535,
+            "src": "143:43:67",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e5839836",
+            "id": 17534,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isFrozen",
+            "nameLocation": "198:8:67",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17530,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17529,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17534,
+                  "src": "207:7:67",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17528,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "207:7:67",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "206:9:67"
+            },
+            "returnParameters": {
+              "id": 17533,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17532,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17534,
+                  "src": "239:4:67",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 17531,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "239:4:67",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "238:6:67"
+            },
+            "scope": 17535,
+            "src": "189:56:67",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 17536,
+        "src": "76:171:67",
+        "usedErrors": []
+      }
+    ],
+    "src": "42:206:67"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:34.234Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

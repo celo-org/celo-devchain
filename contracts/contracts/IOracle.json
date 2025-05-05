@@ -1,0 +1,373 @@
+{
+  "contractName": "IOracle",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getExchangeRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getExchangeRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"numerator\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"denominator\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Possibly not final version\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/common/interfaces/IOracle.sol\":\"IOracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/common/interfaces/IOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.5.13 <0.9.0;\\n\\n/// Possibly not final version\\ninterface IOracle {\\n  function getExchangeRate(\\n    address token\\n  ) external view returns (uint256 numerator, uint256 denominator);\\n}\\n\",\"keccak256\":\"0xabf489c01ce86008d0aff7b1f8d31da44acd585c8dd44b8cd2895b633149cbe9\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.5.13 <0.9.0;\n\n/// Possibly not final version\ninterface IOracle {\n  function getExchangeRate(\n    address token\n  ) external view returns (uint256 numerator, uint256 denominator);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/common/interfaces/IOracle.sol",
+  "ast": {
+    "absolutePath": "project:/contracts-0.8/common/interfaces/IOracle.sol",
+    "exportedSymbols": {
+      "IOracle": [
+        1642
+      ]
+    },
+    "id": 1643,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1632,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "Possibly not final version",
+        "fullyImplemented": false,
+        "id": 1642,
+        "linearizedBaseContracts": [
+          1642
+        ],
+        "name": "IOracle",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1641,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExchangeRate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1635,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1634,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1641,
+                  "src": "149:13:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1633,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "149:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "143:23:12"
+            },
+            "returnParameters": {
+              "id": 1640,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1637,
+                  "name": "numerator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1641,
+                  "src": "190:17:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1636,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "190:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1639,
+                  "name": "denominator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1641,
+                  "src": "209:19:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1638,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "189:40:12"
+            },
+            "scope": 1642,
+            "src": "119:111:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1643,
+        "src": "97:135:12"
+      }
+    ],
+    "src": "32:201:12"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts-0.8/common/interfaces/IOracle.sol",
+      "exportedSymbols": {
+        "IOracle": [
+          1642
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 1632,
+        "name": "PragmaDirective",
+        "src": "32:32:12"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": "Possibly not final version",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            1642
+          ],
+          "name": "IOracle",
+          "scope": 1643
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getExchangeRate",
+              "scope": 1642,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "token",
+                      "scope": 1641,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1633,
+                        "name": "ElementaryTypeName",
+                        "src": "149:7:12"
+                      }
+                    ],
+                    "id": 1634,
+                    "name": "VariableDeclaration",
+                    "src": "149:13:12"
+                  }
+                ],
+                "id": 1635,
+                "name": "ParameterList",
+                "src": "143:23:12"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "numerator",
+                      "scope": 1641,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1636,
+                        "name": "ElementaryTypeName",
+                        "src": "190:7:12"
+                      }
+                    ],
+                    "id": 1637,
+                    "name": "VariableDeclaration",
+                    "src": "190:17:12"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "denominator",
+                      "scope": 1641,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1638,
+                        "name": "ElementaryTypeName",
+                        "src": "209:7:12"
+                      }
+                    ],
+                    "id": 1639,
+                    "name": "VariableDeclaration",
+                    "src": "209:19:12"
+                  }
+                ],
+                "id": 1640,
+                "name": "ParameterList",
+                "src": "189:40:12"
+              }
+            ],
+            "id": 1641,
+            "name": "FunctionDefinition",
+            "src": "119:111:12"
+          }
+        ],
+        "id": 1642,
+        "name": "ContractDefinition",
+        "src": "97:135:12"
+      }
+    ],
+    "id": 1643,
+    "name": "SourceUnit",
+    "src": "32:201:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.053Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "Possibly not final version"
+  }
+}

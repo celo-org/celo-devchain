@@ -1,0 +1,513 @@
+{
+  "contractName": "InitParamsLib",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/governance/interfaces/IValidatorsInitializer.sol\":\"InitParamsLib\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/governance/interfaces/IValidatorsInitializer.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\npragma experimental ABIEncoderV2;\\n\\ninterface IValidatorsInitializer {\\n  function initialize(\\n    address registryAddress,\\n    uint256 groupRequirementValue,\\n    uint256 groupRequirementDuration,\\n    uint256 validatorRequirementValue,\\n    uint256 validatorRequirementDuration,\\n    uint256 validatorScoreExponent,\\n    uint256 validatorScoreAdjustmentSpeed,\\n    uint256 _membershipHistoryLength,\\n    uint256 _slashingMultiplierResetPeriod,\\n    uint256 _maxGroupSize,\\n    InitParamsLib.InitParams calldata initParams\\n  ) external;\\n}\\n\\nlibrary InitParamsLib {\\n  struct InitParams {\\n    // The number of blocks to delay a ValidatorGroup's commission\\n    uint256 commissionUpdateDelay;\\n    uint256 downtimeGracePeriod;\\n  }\\n}\\n\",\"keccak256\":\"0xc1a5d7f93bd550082d7abc60ecf281b550662de8405c1ca01bdd3ef4303b9ab6\"}},\"version\":1}",
+  "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220f27c545555a1a3fb1154ad19108d82528ab7069cc50789fd9fcbd87bfe5d114964736f6c63430008130033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220f27c545555a1a3fb1154ad19108d82528ab7069cc50789fd9fcbd87bfe5d114964736f6c63430008130033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "563:186:46:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;563:186:46;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "563:186:46:-:0;;;;;;;;",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\npragma experimental ABIEncoderV2;\n\ninterface IValidatorsInitializer {\n  function initialize(\n    address registryAddress,\n    uint256 groupRequirementValue,\n    uint256 groupRequirementDuration,\n    uint256 validatorRequirementValue,\n    uint256 validatorRequirementDuration,\n    uint256 validatorScoreExponent,\n    uint256 validatorScoreAdjustmentSpeed,\n    uint256 _membershipHistoryLength,\n    uint256 _slashingMultiplierResetPeriod,\n    uint256 _maxGroupSize,\n    InitParamsLib.InitParams calldata initParams\n  ) external;\n}\n\nlibrary InitParamsLib {\n  struct InitParams {\n    // The number of blocks to delay a ValidatorGroup's commission\n    uint256 commissionUpdateDelay;\n    uint256 downtimeGracePeriod;\n  }\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/governance/interfaces/IValidatorsInitializer.sol",
+  "ast": {
+    "absolutePath": "project:/contracts-0.8/governance/interfaces/IValidatorsInitializer.sol",
+    "exportedSymbols": {
+      "IValidatorsInitializer": [
+        14961
+      ],
+      "InitParamsLib": [
+        14967
+      ]
+    },
+    "id": 14968,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14933,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:46"
+      },
+      {
+        "id": 14934,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:46"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IValidatorsInitializer",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 14961,
+        "linearizedBaseContracts": [
+          14961
+        ],
+        "name": "IValidatorsInitializer",
+        "nameLocation": "78:22:46",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "08badb67",
+            "id": 14960,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nameLocation": "114:10:46",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14958,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14936,
+                  "mutability": "mutable",
+                  "name": "registryAddress",
+                  "nameLocation": "138:15:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "130:23:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14935,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "130:7:46",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14938,
+                  "mutability": "mutable",
+                  "name": "groupRequirementValue",
+                  "nameLocation": "167:21:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "159:29:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14937,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "159:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14940,
+                  "mutability": "mutable",
+                  "name": "groupRequirementDuration",
+                  "nameLocation": "202:24:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "194:32:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14939,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "194:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14942,
+                  "mutability": "mutable",
+                  "name": "validatorRequirementValue",
+                  "nameLocation": "240:25:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "232:33:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14941,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "232:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14944,
+                  "mutability": "mutable",
+                  "name": "validatorRequirementDuration",
+                  "nameLocation": "279:28:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "271:36:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14943,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "271:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14946,
+                  "mutability": "mutable",
+                  "name": "validatorScoreExponent",
+                  "nameLocation": "321:22:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "313:30:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14945,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "313:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14948,
+                  "mutability": "mutable",
+                  "name": "validatorScoreAdjustmentSpeed",
+                  "nameLocation": "357:29:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "349:37:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14947,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "349:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14950,
+                  "mutability": "mutable",
+                  "name": "_membershipHistoryLength",
+                  "nameLocation": "400:24:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "392:32:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14949,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "392:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14952,
+                  "mutability": "mutable",
+                  "name": "_slashingMultiplierResetPeriod",
+                  "nameLocation": "438:30:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "430:38:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14951,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "430:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14954,
+                  "mutability": "mutable",
+                  "name": "_maxGroupSize",
+                  "nameLocation": "482:13:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "474:21:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14953,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "474:7:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14957,
+                  "mutability": "mutable",
+                  "name": "initParams",
+                  "nameLocation": "535:10:46",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14960,
+                  "src": "501:44:46",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_InitParams_$14966_calldata_ptr",
+                    "typeString": "struct InitParamsLib.InitParams"
+                  },
+                  "typeName": {
+                    "id": 14956,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 14955,
+                      "name": "InitParamsLib.InitParams",
+                      "nameLocations": [
+                        "501:13:46",
+                        "515:10:46"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 14966,
+                      "src": "501:24:46"
+                    },
+                    "referencedDeclaration": 14966,
+                    "src": "501:24:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_InitParams_$14966_storage_ptr",
+                      "typeString": "struct InitParamsLib.InitParams"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "124:425:46"
+            },
+            "returnParameters": {
+              "id": 14959,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "558:0:46"
+            },
+            "scope": 14961,
+            "src": "105:454:46",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14968,
+        "src": "68:493:46",
+        "usedErrors": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "InitParamsLib",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 14967,
+        "linearizedBaseContracts": [
+          14967
+        ],
+        "name": "InitParamsLib",
+        "nameLocation": "571:13:46",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "InitParamsLib.InitParams",
+            "id": 14966,
+            "members": [
+              {
+                "constant": false,
+                "id": 14963,
+                "mutability": "mutable",
+                "name": "commissionUpdateDelay",
+                "nameLocation": "688:21:46",
+                "nodeType": "VariableDeclaration",
+                "scope": 14966,
+                "src": "680:29:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14962,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "680:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14965,
+                "mutability": "mutable",
+                "name": "downtimeGracePeriod",
+                "nameLocation": "723:19:46",
+                "nodeType": "VariableDeclaration",
+                "scope": 14966,
+                "src": "715:27:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 14964,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "715:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "InitParams",
+            "nameLocation": "596:10:46",
+            "nodeType": "StructDefinition",
+            "scope": 14967,
+            "src": "589:158:46",
+            "visibility": "public"
+          }
+        ],
+        "scope": 14968,
+        "src": "563:186:46",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:750:46"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:34.212Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

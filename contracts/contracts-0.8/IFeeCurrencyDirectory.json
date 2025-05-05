@@ -1,0 +1,684 @@
+{
+  "contractName": "IFeeCurrencyDirectory",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "intrinsicGas",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCurrencyConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrencies",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getCurrencyConfig",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "intrinsicGas",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IFeeCurrencyDirectory.CurrencyConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getExchangeRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "numerator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "denominator",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getCurrencies\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getCurrencyConfig\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"intrinsicGas\",\"type\":\"uint256\"}],\"internalType\":\"struct IFeeCurrencyDirectory.CurrencyConfig\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getExchangeRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"numerator\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"denominator\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"intrinsicGas\",\"type\":\"uint256\"}],\"name\":\"setCurrencyConfig\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getCurrencies()\":{\"returns\":{\"_0\":\"An array of addresses.\"}},\"getCurrencyConfig(address)\":{\"params\":{\"token\":\"The address of the token.\"},\"returns\":{\"_0\":\"Currency configuration of the token.\"}},\"getExchangeRate(address)\":{\"params\":{\"token\":\"The token address whose price is to be fetched.\"},\"returns\":{\"denominator\":\"The exchange rate denominator.\",\"numerator\":\"The exchange rate numerator.\"}},\"setCurrencyConfig(address,address,uint256)\":{\"details\":\"This action can only be performed by the contract owner.\",\"params\":{\"intrinsicGas\":\"The intrinsic gas value for transactions.\",\"oracle\":\"The oracle address for price fetching.\",\"token\":\"The token address.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getCurrencies()\":{\"notice\":\"Returns the list of all currency addresses.\"},\"getCurrencyConfig(address)\":{\"notice\":\"Returns the configuration for a currency.\"},\"getExchangeRate(address)\":{\"notice\":\"Retrieves exchange rate between token and CELO.\"},\"setCurrencyConfig(address,address,uint256)\":{\"notice\":\"Sets the currency configuration for a token.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/common/interfaces/IFeeCurrencyDirectory.sol\":\"IFeeCurrencyDirectory\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/common/interfaces/IFeeCurrencyDirectory.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface IFeeCurrencyDirectory {\\n  struct CurrencyConfig {\\n    address oracle;\\n    uint256 intrinsicGas;\\n  }\\n\\n  /**\\n   * @notice Sets the currency configuration for a token.\\n   * @dev This action can only be performed by the contract owner.\\n   * @param token The token address.\\n   * @param oracle The oracle address for price fetching.\\n   * @param intrinsicGas The intrinsic gas value for transactions.\\n   */\\n  function setCurrencyConfig(address token, address oracle, uint256 intrinsicGas) external;\\n\\n  /**\\n   * @notice Returns the list of all currency addresses.\\n   * @return An array of addresses.\\n   */\\n  function getCurrencies() external view returns (address[] memory);\\n  /**\\n   * @notice Returns the configuration for a currency.\\n   * @param token The address of the token.\\n   * @return Currency configuration of the token.\\n   */\\n  function getCurrencyConfig(address token) external view returns (CurrencyConfig memory);\\n\\n  /**\\n   * @notice Retrieves exchange rate between token and CELO.\\n   * @param token The token address whose price is to be fetched.\\n   * @return numerator The exchange rate numerator.\\n   * @return denominator The exchange rate denominator.\\n   */\\n  function getExchangeRate(\\n    address token\\n  ) external view returns (uint256 numerator, uint256 denominator);\\n}\\n\",\"keccak256\":\"0x67de62a4cd2baace51d893a35c8b7f2b47c15f67082258a6e688764d54740a56\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ninterface IFeeCurrencyDirectory {\n  struct CurrencyConfig {\n    address oracle;\n    uint256 intrinsicGas;\n  }\n\n  /**\n   * @notice Sets the currency configuration for a token.\n   * @dev This action can only be performed by the contract owner.\n   * @param token The token address.\n   * @param oracle The oracle address for price fetching.\n   * @param intrinsicGas The intrinsic gas value for transactions.\n   */\n  function setCurrencyConfig(address token, address oracle, uint256 intrinsicGas) external;\n\n  /**\n   * @notice Returns the list of all currency addresses.\n   * @return An array of addresses.\n   */\n  function getCurrencies() external view returns (address[] memory);\n  /**\n   * @notice Returns the configuration for a currency.\n   * @param token The address of the token.\n   * @return Currency configuration of the token.\n   */\n  function getCurrencyConfig(address token) external view returns (CurrencyConfig memory);\n\n  /**\n   * @notice Retrieves exchange rate between token and CELO.\n   * @param token The token address whose price is to be fetched.\n   * @return numerator The exchange rate numerator.\n   * @return denominator The exchange rate denominator.\n   */\n  function getExchangeRate(\n    address token\n  ) external view returns (uint256 numerator, uint256 denominator);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/common/interfaces/IFeeCurrencyDirectory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts-0.8/common/interfaces/IFeeCurrencyDirectory.sol",
+    "exportedSymbols": {
+      "IFeeCurrencyDirectory": [
+        7344
+      ]
+    },
+    "id": 7345,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7302,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:23"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IFeeCurrencyDirectory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 7344,
+        "linearizedBaseContracts": [
+          7344
+        ],
+        "name": "IFeeCurrencyDirectory",
+        "nameLocation": "67:21:23",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IFeeCurrencyDirectory.CurrencyConfig",
+            "id": 7307,
+            "members": [
+              {
+                "constant": false,
+                "id": 7304,
+                "mutability": "mutable",
+                "name": "oracle",
+                "nameLocation": "129:6:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 7307,
+                "src": "121:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 7303,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "121:7:23",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7306,
+                "mutability": "mutable",
+                "name": "intrinsicGas",
+                "nameLocation": "149:12:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 7307,
+                "src": "141:20:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 7305,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "141:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "CurrencyConfig",
+            "nameLocation": "100:14:23",
+            "nodeType": "StructDefinition",
+            "scope": 7344,
+            "src": "93:73:23",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 7308,
+              "nodeType": "StructuredDocumentation",
+              "src": "170:296:23",
+              "text": " @notice Sets the currency configuration for a token.\n @dev This action can only be performed by the contract owner.\n @param token The token address.\n @param oracle The oracle address for price fetching.\n @param intrinsicGas The intrinsic gas value for transactions."
+            },
+            "functionSelector": "216ab7df",
+            "id": 7317,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setCurrencyConfig",
+            "nameLocation": "478:17:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7315,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7310,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "504:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7317,
+                  "src": "496:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7309,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "496:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7312,
+                  "mutability": "mutable",
+                  "name": "oracle",
+                  "nameLocation": "519:6:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7317,
+                  "src": "511:14:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7311,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "511:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7314,
+                  "mutability": "mutable",
+                  "name": "intrinsicGas",
+                  "nameLocation": "535:12:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7317,
+                  "src": "527:20:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7313,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "527:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "495:53:23"
+            },
+            "returnParameters": {
+              "id": 7316,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "557:0:23"
+            },
+            "scope": 7344,
+            "src": "469:89:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 7318,
+              "nodeType": "StructuredDocumentation",
+              "src": "562:102:23",
+              "text": " @notice Returns the list of all currency addresses.\n @return An array of addresses."
+            },
+            "functionSelector": "61c661de",
+            "id": 7324,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrencies",
+            "nameLocation": "676:13:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7319,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "689:2:23"
+            },
+            "returnParameters": {
+              "id": 7323,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7322,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7324,
+                  "src": "715:16:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 7320,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "715:7:23",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 7321,
+                    "nodeType": "ArrayTypeName",
+                    "src": "715:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:18:23"
+            },
+            "scope": 7344,
+            "src": "667:66:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 7325,
+              "nodeType": "StructuredDocumentation",
+              "src": "736:158:23",
+              "text": " @notice Returns the configuration for a currency.\n @param token The address of the token.\n @return Currency configuration of the token."
+            },
+            "functionSelector": "eab43d97",
+            "id": 7333,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrencyConfig",
+            "nameLocation": "906:17:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7328,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7327,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "932:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7333,
+                  "src": "924:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7326,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "924:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "923:15:23"
+            },
+            "returnParameters": {
+              "id": 7332,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7331,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7333,
+                  "src": "962:21:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_CurrencyConfig_$7307_memory_ptr",
+                    "typeString": "struct IFeeCurrencyDirectory.CurrencyConfig"
+                  },
+                  "typeName": {
+                    "id": 7330,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 7329,
+                      "name": "CurrencyConfig",
+                      "nameLocations": [
+                        "962:14:23"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 7307,
+                      "src": "962:14:23"
+                    },
+                    "referencedDeclaration": 7307,
+                    "src": "962:14:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_CurrencyConfig_$7307_storage_ptr",
+                      "typeString": "struct IFeeCurrencyDirectory.CurrencyConfig"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "961:23:23"
+            },
+            "scope": 7344,
+            "src": "897:88:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 7334,
+              "nodeType": "StructuredDocumentation",
+              "src": "989:244:23",
+              "text": " @notice Retrieves exchange rate between token and CELO.\n @param token The token address whose price is to be fetched.\n @return numerator The exchange rate numerator.\n @return denominator The exchange rate denominator."
+            },
+            "functionSelector": "efb7601d",
+            "id": 7343,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExchangeRate",
+            "nameLocation": "1245:15:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7337,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7336,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "1274:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7343,
+                  "src": "1266:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7335,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1266:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1260:23:23"
+            },
+            "returnParameters": {
+              "id": 7342,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7339,
+                  "mutability": "mutable",
+                  "name": "numerator",
+                  "nameLocation": "1315:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7343,
+                  "src": "1307:17:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7338,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1307:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7341,
+                  "mutability": "mutable",
+                  "name": "denominator",
+                  "nameLocation": "1334:11:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7343,
+                  "src": "1326:19:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7340,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1326:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1306:40:23"
+            },
+            "scope": 7344,
+            "src": "1236:111:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7345,
+        "src": "57:1292:23",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:1318:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:34.163Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getCurrencies()": {
+        "returns": {
+          "_0": "An array of addresses."
+        }
+      },
+      "getCurrencyConfig(address)": {
+        "params": {
+          "token": "The address of the token."
+        },
+        "returns": {
+          "_0": "Currency configuration of the token."
+        }
+      },
+      "getExchangeRate(address)": {
+        "params": {
+          "token": "The token address whose price is to be fetched."
+        },
+        "returns": {
+          "denominator": "The exchange rate denominator.",
+          "numerator": "The exchange rate numerator."
+        }
+      },
+      "setCurrencyConfig(address,address,uint256)": {
+        "details": "This action can only be performed by the contract owner.",
+        "params": {
+          "intrinsicGas": "The intrinsic gas value for transactions.",
+          "oracle": "The oracle address for price fetching.",
+          "token": "The token address."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getCurrencies()": {
+        "notice": "Returns the list of all currency addresses."
+      },
+      "getCurrencyConfig(address)": {
+        "notice": "Returns the configuration for a currency."
+      },
+      "getExchangeRate(address)": {
+        "notice": "Retrieves exchange rate between token and CELO."
+      },
+      "setCurrencyConfig(address,address,uint256)": {
+        "notice": "Sets the currency configuration for a token."
+      }
+    },
+    "version": 1
+  }
+}

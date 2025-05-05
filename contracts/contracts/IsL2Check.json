@@ -1,0 +1,1495 @@
+{
+  "contractName": "IsL2Check",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{},\"title\":\"Based on predeploy returns whether this is L1 or L2.\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/common/IsL2Check.sol\":\"IsL2Check\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/common/IsL2Check.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.8.20;\\n\\n/**\\n * @title Based on predeploy returns whether this is L1 or L2.\\n */\\ncontract IsL2Check {\\n  address constant proxyAdminAddress = 0x4200000000000000000000000000000000000018;\\n\\n  /**\\n   * @notice Throws if called on L2.\\n   */\\n  modifier onlyL1() {\\n    allowOnlyL1();\\n    _;\\n  }\\n\\n  /**\\n   * @notice Throws if called on L1.\\n   */\\n  modifier onlyL2() {\\n    if (!isL2()) {\\n      revert(\\\"This method is not supported in L1.\\\");\\n    }\\n    _;\\n  }\\n\\n  /**\\n   * @notice Checks to see if current network is Celo L2.\\n   * @return Whether or not the current network is a Celo L2.\\n   */\\n  function isL2() internal view returns (bool) {\\n    uint32 size;\\n    address _addr = proxyAdminAddress;\\n    assembly {\\n      size := extcodesize(_addr)\\n    }\\n    return (size > 0);\\n  }\\n\\n  /**\\n   * @notice Used to restrict usage of the parent function to L1 execution.\\n   * @dev Reverts if called on a Celo L2 network.\\n   */\\n  function allowOnlyL1() internal view {\\n    if (isL2()) {\\n      revert(\\\"This method is no longer supported in L2.\\\");\\n    }\\n  }\\n}\\n\",\"keccak256\":\"0x4629a6f2c4364780f5a6a5e2ad5c3675c0a1d3bea35cfd4426eeaebca60cac37\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723158206fc4101230fb27f3bdf673375379aaaeb89eb01040a6ee02ca3caa08c76a2d5864736f6c634300050d0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a723158206fc4101230fb27f3bdf673375379aaaeb89eb01040a6ee02ca3caa08c76a2d5864736f6c634300050d0032",
+  "sourceMap": "148:954:11:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;148:954:11;;;;;;;",
+  "deployedSourceMap": "148:954:11:-;;;;;",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.8.20;\n\n/**\n * @title Based on predeploy returns whether this is L1 or L2.\n */\ncontract IsL2Check {\n  address constant proxyAdminAddress = 0x4200000000000000000000000000000000000018;\n\n  /**\n   * @notice Throws if called on L2.\n   */\n  modifier onlyL1() {\n    allowOnlyL1();\n    _;\n  }\n\n  /**\n   * @notice Throws if called on L1.\n   */\n  modifier onlyL2() {\n    if (!isL2()) {\n      revert(\"This method is not supported in L1.\");\n    }\n    _;\n  }\n\n  /**\n   * @notice Checks to see if current network is Celo L2.\n   * @return Whether or not the current network is a Celo L2.\n   */\n  function isL2() internal view returns (bool) {\n    uint32 size;\n    address _addr = proxyAdminAddress;\n    assembly {\n      size := extcodesize(_addr)\n    }\n    return (size > 0);\n  }\n\n  /**\n   * @notice Used to restrict usage of the parent function to L1 execution.\n   * @dev Reverts if called on a Celo L2 network.\n   */\n  function allowOnlyL1() internal view {\n    if (isL2()) {\n      revert(\"This method is no longer supported in L2.\");\n    }\n  }\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/common/IsL2Check.sol",
+  "ast": {
+    "absolutePath": "project:/contracts-0.8/common/IsL2Check.sol",
+    "exportedSymbols": {
+      "IsL2Check": [
+        1630
+      ]
+    },
+    "id": 1631,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1575,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.8",
+          ".20"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:33:11"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Based on predeploy returns whether this is L1 or L2.",
+        "fullyImplemented": true,
+        "id": 1630,
+        "linearizedBaseContracts": [
+          1630
+        ],
+        "name": "IsL2Check",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1578,
+            "name": "proxyAdminAddress",
+            "nodeType": "VariableDeclaration",
+            "scope": 1630,
+            "src": "171:79:11",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1576,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "171:7:11",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307834323030303030303030303030303030303030303030303030303030303030303030303030303138",
+              "id": 1577,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "208:42:11",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0x4200000000000000000000000000000000000018"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1584,
+              "nodeType": "Block",
+              "src": "322:31:11",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1580,
+                      "name": "allowOnlyL1",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1629,
+                      "src": "328:11:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$__$",
+                        "typeString": "function () view"
+                      }
+                    },
+                    "id": 1581,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "328:13:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1582,
+                  "nodeType": "ExpressionStatement",
+                  "src": "328:13:11"
+                },
+                {
+                  "id": 1583,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "347:1:11"
+                }
+              ]
+            },
+            "documentation": "@notice Throws if called on L2.",
+            "id": 1585,
+            "name": "onlyL1",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 1579,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "319:2:11"
+            },
+            "src": "304:49:11",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1597,
+              "nodeType": "Block",
+              "src": "424:90:11",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "id": 1589,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "434:7:11",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 1587,
+                        "name": "isL2",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1617,
+                        "src": "435:4:11",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                          "typeString": "function () view returns (bool)"
+                        }
+                      },
+                      "id": 1588,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "435:6:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 1595,
+                  "nodeType": "IfStatement",
+                  "src": "430:73:11",
+                  "trueBody": {
+                    "id": 1594,
+                    "nodeType": "Block",
+                    "src": "443:60:11",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "54686973206d6574686f64206973206e6f7420737570706f7274656420696e204c312e",
+                              "id": 1591,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "458:37:11",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_ce77717eff8b0d7c6ecf190f14db828402a59c9029d0deafbceed192f68fe306",
+                                "typeString": "literal_string \"This method is not supported in L1.\""
+                              },
+                              "value": "This method is not supported in L1."
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_ce77717eff8b0d7c6ecf190f14db828402a59c9029d0deafbceed192f68fe306",
+                                "typeString": "literal_string \"This method is not supported in L1.\""
+                              }
+                            ],
+                            "id": 1590,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              59928,
+                              59929
+                            ],
+                            "referencedDeclaration": 59929,
+                            "src": "451:6:11",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 1592,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "451:45:11",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 1593,
+                        "nodeType": "ExpressionStatement",
+                        "src": "451:45:11"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": 1596,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "508:1:11"
+                }
+              ]
+            },
+            "documentation": "@notice Throws if called on L1.",
+            "id": 1598,
+            "name": "onlyL2",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 1586,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "421:2:11"
+            },
+            "src": "406:108:11",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1616,
+              "nodeType": "Block",
+              "src": "695:138:11",
+              "statements": [
+                {
+                  "assignments": [
+                    1604
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1604,
+                      "name": "size",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1616,
+                      "src": "701:11:11",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      },
+                      "typeName": {
+                        "id": 1603,
+                        "name": "uint32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "701:6:11",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1605,
+                  "initialValue": null,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "701:11:11"
+                },
+                {
+                  "assignments": [
+                    1607
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1607,
+                      "name": "_addr",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1616,
+                      "src": "718:13:11",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 1606,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "718:7:11",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1609,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 1608,
+                    "name": "proxyAdminAddress",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1578,
+                    "src": "734:17:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "718:33:11"
+                },
+                {
+                  "externalReferences": [
+                    {
+                      "size": {
+                        "declaration": 1604,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "774:4:11",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_addr": {
+                        "declaration": 1607,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "794:5:11",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 1610,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{ size := extcodesize(_addr) }",
+                  "src": "757:49:11"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        },
+                        "id": 1613,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 1611,
+                          "name": "size",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1604,
+                          "src": "819:4:11",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint32",
+                            "typeString": "uint32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 1612,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "826:1:11",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "819:8:11",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 1614,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "818:10:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 1602,
+                  "id": 1615,
+                  "nodeType": "Return",
+                  "src": "811:17:11"
+                }
+              ]
+            },
+            "documentation": "@notice Checks to see if current network is Celo L2.\n@return Whether or not the current network is a Celo L2.",
+            "id": 1617,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isL2",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1599,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "663:2:11"
+            },
+            "returnParameters": {
+              "id": 1602,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1601,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1617,
+                  "src": "689:4:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1600,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "689:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "688:6:11"
+            },
+            "scope": 1630,
+            "src": "650:183:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1628,
+              "nodeType": "Block",
+              "src": "1012:88:11",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1620,
+                      "name": "isL2",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1617,
+                      "src": "1022:4:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                        "typeString": "function () view returns (bool)"
+                      }
+                    },
+                    "id": 1621,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1022:6:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 1627,
+                  "nodeType": "IfStatement",
+                  "src": "1018:78:11",
+                  "trueBody": {
+                    "id": 1626,
+                    "nodeType": "Block",
+                    "src": "1030:66:11",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "54686973206d6574686f64206973206e6f206c6f6e67657220737570706f7274656420696e204c322e",
+                              "id": 1623,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1045:43:11",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_6b58fe460f24176f3213b61028eeed65350ffc7614db8ee67f6cecd2e8cd9d28",
+                                "typeString": "literal_string \"This method is no longer supported in L2.\""
+                              },
+                              "value": "This method is no longer supported in L2."
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_6b58fe460f24176f3213b61028eeed65350ffc7614db8ee67f6cecd2e8cd9d28",
+                                "typeString": "literal_string \"This method is no longer supported in L2.\""
+                              }
+                            ],
+                            "id": 1622,
+                            "name": "revert",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              59928,
+                              59929
+                            ],
+                            "referencedDeclaration": 59929,
+                            "src": "1038:6:11",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) pure"
+                            }
+                          },
+                          "id": 1624,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1038:51:11",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 1625,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1038:51:11"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice Used to restrict usage of the parent function to L1 execution.\n@dev Reverts if called on a Celo L2 network.",
+            "id": 1629,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "allowOnlyL1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1618,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "995:2:11"
+            },
+            "returnParameters": {
+              "id": 1619,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1012:0:11"
+            },
+            "scope": 1630,
+            "src": "975:125:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1631,
+        "src": "148:954:11"
+      }
+    ],
+    "src": "42:1061:11"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts-0.8/common/IsL2Check.sol",
+      "exportedSymbols": {
+        "IsL2Check": [
+          1630
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.8",
+            ".20"
+          ]
+        },
+        "id": 1575,
+        "name": "PragmaDirective",
+        "src": "42:33:11"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Based on predeploy returns whether this is L1 or L2.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            1630
+          ],
+          "name": "IsL2Check",
+          "scope": 1631
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": true,
+              "name": "proxyAdminAddress",
+              "scope": 1630,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 1576,
+                "name": "ElementaryTypeName",
+                "src": "171:7:11"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "307834323030303030303030303030303030303030303030303030303030303030303030303030303138",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "address payable",
+                  "value": "0x4200000000000000000000000000000000000018"
+                },
+                "id": 1577,
+                "name": "Literal",
+                "src": "208:42:11"
+              }
+            ],
+            "id": 1578,
+            "name": "VariableDeclaration",
+            "src": "171:79:11"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Throws if called on L2.",
+              "name": "onlyL1",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1579,
+                "name": "ParameterList",
+                "src": "319:2:11"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1629,
+                              "type": "function () view",
+                              "value": "allowOnlyL1"
+                            },
+                            "id": 1580,
+                            "name": "Identifier",
+                            "src": "328:11:11"
+                          }
+                        ],
+                        "id": 1581,
+                        "name": "FunctionCall",
+                        "src": "328:13:11"
+                      }
+                    ],
+                    "id": 1582,
+                    "name": "ExpressionStatement",
+                    "src": "328:13:11"
+                  },
+                  {
+                    "id": 1583,
+                    "name": "PlaceholderStatement",
+                    "src": "347:1:11"
+                  }
+                ],
+                "id": 1584,
+                "name": "Block",
+                "src": "322:31:11"
+              }
+            ],
+            "id": 1585,
+            "name": "ModifierDefinition",
+            "src": "304:49:11"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Throws if called on L1.",
+              "name": "onlyL2",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1586,
+                "name": "ParameterList",
+                "src": "421:2:11"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "!",
+                          "prefix": true,
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bool",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1617,
+                                  "type": "function () view returns (bool)",
+                                  "value": "isL2"
+                                },
+                                "id": 1587,
+                                "name": "Identifier",
+                                "src": "435:4:11"
+                              }
+                            ],
+                            "id": 1588,
+                            "name": "FunctionCall",
+                            "src": "435:6:11"
+                          }
+                        ],
+                        "id": 1589,
+                        "name": "UnaryOperation",
+                        "src": "434:7:11"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple()",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_stringliteral_ce77717eff8b0d7c6ecf190f14db828402a59c9029d0deafbceed192f68fe306",
+                                          "typeString": "literal_string \"This method is not supported in L1.\""
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        59928,
+                                        59929
+                                      ],
+                                      "referencedDeclaration": 59929,
+                                      "type": "function (string memory) pure",
+                                      "value": "revert"
+                                    },
+                                    "id": 1590,
+                                    "name": "Identifier",
+                                    "src": "451:6:11"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "54686973206d6574686f64206973206e6f7420737570706f7274656420696e204c312e",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "string",
+                                      "type": "literal_string \"This method is not supported in L1.\"",
+                                      "value": "This method is not supported in L1."
+                                    },
+                                    "id": 1591,
+                                    "name": "Literal",
+                                    "src": "458:37:11"
+                                  }
+                                ],
+                                "id": 1592,
+                                "name": "FunctionCall",
+                                "src": "451:45:11"
+                              }
+                            ],
+                            "id": 1593,
+                            "name": "ExpressionStatement",
+                            "src": "451:45:11"
+                          }
+                        ],
+                        "id": 1594,
+                        "name": "Block",
+                        "src": "443:60:11"
+                      }
+                    ],
+                    "id": 1595,
+                    "name": "IfStatement",
+                    "src": "430:73:11"
+                  },
+                  {
+                    "id": 1596,
+                    "name": "PlaceholderStatement",
+                    "src": "508:1:11"
+                  }
+                ],
+                "id": 1597,
+                "name": "Block",
+                "src": "424:90:11"
+              }
+            ],
+            "id": 1598,
+            "name": "ModifierDefinition",
+            "src": "406:108:11"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Checks to see if current network is Celo L2.\n@return Whether or not the current network is a Celo L2.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isL2",
+              "scope": 1630,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1599,
+                "name": "ParameterList",
+                "src": "663:2:11"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1617,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 1600,
+                        "name": "ElementaryTypeName",
+                        "src": "689:4:11"
+                      }
+                    ],
+                    "id": 1601,
+                    "name": "VariableDeclaration",
+                    "src": "689:4:11"
+                  }
+                ],
+                "id": 1602,
+                "name": "ParameterList",
+                "src": "688:6:11"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1604
+                      ],
+                      "initialValue": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "size",
+                          "scope": 1616,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint32",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint32",
+                              "type": "uint32"
+                            },
+                            "id": 1603,
+                            "name": "ElementaryTypeName",
+                            "src": "701:6:11"
+                          }
+                        ],
+                        "id": 1604,
+                        "name": "VariableDeclaration",
+                        "src": "701:11:11"
+                      }
+                    ],
+                    "id": 1605,
+                    "name": "VariableDeclarationStatement",
+                    "src": "701:11:11"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1607
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "_addr",
+                          "scope": 1616,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "address",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 1606,
+                            "name": "ElementaryTypeName",
+                            "src": "718:7:11"
+                          }
+                        ],
+                        "id": 1607,
+                        "name": "VariableDeclaration",
+                        "src": "718:13:11"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 1578,
+                          "type": "address",
+                          "value": "proxyAdminAddress"
+                        },
+                        "id": 1608,
+                        "name": "Identifier",
+                        "src": "734:17:11"
+                      }
+                    ],
+                    "id": 1609,
+                    "name": "VariableDeclarationStatement",
+                    "src": "718:33:11"
+                  },
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "size": {
+                            "declaration": 1604,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "774:4:11",
+                            "valueSize": 1
+                          }
+                        },
+                        {
+                          "_addr": {
+                            "declaration": 1607,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "794:5:11",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{ size := extcodesize(_addr) }"
+                    },
+                    "children": [],
+                    "id": 1610,
+                    "name": "InlineAssembly",
+                    "src": "757:49:11"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 1602
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint32",
+                                "typeString": "uint32"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1604,
+                                  "type": "uint32",
+                                  "value": "size"
+                                },
+                                "id": 1611,
+                                "name": "Identifier",
+                                "src": "819:4:11"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "30",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 0",
+                                  "value": "0"
+                                },
+                                "id": 1612,
+                                "name": "Literal",
+                                "src": "826:1:11"
+                              }
+                            ],
+                            "id": 1613,
+                            "name": "BinaryOperation",
+                            "src": "819:8:11"
+                          }
+                        ],
+                        "id": 1614,
+                        "name": "TupleExpression",
+                        "src": "818:10:11"
+                      }
+                    ],
+                    "id": 1615,
+                    "name": "Return",
+                    "src": "811:17:11"
+                  }
+                ],
+                "id": 1616,
+                "name": "Block",
+                "src": "695:138:11"
+              }
+            ],
+            "id": 1617,
+            "name": "FunctionDefinition",
+            "src": "650:183:11"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Used to restrict usage of the parent function to L1 execution.\n@dev Reverts if called on a Celo L2 network.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "allowOnlyL1",
+              "scope": 1630,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1618,
+                "name": "ParameterList",
+                "src": "995:2:11"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1619,
+                "name": "ParameterList",
+                "src": "1012:0:11"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1617,
+                              "type": "function () view returns (bool)",
+                              "value": "isL2"
+                            },
+                            "id": 1620,
+                            "name": "Identifier",
+                            "src": "1022:4:11"
+                          }
+                        ],
+                        "id": 1621,
+                        "name": "FunctionCall",
+                        "src": "1022:6:11"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple()",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_stringliteral_6b58fe460f24176f3213b61028eeed65350ffc7614db8ee67f6cecd2e8cd9d28",
+                                          "typeString": "literal_string \"This method is no longer supported in L2.\""
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        59928,
+                                        59929
+                                      ],
+                                      "referencedDeclaration": 59929,
+                                      "type": "function (string memory) pure",
+                                      "value": "revert"
+                                    },
+                                    "id": 1622,
+                                    "name": "Identifier",
+                                    "src": "1038:6:11"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "54686973206d6574686f64206973206e6f206c6f6e67657220737570706f7274656420696e204c322e",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "string",
+                                      "type": "literal_string \"This method is no longer supported in L2.\"",
+                                      "value": "This method is no longer supported in L2."
+                                    },
+                                    "id": 1623,
+                                    "name": "Literal",
+                                    "src": "1045:43:11"
+                                  }
+                                ],
+                                "id": 1624,
+                                "name": "FunctionCall",
+                                "src": "1038:51:11"
+                              }
+                            ],
+                            "id": 1625,
+                            "name": "ExpressionStatement",
+                            "src": "1038:51:11"
+                          }
+                        ],
+                        "id": 1626,
+                        "name": "Block",
+                        "src": "1030:66:11"
+                      }
+                    ],
+                    "id": 1627,
+                    "name": "IfStatement",
+                    "src": "1018:78:11"
+                  }
+                ],
+                "id": 1628,
+                "name": "Block",
+                "src": "1012:88:11"
+              }
+            ],
+            "id": 1629,
+            "name": "FunctionDefinition",
+            "src": "975:125:11"
+          }
+        ],
+        "id": 1630,
+        "name": "ContractDefinition",
+        "src": "148:954:11"
+      }
+    ],
+    "id": 1631,
+    "name": "SourceUnit",
+    "src": "42:1061:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.052Z",
+  "devdoc": {
+    "methods": {},
+    "title": "Based on predeploy returns whether this is L1 or L2."
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

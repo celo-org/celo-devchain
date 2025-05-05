@@ -1,0 +1,2757 @@
+{
+  "contractName": "IBreakerBox",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "BreakerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "BreakerRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "status",
+          "type": "bool"
+        }
+      ],
+      "name": "BreakerStatusUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        }
+      ],
+      "name": "BreakerTripped",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        }
+      ],
+      "name": "RateFeedAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address[]",
+          "name": "dependencies",
+          "type": "address[]"
+        }
+      ],
+      "name": "RateFeedDependenciesSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        }
+      ],
+      "name": "RateFeedRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "ResetAttemptCriteriaFail",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "ResetAttemptNotCool",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "ResetSuccessful",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newSortedOracles",
+          "type": "address"
+        }
+      ],
+      "name": "SortedOraclesUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tradingMode",
+          "type": "uint256"
+        }
+      ],
+      "name": "TradingModeUpdated",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        }
+      ],
+      "name": "checkAndSetBreakers",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBreakers",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "breaker",
+          "type": "address"
+        }
+      ],
+      "name": "isBreaker",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "rateFeedID",
+          "type": "address"
+        }
+      ],
+      "name": "getRateFeedTradingMode",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "tradingMode",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"BreakerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"BreakerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"}],\"name\":\"BreakerStatusUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"}],\"name\":\"BreakerTripped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"}],\"name\":\"RateFeedAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address[]\",\"name\":\"dependencies\",\"type\":\"address[]\"}],\"name\":\"RateFeedDependenciesSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"}],\"name\":\"RateFeedRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"ResetAttemptCriteriaFail\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"ResetAttemptNotCool\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"ResetSuccessful\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newSortedOracles\",\"type\":\"address\"}],\"name\":\"SortedOraclesUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tradingMode\",\"type\":\"uint256\"}],\"name\":\"TradingModeUpdated\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"}],\"name\":\"checkAndSetBreakers\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getBreakers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"rateFeedID\",\"type\":\"address\"}],\"name\":\"getRateFeedTradingMode\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"tradingMode\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"breaker\",\"type\":\"address\"}],\"name\":\"isBreaker\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"checkAndSetBreakers(address)\":{\"params\":{\"rateFeedID\":\"The address of the rate feed to run checks for.\"}},\"getRateFeedTradingMode(address)\":{\"params\":{\"rateFeedID\":\"The address of the rate feed to retrieve the trading mode for.\"}},\"isBreaker(address)\":{\"params\":{\"breaker\":\"The address of the breaker to check;\"},\"return\":\"A bool indicating whether or not the breaker has been added.\"}},\"title\":\"Breaker Box Interface\"},\"userdoc\":{\"methods\":{\"checkAndSetBreakers(address)\":{\"notice\":\"Checks breakers for the rateFeedID and sets correct trading mode if any breakers are tripped or need to be reset.\"},\"getBreakers()\":{\"notice\":\"Retrives an array of all breaker addresses.\"},\"getRateFeedTradingMode(address)\":{\"notice\":\"Gets the trading mode for the specified rateFeedID.\"},\"isBreaker(address)\":{\"notice\":\"Checks if a breaker with the specified address has been added to the breaker box.\"}},\"notice\":\"Defines the basic interface for the Breaker Box\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts/stability/interfaces/IBreakerBox.sol\":\"IBreakerBox\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/stability/interfaces/IBreakerBox.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0-or-later\\npragma solidity ^0.5.13;\\n\\n/**\\n * @title Breaker Box Interface\\n * @notice Defines the basic interface for the Breaker Box\\n */\\ninterface IBreakerBox {\\n  /**\\n   * @dev Used to keep track of the status of a breaker for a specific rate feed.\\n   *\\n   * - TradingMode: Represents the trading mode the breaker is in for a rate feed.\\n   *                This uses a bitmask approach, meaning each bit represents a\\n   *                different trading mode. The final trading mode of the rate feed\\n   *                is obtained by applying a logical OR operation to the TradingMode\\n   *                of all breakers associated with that rate feed. This allows multiple\\n   *                breakers to contribute to the final trading mode simultaneously.\\n   *                Possible values:\\n   *                0: bidirectional trading.\\n   *                1: inflow only.\\n   *                2: outflow only.\\n   *                3: trading halted.\\n   *\\n   * - LastUpdatedTime: Records the last time the breaker status was updated. This is\\n   *                    used to manage cooldown periods before the breaker can be reset.\\n   *\\n   * - Enabled:     Indicates whether the breaker is enabled for the associated rate feed.\\n   */\\n  struct BreakerStatus {\\n    uint8 tradingMode;\\n    uint64 lastUpdatedTime;\\n    bool enabled;\\n  }\\n\\n  /**\\n   * @notice Emitted when a new breaker is added to the breaker box.\\n   * @param breaker The address of the breaker.\\n   */\\n  event BreakerAdded(address indexed breaker);\\n\\n  /**\\n   * @notice Emitted when a breaker is removed from the breaker box.\\n   * @param breaker The address of the breaker.\\n   */\\n  event BreakerRemoved(address indexed breaker);\\n\\n  /**\\n   * @notice Emitted when a breaker is tripped by a rate feed.\\n   * @param breaker The address of the breaker.\\n   * @param rateFeedID The address of the rate feed.\\n   */\\n  event BreakerTripped(address indexed breaker, address indexed rateFeedID);\\n\\n  /**\\n   * @notice Emitted when a new rate feed is added to the breaker box.\\n   * @param rateFeedID The address of the rate feed.\\n   */\\n  event RateFeedAdded(address indexed rateFeedID);\\n\\n  /**\\n   * @notice Emitted when dependencies for a rate feed are set.\\n   * @param rateFeedID The address of the rate feed.\\n   * @param dependencies The addresses of the dependendent rate feeds.\\n   */\\n  event RateFeedDependenciesSet(address indexed rateFeedID, address[] indexed dependencies);\\n\\n  /**\\n   * @notice Emitted when a rate feed is removed from the breaker box.\\n   * @param rateFeedID The address of the rate feed.\\n   */\\n  event RateFeedRemoved(address indexed rateFeedID);\\n\\n  /**\\n   * @notice Emitted when the trading mode for a rate feed is updated\\n   * @param rateFeedID The address of the rate feed.\\n   * @param tradingMode The new trading mode.\\n   */\\n  event TradingModeUpdated(address indexed rateFeedID, uint256 tradingMode);\\n\\n  /**\\n   * @notice Emitted after a reset attempt is successful.\\n   * @param rateFeedID The address of the rate feed.\\n   * @param breaker The address of the breaker.\\n   */\\n  event ResetSuccessful(address indexed rateFeedID, address indexed breaker);\\n\\n  /**\\n   * @notice  Emitted after a reset attempt fails when the\\n   *          rate feed fails the breakers reset criteria.\\n   * @param rateFeedID The address of the rate feed.\\n   * @param breaker The address of the breaker.\\n   */\\n  event ResetAttemptCriteriaFail(address indexed rateFeedID, address indexed breaker);\\n\\n  /**\\n   * @notice Emitted after a reset attempt fails when cooldown time has not elapsed.\\n   * @param rateFeedID The address of the rate feed.\\n   * @param breaker The address of the breaker.\\n   */\\n  event ResetAttemptNotCool(address indexed rateFeedID, address indexed breaker);\\n\\n  /**\\n   * @notice Emitted when the sortedOracles address is updated.\\n   * @param newSortedOracles The address of the new sortedOracles.\\n   */\\n  event SortedOraclesUpdated(address indexed newSortedOracles);\\n\\n  /**\\n   * @notice Emitted when the breaker is enabled or disabled for a rate feed.\\n   * @param breaker The address of the breaker.\\n   * @param rateFeedID The address of the rate feed.\\n   * @param status Indicating the status.\\n   */\\n  event BreakerStatusUpdated(address breaker, address rateFeedID, bool status);\\n\\n  /**\\n   * @notice Checks breakers for the rateFeedID and sets correct trading mode\\n   * if any breakers are tripped or need to be reset.\\n   * @param rateFeedID The address of the rate feed to run checks for.\\n   */\\n  function checkAndSetBreakers(address rateFeedID) external;\\n\\n  /**\\n   * @notice Retrives an array of all breaker addresses.\\n   */\\n  function getBreakers() external view returns (address[] memory);\\n\\n  /**\\n   * @notice Checks if a breaker with the specified address has been added to the breaker box.\\n   * @param breaker The address of the breaker to check;\\n   * @return A bool indicating whether or not the breaker has been added.\\n   */\\n  function isBreaker(address breaker) external view returns (bool);\\n\\n  /**\\n   * @notice Gets the trading mode for the specified rateFeedID.\\n   * @param rateFeedID The address of the rate feed to retrieve the trading mode for.\\n   */\\n  function getRateFeedTradingMode(address rateFeedID) external view returns (uint8 tradingMode);\\n}\\n\",\"keccak256\":\"0x5b84230d8846d93f8d05801667cd31096cfca8a7cdbb44d8b6d8a699c4a05fb7\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-3.0-or-later\npragma solidity ^0.5.13;\n\n/**\n * @title Breaker Box Interface\n * @notice Defines the basic interface for the Breaker Box\n */\ninterface IBreakerBox {\n  /**\n   * @dev Used to keep track of the status of a breaker for a specific rate feed.\n   *\n   * - TradingMode: Represents the trading mode the breaker is in for a rate feed.\n   *                This uses a bitmask approach, meaning each bit represents a\n   *                different trading mode. The final trading mode of the rate feed\n   *                is obtained by applying a logical OR operation to the TradingMode\n   *                of all breakers associated with that rate feed. This allows multiple\n   *                breakers to contribute to the final trading mode simultaneously.\n   *                Possible values:\n   *                0: bidirectional trading.\n   *                1: inflow only.\n   *                2: outflow only.\n   *                3: trading halted.\n   *\n   * - LastUpdatedTime: Records the last time the breaker status was updated. This is\n   *                    used to manage cooldown periods before the breaker can be reset.\n   *\n   * - Enabled:     Indicates whether the breaker is enabled for the associated rate feed.\n   */\n  struct BreakerStatus {\n    uint8 tradingMode;\n    uint64 lastUpdatedTime;\n    bool enabled;\n  }\n\n  /**\n   * @notice Emitted when a new breaker is added to the breaker box.\n   * @param breaker The address of the breaker.\n   */\n  event BreakerAdded(address indexed breaker);\n\n  /**\n   * @notice Emitted when a breaker is removed from the breaker box.\n   * @param breaker The address of the breaker.\n   */\n  event BreakerRemoved(address indexed breaker);\n\n  /**\n   * @notice Emitted when a breaker is tripped by a rate feed.\n   * @param breaker The address of the breaker.\n   * @param rateFeedID The address of the rate feed.\n   */\n  event BreakerTripped(address indexed breaker, address indexed rateFeedID);\n\n  /**\n   * @notice Emitted when a new rate feed is added to the breaker box.\n   * @param rateFeedID The address of the rate feed.\n   */\n  event RateFeedAdded(address indexed rateFeedID);\n\n  /**\n   * @notice Emitted when dependencies for a rate feed are set.\n   * @param rateFeedID The address of the rate feed.\n   * @param dependencies The addresses of the dependendent rate feeds.\n   */\n  event RateFeedDependenciesSet(address indexed rateFeedID, address[] indexed dependencies);\n\n  /**\n   * @notice Emitted when a rate feed is removed from the breaker box.\n   * @param rateFeedID The address of the rate feed.\n   */\n  event RateFeedRemoved(address indexed rateFeedID);\n\n  /**\n   * @notice Emitted when the trading mode for a rate feed is updated\n   * @param rateFeedID The address of the rate feed.\n   * @param tradingMode The new trading mode.\n   */\n  event TradingModeUpdated(address indexed rateFeedID, uint256 tradingMode);\n\n  /**\n   * @notice Emitted after a reset attempt is successful.\n   * @param rateFeedID The address of the rate feed.\n   * @param breaker The address of the breaker.\n   */\n  event ResetSuccessful(address indexed rateFeedID, address indexed breaker);\n\n  /**\n   * @notice  Emitted after a reset attempt fails when the\n   *          rate feed fails the breakers reset criteria.\n   * @param rateFeedID The address of the rate feed.\n   * @param breaker The address of the breaker.\n   */\n  event ResetAttemptCriteriaFail(address indexed rateFeedID, address indexed breaker);\n\n  /**\n   * @notice Emitted after a reset attempt fails when cooldown time has not elapsed.\n   * @param rateFeedID The address of the rate feed.\n   * @param breaker The address of the breaker.\n   */\n  event ResetAttemptNotCool(address indexed rateFeedID, address indexed breaker);\n\n  /**\n   * @notice Emitted when the sortedOracles address is updated.\n   * @param newSortedOracles The address of the new sortedOracles.\n   */\n  event SortedOraclesUpdated(address indexed newSortedOracles);\n\n  /**\n   * @notice Emitted when the breaker is enabled or disabled for a rate feed.\n   * @param breaker The address of the breaker.\n   * @param rateFeedID The address of the rate feed.\n   * @param status Indicating the status.\n   */\n  event BreakerStatusUpdated(address breaker, address rateFeedID, bool status);\n\n  /**\n   * @notice Checks breakers for the rateFeedID and sets correct trading mode\n   * if any breakers are tripped or need to be reset.\n   * @param rateFeedID The address of the rate feed to run checks for.\n   */\n  function checkAndSetBreakers(address rateFeedID) external;\n\n  /**\n   * @notice Retrives an array of all breaker addresses.\n   */\n  function getBreakers() external view returns (address[] memory);\n\n  /**\n   * @notice Checks if a breaker with the specified address has been added to the breaker box.\n   * @param breaker The address of the breaker to check;\n   * @return A bool indicating whether or not the breaker has been added.\n   */\n  function isBreaker(address breaker) external view returns (bool);\n\n  /**\n   * @notice Gets the trading mode for the specified rateFeedID.\n   * @param rateFeedID The address of the rate feed to retrieve the trading mode for.\n   */\n  function getRateFeedTradingMode(address rateFeedID) external view returns (uint8 tradingMode);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/stability/interfaces/IBreakerBox.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/stability/interfaces/IBreakerBox.sol",
+    "exportedSymbols": {
+      "IBreakerBox": [
+        53449
+      ]
+    },
+    "id": 53450,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 53351,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".13"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "45:24:188"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "@title Breaker Box Interface\n@notice Defines the basic interface for the Breaker Box",
+        "fullyImplemented": false,
+        "id": 53449,
+        "linearizedBaseContracts": [
+          53449
+        ],
+        "name": "IBreakerBox",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IBreakerBox.BreakerStatus",
+            "id": 53358,
+            "members": [
+              {
+                "constant": false,
+                "id": 53353,
+                "name": "tradingMode",
+                "nodeType": "VariableDeclaration",
+                "scope": 53358,
+                "src": "1300:17:188",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 53352,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1300:5:188",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 53355,
+                "name": "lastUpdatedTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 53358,
+                "src": "1323:22:188",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint64",
+                  "typeString": "uint64"
+                },
+                "typeName": {
+                  "id": 53354,
+                  "name": "uint64",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1323:6:188",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 53357,
+                "name": "enabled",
+                "nodeType": "VariableDeclaration",
+                "scope": 53358,
+                "src": "1351:12:188",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 53356,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1351:4:188",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "BreakerStatus",
+            "nodeType": "StructDefinition",
+            "scope": 53449,
+            "src": "1273:95:188",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when a new breaker is added to the breaker box.\n@param breaker The address of the breaker.",
+            "id": 53362,
+            "name": "BreakerAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53361,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53360,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53362,
+                  "src": "1520:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53359,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1520:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1519:25:188"
+            },
+            "src": "1501:44:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when a breaker is removed from the breaker box.\n@param breaker The address of the breaker.",
+            "id": 53366,
+            "name": "BreakerRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53365,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53364,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53366,
+                  "src": "1699:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53363,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1699:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1698:25:188"
+            },
+            "src": "1678:46:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when a breaker is tripped by a rate feed.\n@param breaker The address of the breaker.\n@param rateFeedID The address of the rate feed.",
+            "id": 53372,
+            "name": "BreakerTripped",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53371,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53368,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53372,
+                  "src": "1925:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53367,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1925:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53370,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53372,
+                  "src": "1950:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53369,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1950:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1924:53:188"
+            },
+            "src": "1904:74:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when a new rate feed is added to the breaker box.\n@param rateFeedID The address of the rate feed.",
+            "id": 53376,
+            "name": "RateFeedAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53375,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53374,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53376,
+                  "src": "2138:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53373,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2138:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2137:28:188"
+            },
+            "src": "2118:48:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when dependencies for a rate feed are set.\n@param rateFeedID The address of the rate feed.\n@param dependencies The addresses of the dependendent rate feeds.",
+            "id": 53383,
+            "name": "RateFeedDependenciesSet",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53382,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53378,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53383,
+                  "src": "2400:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53377,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2400:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53381,
+                  "indexed": true,
+                  "name": "dependencies",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53383,
+                  "src": "2428:30:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 53379,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2428:7:188",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 53380,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2428:9:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2399:60:188"
+            },
+            "src": "2370:90:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when a rate feed is removed from the breaker box.\n@param rateFeedID The address of the rate feed.",
+            "id": 53387,
+            "name": "RateFeedRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53386,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53385,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53387,
+                  "src": "2622:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53384,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2622:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2621:28:188"
+            },
+            "src": "2600:50:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when the trading mode for a rate feed is updated\n@param rateFeedID The address of the rate feed.\n@param tradingMode The new trading mode.",
+            "id": 53393,
+            "name": "TradingModeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53392,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53389,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53393,
+                  "src": "2860:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53388,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2860:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53391,
+                  "indexed": false,
+                  "name": "tradingMode",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53393,
+                  "src": "2888:19:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 53390,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2888:7:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2859:49:188"
+            },
+            "src": "2835:74:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted after a reset attempt is successful.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+            "id": 53399,
+            "name": "ResetSuccessful",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53398,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53395,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53399,
+                  "src": "3106:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53394,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3106:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53397,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53399,
+                  "src": "3134:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53396,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3134:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3105:53:188"
+            },
+            "src": "3084:75:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice  Emitted after a reset attempt fails when the\n         rate feed fails the breakers reset criteria.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+            "id": 53405,
+            "name": "ResetAttemptCriteriaFail",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53404,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53401,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53405,
+                  "src": "3425:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53400,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3425:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53403,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53405,
+                  "src": "3453:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53402,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3453:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3424:53:188"
+            },
+            "src": "3394:84:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted after a reset attempt fails when cooldown time has not elapsed.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+            "id": 53411,
+            "name": "ResetAttemptNotCool",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53410,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53407,
+                  "indexed": true,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53411,
+                  "src": "3706:26:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53406,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3706:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53409,
+                  "indexed": true,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53411,
+                  "src": "3734:23:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53408,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3734:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3705:53:188"
+            },
+            "src": "3680:79:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when the sortedOracles address is updated.\n@param newSortedOracles The address of the new sortedOracles.",
+            "id": 53415,
+            "name": "SortedOraclesUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53414,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53413,
+                  "indexed": true,
+                  "name": "newSortedOracles",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53415,
+                  "src": "3933:32:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53412,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3933:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3932:34:188"
+            },
+            "src": "3906:61:188"
+          },
+          {
+            "anonymous": false,
+            "documentation": "@notice Emitted when the breaker is enabled or disabled for a rate feed.\n@param breaker The address of the breaker.\n@param rateFeedID The address of the rate feed.\n@param status Indicating the status.",
+            "id": 53423,
+            "name": "BreakerStatusUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53422,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53417,
+                  "indexed": false,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53423,
+                  "src": "4231:15:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53416,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4231:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53419,
+                  "indexed": false,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53423,
+                  "src": "4248:18:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53418,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4248:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 53421,
+                  "indexed": false,
+                  "name": "status",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53423,
+                  "src": "4268:11:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 53420,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4268:4:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4230:50:188"
+            },
+            "src": "4204:77:188"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Checks breakers for the rateFeedID and sets correct trading mode\nif any breakers are tripped or need to be reset.\n@param rateFeedID The address of the rate feed to run checks for.",
+            "id": 53428,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "checkAndSetBreakers",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 53426,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53425,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53428,
+                  "src": "4529:18:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53424,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4529:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4528:20:188"
+            },
+            "returnParameters": {
+              "id": 53427,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4557:0:188"
+            },
+            "scope": 53449,
+            "src": "4500:58:188",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Retrives an array of all breaker addresses.",
+            "id": 53434,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBreakers",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 53429,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4651:2:188"
+            },
+            "returnParameters": {
+              "id": 53433,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53432,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53434,
+                  "src": "4677:16:188",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 53430,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "4677:7:188",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 53431,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "4677:9:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4676:18:188"
+            },
+            "scope": 53449,
+            "src": "4631:64:188",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Checks if a breaker with the specified address has been added to the breaker box.\n@param breaker The address of the breaker to check;\n@return A bool indicating whether or not the breaker has been added.",
+            "id": 53441,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isBreaker",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 53437,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53436,
+                  "name": "breaker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53441,
+                  "src": "4956:15:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53435,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4956:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4955:17:188"
+            },
+            "returnParameters": {
+              "id": 53440,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53439,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53441,
+                  "src": "4996:4:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 53438,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4996:4:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4995:6:188"
+            },
+            "scope": 53449,
+            "src": "4937:65:188",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Gets the trading mode for the specified rateFeedID.\n@param rateFeedID The address of the rate feed to retrieve the trading mode for.",
+            "id": 53448,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRateFeedTradingMode",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 53444,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53443,
+                  "name": "rateFeedID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53448,
+                  "src": "5201:18:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53442,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5201:7:188",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5200:20:188"
+            },
+            "returnParameters": {
+              "id": 53447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 53446,
+                  "name": "tradingMode",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 53448,
+                  "src": "5244:17:188",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 53445,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5244:5:188",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5243:19:188"
+            },
+            "scope": 53449,
+            "src": "5169:94:188",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 53450,
+        "src": "170:5095:188"
+      }
+    ],
+    "src": "45:5221:188"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/stability/interfaces/IBreakerBox.sol",
+      "exportedSymbols": {
+        "IBreakerBox": [
+          53449
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".13"
+          ]
+        },
+        "id": 53351,
+        "name": "PragmaDirective",
+        "src": "45:24:188"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": "@title Breaker Box Interface\n@notice Defines the basic interface for the Breaker Box",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            53449
+          ],
+          "name": "IBreakerBox",
+          "scope": 53450
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "IBreakerBox.BreakerStatus",
+              "name": "BreakerStatus",
+              "scope": 53449,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "tradingMode",
+                  "scope": 53358,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 53352,
+                    "name": "ElementaryTypeName",
+                    "src": "1300:5:188"
+                  }
+                ],
+                "id": 53353,
+                "name": "VariableDeclaration",
+                "src": "1300:17:188"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "lastUpdatedTime",
+                  "scope": 53358,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint64",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint64",
+                      "type": "uint64"
+                    },
+                    "id": 53354,
+                    "name": "ElementaryTypeName",
+                    "src": "1323:6:188"
+                  }
+                ],
+                "id": 53355,
+                "name": "VariableDeclaration",
+                "src": "1323:22:188"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "enabled",
+                  "scope": 53358,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 53356,
+                    "name": "ElementaryTypeName",
+                    "src": "1351:4:188"
+                  }
+                ],
+                "id": 53357,
+                "name": "VariableDeclaration",
+                "src": "1351:12:188"
+              }
+            ],
+            "id": 53358,
+            "name": "StructDefinition",
+            "src": "1273:95:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when a new breaker is added to the breaker box.\n@param breaker The address of the breaker.",
+              "name": "BreakerAdded"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53362,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53359,
+                        "name": "ElementaryTypeName",
+                        "src": "1520:7:188"
+                      }
+                    ],
+                    "id": 53360,
+                    "name": "VariableDeclaration",
+                    "src": "1520:23:188"
+                  }
+                ],
+                "id": 53361,
+                "name": "ParameterList",
+                "src": "1519:25:188"
+              }
+            ],
+            "id": 53362,
+            "name": "EventDefinition",
+            "src": "1501:44:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when a breaker is removed from the breaker box.\n@param breaker The address of the breaker.",
+              "name": "BreakerRemoved"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53366,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53363,
+                        "name": "ElementaryTypeName",
+                        "src": "1699:7:188"
+                      }
+                    ],
+                    "id": 53364,
+                    "name": "VariableDeclaration",
+                    "src": "1699:23:188"
+                  }
+                ],
+                "id": 53365,
+                "name": "ParameterList",
+                "src": "1698:25:188"
+              }
+            ],
+            "id": 53366,
+            "name": "EventDefinition",
+            "src": "1678:46:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when a breaker is tripped by a rate feed.\n@param breaker The address of the breaker.\n@param rateFeedID The address of the rate feed.",
+              "name": "BreakerTripped"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53372,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53367,
+                        "name": "ElementaryTypeName",
+                        "src": "1925:7:188"
+                      }
+                    ],
+                    "id": 53368,
+                    "name": "VariableDeclaration",
+                    "src": "1925:23:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53372,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53369,
+                        "name": "ElementaryTypeName",
+                        "src": "1950:7:188"
+                      }
+                    ],
+                    "id": 53370,
+                    "name": "VariableDeclaration",
+                    "src": "1950:26:188"
+                  }
+                ],
+                "id": 53371,
+                "name": "ParameterList",
+                "src": "1924:53:188"
+              }
+            ],
+            "id": 53372,
+            "name": "EventDefinition",
+            "src": "1904:74:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when a new rate feed is added to the breaker box.\n@param rateFeedID The address of the rate feed.",
+              "name": "RateFeedAdded"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53376,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53373,
+                        "name": "ElementaryTypeName",
+                        "src": "2138:7:188"
+                      }
+                    ],
+                    "id": 53374,
+                    "name": "VariableDeclaration",
+                    "src": "2138:26:188"
+                  }
+                ],
+                "id": 53375,
+                "name": "ParameterList",
+                "src": "2137:28:188"
+              }
+            ],
+            "id": 53376,
+            "name": "EventDefinition",
+            "src": "2118:48:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when dependencies for a rate feed are set.\n@param rateFeedID The address of the rate feed.\n@param dependencies The addresses of the dependendent rate feeds.",
+              "name": "RateFeedDependenciesSet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53383,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53377,
+                        "name": "ElementaryTypeName",
+                        "src": "2400:7:188"
+                      }
+                    ],
+                    "id": 53378,
+                    "name": "VariableDeclaration",
+                    "src": "2400:26:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "dependencies",
+                      "scope": 53383,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 53379,
+                            "name": "ElementaryTypeName",
+                            "src": "2428:7:188"
+                          }
+                        ],
+                        "id": 53380,
+                        "name": "ArrayTypeName",
+                        "src": "2428:9:188"
+                      }
+                    ],
+                    "id": 53381,
+                    "name": "VariableDeclaration",
+                    "src": "2428:30:188"
+                  }
+                ],
+                "id": 53382,
+                "name": "ParameterList",
+                "src": "2399:60:188"
+              }
+            ],
+            "id": 53383,
+            "name": "EventDefinition",
+            "src": "2370:90:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when a rate feed is removed from the breaker box.\n@param rateFeedID The address of the rate feed.",
+              "name": "RateFeedRemoved"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53387,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53384,
+                        "name": "ElementaryTypeName",
+                        "src": "2622:7:188"
+                      }
+                    ],
+                    "id": 53385,
+                    "name": "VariableDeclaration",
+                    "src": "2622:26:188"
+                  }
+                ],
+                "id": 53386,
+                "name": "ParameterList",
+                "src": "2621:28:188"
+              }
+            ],
+            "id": 53387,
+            "name": "EventDefinition",
+            "src": "2600:50:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when the trading mode for a rate feed is updated\n@param rateFeedID The address of the rate feed.\n@param tradingMode The new trading mode.",
+              "name": "TradingModeUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53393,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53388,
+                        "name": "ElementaryTypeName",
+                        "src": "2860:7:188"
+                      }
+                    ],
+                    "id": 53389,
+                    "name": "VariableDeclaration",
+                    "src": "2860:26:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "tradingMode",
+                      "scope": 53393,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 53390,
+                        "name": "ElementaryTypeName",
+                        "src": "2888:7:188"
+                      }
+                    ],
+                    "id": 53391,
+                    "name": "VariableDeclaration",
+                    "src": "2888:19:188"
+                  }
+                ],
+                "id": 53392,
+                "name": "ParameterList",
+                "src": "2859:49:188"
+              }
+            ],
+            "id": 53393,
+            "name": "EventDefinition",
+            "src": "2835:74:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted after a reset attempt is successful.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+              "name": "ResetSuccessful"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53399,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53394,
+                        "name": "ElementaryTypeName",
+                        "src": "3106:7:188"
+                      }
+                    ],
+                    "id": 53395,
+                    "name": "VariableDeclaration",
+                    "src": "3106:26:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53399,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53396,
+                        "name": "ElementaryTypeName",
+                        "src": "3134:7:188"
+                      }
+                    ],
+                    "id": 53397,
+                    "name": "VariableDeclaration",
+                    "src": "3134:23:188"
+                  }
+                ],
+                "id": 53398,
+                "name": "ParameterList",
+                "src": "3105:53:188"
+              }
+            ],
+            "id": 53399,
+            "name": "EventDefinition",
+            "src": "3084:75:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice  Emitted after a reset attempt fails when the\n         rate feed fails the breakers reset criteria.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+              "name": "ResetAttemptCriteriaFail"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53405,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53400,
+                        "name": "ElementaryTypeName",
+                        "src": "3425:7:188"
+                      }
+                    ],
+                    "id": 53401,
+                    "name": "VariableDeclaration",
+                    "src": "3425:26:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53405,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53402,
+                        "name": "ElementaryTypeName",
+                        "src": "3453:7:188"
+                      }
+                    ],
+                    "id": 53403,
+                    "name": "VariableDeclaration",
+                    "src": "3453:23:188"
+                  }
+                ],
+                "id": 53404,
+                "name": "ParameterList",
+                "src": "3424:53:188"
+              }
+            ],
+            "id": 53405,
+            "name": "EventDefinition",
+            "src": "3394:84:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted after a reset attempt fails when cooldown time has not elapsed.\n@param rateFeedID The address of the rate feed.\n@param breaker The address of the breaker.",
+              "name": "ResetAttemptNotCool"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "rateFeedID",
+                      "scope": 53411,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53406,
+                        "name": "ElementaryTypeName",
+                        "src": "3706:7:188"
+                      }
+                    ],
+                    "id": 53407,
+                    "name": "VariableDeclaration",
+                    "src": "3706:26:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "breaker",
+                      "scope": 53411,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53408,
+                        "name": "ElementaryTypeName",
+                        "src": "3734:7:188"
+                      }
+                    ],
+                    "id": 53409,
+                    "name": "VariableDeclaration",
+                    "src": "3734:23:188"
+                  }
+                ],
+                "id": 53410,
+                "name": "ParameterList",
+                "src": "3705:53:188"
+              }
+            ],
+            "id": 53411,
+            "name": "EventDefinition",
+            "src": "3680:79:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when the sortedOracles address is updated.\n@param newSortedOracles The address of the new sortedOracles.",
+              "name": "SortedOraclesUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "newSortedOracles",
+                      "scope": 53415,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53412,
+                        "name": "ElementaryTypeName",
+                        "src": "3933:7:188"
+                      }
+                    ],
+                    "id": 53413,
+                    "name": "VariableDeclaration",
+                    "src": "3933:32:188"
+                  }
+                ],
+                "id": 53414,
+                "name": "ParameterList",
+                "src": "3932:34:188"
+              }
+            ],
+            "id": 53415,
+            "name": "EventDefinition",
+            "src": "3906:61:188"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": "@notice Emitted when the breaker is enabled or disabled for a rate feed.\n@param breaker The address of the breaker.\n@param rateFeedID The address of the rate feed.\n@param status Indicating the status.",
+              "name": "BreakerStatusUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "breaker",
+                      "scope": 53423,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53416,
+                        "name": "ElementaryTypeName",
+                        "src": "4231:7:188"
+                      }
+                    ],
+                    "id": 53417,
+                    "name": "VariableDeclaration",
+                    "src": "4231:15:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "rateFeedID",
+                      "scope": 53423,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53418,
+                        "name": "ElementaryTypeName",
+                        "src": "4248:7:188"
+                      }
+                    ],
+                    "id": 53419,
+                    "name": "VariableDeclaration",
+                    "src": "4248:18:188"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "status",
+                      "scope": 53423,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 53420,
+                        "name": "ElementaryTypeName",
+                        "src": "4268:4:188"
+                      }
+                    ],
+                    "id": 53421,
+                    "name": "VariableDeclaration",
+                    "src": "4268:11:188"
+                  }
+                ],
+                "id": 53422,
+                "name": "ParameterList",
+                "src": "4230:50:188"
+              }
+            ],
+            "id": 53423,
+            "name": "EventDefinition",
+            "src": "4204:77:188"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": "@notice Checks breakers for the rateFeedID and sets correct trading mode\nif any breakers are tripped or need to be reset.\n@param rateFeedID The address of the rate feed to run checks for.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "checkAndSetBreakers",
+              "scope": 53449,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "rateFeedID",
+                      "scope": 53428,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53424,
+                        "name": "ElementaryTypeName",
+                        "src": "4529:7:188"
+                      }
+                    ],
+                    "id": 53425,
+                    "name": "VariableDeclaration",
+                    "src": "4529:18:188"
+                  }
+                ],
+                "id": 53426,
+                "name": "ParameterList",
+                "src": "4528:20:188"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 53427,
+                "name": "ParameterList",
+                "src": "4557:0:188"
+              }
+            ],
+            "id": 53428,
+            "name": "FunctionDefinition",
+            "src": "4500:58:188"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": "@notice Retrives an array of all breaker addresses.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getBreakers",
+              "scope": 53449,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 53429,
+                "name": "ParameterList",
+                "src": "4651:2:188"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 53434,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 53430,
+                            "name": "ElementaryTypeName",
+                            "src": "4677:7:188"
+                          }
+                        ],
+                        "id": 53431,
+                        "name": "ArrayTypeName",
+                        "src": "4677:9:188"
+                      }
+                    ],
+                    "id": 53432,
+                    "name": "VariableDeclaration",
+                    "src": "4677:16:188"
+                  }
+                ],
+                "id": 53433,
+                "name": "ParameterList",
+                "src": "4676:18:188"
+              }
+            ],
+            "id": 53434,
+            "name": "FunctionDefinition",
+            "src": "4631:64:188"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": "@notice Checks if a breaker with the specified address has been added to the breaker box.\n@param breaker The address of the breaker to check;\n@return A bool indicating whether or not the breaker has been added.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isBreaker",
+              "scope": 53449,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "breaker",
+                      "scope": 53441,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53435,
+                        "name": "ElementaryTypeName",
+                        "src": "4956:7:188"
+                      }
+                    ],
+                    "id": 53436,
+                    "name": "VariableDeclaration",
+                    "src": "4956:15:188"
+                  }
+                ],
+                "id": 53437,
+                "name": "ParameterList",
+                "src": "4955:17:188"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 53441,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 53438,
+                        "name": "ElementaryTypeName",
+                        "src": "4996:4:188"
+                      }
+                    ],
+                    "id": 53439,
+                    "name": "VariableDeclaration",
+                    "src": "4996:4:188"
+                  }
+                ],
+                "id": 53440,
+                "name": "ParameterList",
+                "src": "4995:6:188"
+              }
+            ],
+            "id": 53441,
+            "name": "FunctionDefinition",
+            "src": "4937:65:188"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": "@notice Gets the trading mode for the specified rateFeedID.\n@param rateFeedID The address of the rate feed to retrieve the trading mode for.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getRateFeedTradingMode",
+              "scope": 53449,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "rateFeedID",
+                      "scope": 53448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53442,
+                        "name": "ElementaryTypeName",
+                        "src": "5201:7:188"
+                      }
+                    ],
+                    "id": 53443,
+                    "name": "VariableDeclaration",
+                    "src": "5201:18:188"
+                  }
+                ],
+                "id": 53444,
+                "name": "ParameterList",
+                "src": "5200:20:188"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "tradingMode",
+                      "scope": 53448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 53445,
+                        "name": "ElementaryTypeName",
+                        "src": "5244:5:188"
+                      }
+                    ],
+                    "id": 53446,
+                    "name": "VariableDeclaration",
+                    "src": "5244:17:188"
+                  }
+                ],
+                "id": 53447,
+                "name": "ParameterList",
+                "src": "5243:19:188"
+              }
+            ],
+            "id": 53448,
+            "name": "FunctionDefinition",
+            "src": "5169:94:188"
+          }
+        ],
+        "id": 53449,
+        "name": "ContractDefinition",
+        "src": "170:5095:188"
+      }
+    ],
+    "id": 53450,
+    "name": "SourceUnit",
+    "src": "45:5221:188"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.541Z",
+  "devdoc": {
+    "methods": {
+      "checkAndSetBreakers(address)": {
+        "params": {
+          "rateFeedID": "The address of the rate feed to run checks for."
+        }
+      },
+      "getRateFeedTradingMode(address)": {
+        "params": {
+          "rateFeedID": "The address of the rate feed to retrieve the trading mode for."
+        }
+      },
+      "isBreaker(address)": {
+        "params": {
+          "breaker": "The address of the breaker to check;"
+        },
+        "return": "A bool indicating whether or not the breaker has been added."
+      }
+    },
+    "title": "Breaker Box Interface"
+  },
+  "userdoc": {
+    "methods": {
+      "checkAndSetBreakers(address)": {
+        "notice": "Checks breakers for the rateFeedID and sets correct trading mode if any breakers are tripped or need to be reset."
+      },
+      "getBreakers()": {
+        "notice": "Retrives an array of all breaker addresses."
+      },
+      "getRateFeedTradingMode(address)": {
+        "notice": "Gets the trading mode for the specified rateFeedID."
+      },
+      "isBreaker(address)": {
+        "notice": "Checks if a breaker with the specified address has been added to the breaker box."
+      }
+    },
+    "notice": "Defines the basic interface for the Breaker Box"
+  }
+}

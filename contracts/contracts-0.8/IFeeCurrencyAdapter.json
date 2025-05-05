@@ -2,6 +2,72 @@
   "contractName": "IFeeCurrencyAdapter",
   "abi": [
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "debitGasFees",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "refundRecipient",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tipRecipient",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_gatewayFeeRecipient",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "baseFeeRecipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "refundAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tipAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_gatewayFeeAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "baseFeeAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "creditGasFees",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "getAdaptedToken",
       "outputs": [
@@ -68,19 +134,6 @@
     },
     {
       "inputs": [],
-      "name": "expectedDecimals",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
       "name": "decimals",
       "outputs": [
         {
@@ -93,73 +146,20 @@
       "type": "function"
     },
     {
-      "inputs": [
+      "inputs": [],
+      "name": "expectedDecimals",
+      "outputs": [
         {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
         }
       ],
-      "name": "debitGasFees",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "refundRecipient",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "tipRecipient",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_gatewayFeeRecipient",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "baseFeeRecipient",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "refundAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tipAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_gatewayFeeAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "baseFeeAmount",
-          "type": "uint256"
-        }
-      ],
-      "name": "creditGasFees",
-      "outputs": [],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"refundRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tipRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_gatewayFeeRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"baseFeeRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"refundAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tipAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_gatewayFeeAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"baseFeeAmount\",\"type\":\"uint256\"}],\"name\":\"creditGasFees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"debitGasFees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"debited\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"digitDifference\",\"outputs\":[{\"internalType\":\"uint96\",\"name\":\"\",\"type\":\"uint96\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"expectedDecimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAdaptedToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol\":\"IFeeCurrencyAdapter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.8.7 <0.8.20;\\n\\ninterface IFeeCurrencyAdapter {\\n  function getAdaptedToken() external view returns (address);\\n\\n  function digitDifference() external view returns (uint96);\\n\\n  function debited() external view returns (uint256);\\n\\n  function name() external view returns (string memory);\\n\\n  function symbol() external view returns (string memory);\\n\\n  function expectedDecimals() external view returns (uint8);\\n\\n  function decimals() external view returns (uint8);\\n\\n  function debitGasFees(address from, uint256 value) external;\\n\\n  function creditGasFees(\\n    address refundRecipient,\\n    address tipRecipient,\\n    address _gatewayFeeRecipient,\\n    address baseFeeRecipient,\\n    uint256 refundAmount,\\n    uint256 tipAmount,\\n    uint256 _gatewayFeeAmount,\\n    uint256 baseFeeAmount\\n  ) external;\\n}\\n\",\"keccak256\":\"0x11a12f0c05ca85185be696ac9abc3a25b1cfc2f82efbc423fa6b198ff69f3744\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"refundRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tipRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_gatewayFeeRecipient\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"baseFeeRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"refundAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tipAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_gatewayFeeAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"baseFeeAmount\",\"type\":\"uint256\"}],\"name\":\"creditGasFees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"debitGasFees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"debited\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"digitDifference\",\"outputs\":[{\"internalType\":\"uint96\",\"name\":\"\",\"type\":\"uint96\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"expectedDecimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAdaptedToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"debited()\":{\"returns\":{\"_0\":\"The amount that is debited after calling debitGasFees() and before creditGasFees().\"}},\"decimals()\":{\"returns\":{\"_0\":\"The decimals expected by the vm.\"}},\"digitDifference()\":{\"returns\":{\"_0\":\"The multiplier that should be used when upscaling and downscaling. This is the result of 10**(expectedDecimals - getAdaptedToken().decimals()).\"}},\"expectedDecimals()\":{\"returns\":{\"_0\":\"Same as decimals.\"}},\"getAdaptedToken()\":{\"returns\":{\"_0\":\"The address of the adapted token.\"}},\"name()\":{\"returns\":{\"_0\":\"The name of the adapted token.\"}},\"symbol()\":{\"returns\":{\"_0\":\"The symbol of adapted token.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"creditGasFees(address,address,address,address,uint256,uint256,uint256,uint256)\":{\"notice\":\"Same as creditGasFees in IFeeCurrency, always using the number of decimals the evm expects.\"},\"debitGasFees(address,uint256)\":{\"notice\":\"Same as debitGasFees in IFeeCurrency, always using the number of decimals the evm expects.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol\":\"IFeeCurrencyAdapter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.8.7 <0.8.20;\\n\\ninterface IFeeCurrencyAdapter {\\n  /**\\n   * @notice Same as debitGasFees in IFeeCurrency, always using the number of decimals the evm expects.\\n   */\\n  function debitGasFees(address from, uint256 value) external;\\n\\n  /**\\n   * @notice Same as creditGasFees in IFeeCurrency, always using the number of decimals the evm expects.\\n   */\\n  function creditGasFees(\\n    address refundRecipient,\\n    address tipRecipient,\\n    address _gatewayFeeRecipient,\\n    address baseFeeRecipient,\\n    uint256 refundAmount,\\n    uint256 tipAmount,\\n    uint256 _gatewayFeeAmount,\\n    uint256 baseFeeAmount\\n  ) external;\\n\\n  /**\\n   * @return The address of the adapted token.\\n   */\\n  function getAdaptedToken() external view returns (address);\\n\\n  /**\\n   * @return The multiplier that should be used when upscaling and downscaling. This is the result of 10**(expectedDecimals - getAdaptedToken().decimals()).\\n   */\\n  function digitDifference() external view returns (uint96);\\n\\n  /**\\n   * @return The amount that is debited after calling debitGasFees() and before creditGasFees().\\n   */\\n  function debited() external view returns (uint256);\\n\\n  /**\\n   * @return The name of the adapted token.\\n   */\\n  function name() external view returns (string memory);\\n\\n  /**\\n   * @return The symbol of adapted token.\\n   */\\n  function symbol() external view returns (string memory);\\n\\n  /**\\n   * @return The decimals expected by the vm.\\n   */\\n  function decimals() external view returns (uint8);\\n\\n  /**\\n   * @return Same as decimals.\\n   */\\n  function expectedDecimals() external view returns (uint8);\\n}\\n\",\"keccak256\":\"0x94fe3be4d3fdcb2ebc633ad634c0ff1a5cdb65ed139e3ccee2ffcd9d00dbbcb1\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -167,21 +167,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.8.7 <0.8.20;\n\ninterface IFeeCurrencyAdapter {\n  function getAdaptedToken() external view returns (address);\n\n  function digitDifference() external view returns (uint96);\n\n  function debited() external view returns (uint256);\n\n  function name() external view returns (string memory);\n\n  function symbol() external view returns (string memory);\n\n  function expectedDecimals() external view returns (uint8);\n\n  function decimals() external view returns (uint8);\n\n  function debitGasFees(address from, uint256 value) external;\n\n  function creditGasFees(\n    address refundRecipient,\n    address tipRecipient,\n    address _gatewayFeeRecipient,\n    address baseFeeRecipient,\n    uint256 refundAmount,\n    uint256 tipAmount,\n    uint256 _gatewayFeeAmount,\n    uint256 baseFeeAmount\n  ) external;\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.8.7 <0.8.20;\n\ninterface IFeeCurrencyAdapter {\n  /**\n   * @notice Same as debitGasFees in IFeeCurrency, always using the number of decimals the evm expects.\n   */\n  function debitGasFees(address from, uint256 value) external;\n\n  /**\n   * @notice Same as creditGasFees in IFeeCurrency, always using the number of decimals the evm expects.\n   */\n  function creditGasFees(\n    address refundRecipient,\n    address tipRecipient,\n    address _gatewayFeeRecipient,\n    address baseFeeRecipient,\n    uint256 refundAmount,\n    uint256 tipAmount,\n    uint256 _gatewayFeeAmount,\n    uint256 baseFeeAmount\n  ) external;\n\n  /**\n   * @return The address of the adapted token.\n   */\n  function getAdaptedToken() external view returns (address);\n\n  /**\n   * @return The multiplier that should be used when upscaling and downscaling. This is the result of 10**(expectedDecimals - getAdaptedToken().decimals()).\n   */\n  function digitDifference() external view returns (uint96);\n\n  /**\n   * @return The amount that is debited after calling debitGasFees() and before creditGasFees().\n   */\n  function debited() external view returns (uint256);\n\n  /**\n   * @return The name of the adapted token.\n   */\n  function name() external view returns (string memory);\n\n  /**\n   * @return The symbol of adapted token.\n   */\n  function symbol() external view returns (string memory);\n\n  /**\n   * @return The decimals expected by the vm.\n   */\n  function decimals() external view returns (uint8);\n\n  /**\n   * @return Same as decimals.\n   */\n  function expectedDecimals() external view returns (uint8);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol",
   "ast": {
     "absolutePath": "project:/contracts-0.8/stability/interfaces/IFeeCurrencyAdapter.sol",
     "exportedSymbols": {
       "IFeeCurrencyAdapter": [
-        2326
+        15870
       ]
     },
-    "id": 2327,
+    "id": 15871,
     "license": "LGPL-3.0-only",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2264,
+        "id": 15799,
         "literals": [
           "solidity",
           ">=",
@@ -192,7 +192,7 @@
           ".20"
         ],
         "nodeType": "PragmaDirective",
-        "src": "42:32:11"
+        "src": "42:32:54"
       },
       {
         "abstract": false,
@@ -201,42 +201,42 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2326,
+        "id": 15870,
         "linearizedBaseContracts": [
-          2326
+          15870
         ],
         "name": "IFeeCurrencyAdapter",
-        "nameLocation": "86:19:11",
+        "nameLocation": "86:19:54",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "eeee9dc2",
-            "id": 2269,
+            "documentation": {
+              "id": 15800,
+              "nodeType": "StructuredDocumentation",
+              "src": "110:113:54",
+              "text": " @notice Same as debitGasFees in IFeeCurrency, always using the number of decimals the evm expects."
+            },
+            "functionSelector": "58cf9672",
+            "id": 15807,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "getAdaptedToken",
-            "nameLocation": "119:15:11",
+            "name": "debitGasFees",
+            "nameLocation": "235:12:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2265,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "134:2:11"
-            },
-            "returnParameters": {
-              "id": 2268,
+              "id": 15805,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2267,
+                  "id": 15802,
                   "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
+                  "name": "from",
+                  "nameLocation": "256:4:54",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2269,
-                  "src": "160:7:11",
+                  "scope": 15807,
+                  "src": "248:12:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -244,10 +244,359 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2266,
+                    "id": 15801,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "160:7:11",
+                    "src": "248:7:54",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15804,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "270:5:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15807,
+                  "src": "262:13:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15803,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "262:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "247:29:54"
+            },
+            "returnParameters": {
+              "id": 15806,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "285:0:54"
+            },
+            "scope": 15870,
+            "src": "226:60:54",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15808,
+              "nodeType": "StructuredDocumentation",
+              "src": "290:114:54",
+              "text": " @notice Same as creditGasFees in IFeeCurrency, always using the number of decimals the evm expects."
+            },
+            "functionSelector": "6a30b253",
+            "id": 15827,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "creditGasFees",
+            "nameLocation": "416:13:54",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15825,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15810,
+                  "mutability": "mutable",
+                  "name": "refundRecipient",
+                  "nameLocation": "443:15:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "435:23:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15809,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:7:54",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15812,
+                  "mutability": "mutable",
+                  "name": "tipRecipient",
+                  "nameLocation": "472:12:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "464:20:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15811,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "464:7:54",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15814,
+                  "mutability": "mutable",
+                  "name": "_gatewayFeeRecipient",
+                  "nameLocation": "498:20:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "490:28:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15813,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "490:7:54",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15816,
+                  "mutability": "mutable",
+                  "name": "baseFeeRecipient",
+                  "nameLocation": "532:16:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "524:24:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15815,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "524:7:54",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15818,
+                  "mutability": "mutable",
+                  "name": "refundAmount",
+                  "nameLocation": "562:12:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "554:20:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15817,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15820,
+                  "mutability": "mutable",
+                  "name": "tipAmount",
+                  "nameLocation": "588:9:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "580:17:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15819,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "580:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15822,
+                  "mutability": "mutable",
+                  "name": "_gatewayFeeAmount",
+                  "nameLocation": "611:17:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "603:25:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15821,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "603:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15824,
+                  "mutability": "mutable",
+                  "name": "baseFeeAmount",
+                  "nameLocation": "642:13:54",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15827,
+                  "src": "634:21:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15823,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "634:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "429:230:54"
+            },
+            "returnParameters": {
+              "id": 15826,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "668:0:54"
+            },
+            "scope": 15870,
+            "src": "407:262:54",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15828,
+              "nodeType": "StructuredDocumentation",
+              "src": "673:56:54",
+              "text": " @return The address of the adapted token."
+            },
+            "functionSelector": "eeee9dc2",
+            "id": 15833,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAdaptedToken",
+            "nameLocation": "741:15:54",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15829,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "756:2:54"
+            },
+            "returnParameters": {
+              "id": 15832,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15831,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15833,
+                  "src": "782:7:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15830,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "782:7:54",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -257,42 +606,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "159:9:11"
+              "src": "781:9:54"
             },
-            "scope": 2326,
-            "src": "110:59:11",
+            "scope": 15870,
+            "src": "732:59:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
+            "documentation": {
+              "id": 15834,
+              "nodeType": "StructuredDocumentation",
+              "src": "795:166:54",
+              "text": " @return The multiplier that should be used when upscaling and downscaling. This is the result of 10**(expectedDecimals - getAdaptedToken().decimals())."
+            },
             "functionSelector": "5ee5c82a",
-            "id": 2274,
+            "id": 15839,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "digitDifference",
-            "nameLocation": "182:15:11",
+            "nameLocation": "973:15:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2270,
+              "id": 15835,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "197:2:11"
+              "src": "988:2:54"
             },
             "returnParameters": {
-              "id": 2273,
+              "id": 15838,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2272,
+                  "id": 15837,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2274,
-                  "src": "223:6:11",
+                  "scope": 15839,
+                  "src": "1014:6:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -300,10 +655,10 @@
                     "typeString": "uint96"
                   },
                   "typeName": {
-                    "id": 2271,
+                    "id": 15836,
                     "name": "uint96",
                     "nodeType": "ElementaryTypeName",
-                    "src": "223:6:11",
+                    "src": "1014:6:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint96",
                       "typeString": "uint96"
@@ -312,42 +667,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "222:8:11"
+              "src": "1013:8:54"
             },
-            "scope": 2326,
-            "src": "173:58:11",
+            "scope": 15870,
+            "src": "964:58:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
+            "documentation": {
+              "id": 15840,
+              "nodeType": "StructuredDocumentation",
+              "src": "1026:106:54",
+              "text": " @return The amount that is debited after calling debitGasFees() and before creditGasFees()."
+            },
             "functionSelector": "3cf03412",
-            "id": 2279,
+            "id": 15845,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "debited",
-            "nameLocation": "244:7:11",
+            "nameLocation": "1144:7:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2275,
+              "id": 15841,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "251:2:11"
+              "src": "1151:2:54"
             },
             "returnParameters": {
-              "id": 2278,
+              "id": 15844,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2277,
+                  "id": 15843,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2279,
-                  "src": "277:7:11",
+                  "scope": 15845,
+                  "src": "1177:7:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -355,10 +716,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2276,
+                    "id": 15842,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "277:7:11",
+                    "src": "1177:7:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -367,42 +728,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "276:9:11"
+              "src": "1176:9:54"
             },
-            "scope": 2326,
-            "src": "235:51:11",
+            "scope": 15870,
+            "src": "1135:51:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
+            "documentation": {
+              "id": 15846,
+              "nodeType": "StructuredDocumentation",
+              "src": "1190:53:54",
+              "text": " @return The name of the adapted token."
+            },
             "functionSelector": "06fdde03",
-            "id": 2284,
+            "id": 15851,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "name",
-            "nameLocation": "299:4:11",
+            "nameLocation": "1255:4:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2280,
+              "id": 15847,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "303:2:11"
+              "src": "1259:2:54"
             },
             "returnParameters": {
-              "id": 2283,
+              "id": 15850,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2282,
+                  "id": 15849,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2284,
-                  "src": "329:13:11",
+                  "scope": 15851,
+                  "src": "1285:13:54",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -410,10 +777,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2281,
+                    "id": 15848,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "329:6:11",
+                    "src": "1285:6:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -422,42 +789,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "328:15:11"
+              "src": "1284:15:54"
             },
-            "scope": 2326,
-            "src": "290:54:11",
+            "scope": 15870,
+            "src": "1246:54:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
+            "documentation": {
+              "id": 15852,
+              "nodeType": "StructuredDocumentation",
+              "src": "1304:51:54",
+              "text": " @return The symbol of adapted token."
+            },
             "functionSelector": "95d89b41",
-            "id": 2289,
+            "id": 15857,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "symbol",
-            "nameLocation": "357:6:11",
+            "nameLocation": "1367:6:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2285,
+              "id": 15853,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "363:2:11"
+              "src": "1373:2:54"
             },
             "returnParameters": {
-              "id": 2288,
+              "id": 15856,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2287,
+                  "id": 15855,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2289,
-                  "src": "389:13:11",
+                  "scope": 15857,
+                  "src": "1399:13:54",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -465,10 +838,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2286,
+                    "id": 15854,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "389:6:11",
+                    "src": "1399:6:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -477,97 +850,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "388:15:11"
+              "src": "1398:15:54"
             },
-            "scope": 2326,
-            "src": "348:56:11",
+            "scope": 15870,
+            "src": "1358:56:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "cc23a4a3",
-            "id": 2294,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "expectedDecimals",
-            "nameLocation": "417:16:11",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 2290,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "433:2:11"
+            "documentation": {
+              "id": 15858,
+              "nodeType": "StructuredDocumentation",
+              "src": "1418:55:54",
+              "text": " @return The decimals expected by the vm."
             },
-            "returnParameters": {
-              "id": 2293,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2292,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2294,
-                  "src": "459:5:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 2291,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "459:5:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "458:7:11"
-            },
-            "scope": 2326,
-            "src": "408:58:11",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
             "functionSelector": "313ce567",
-            "id": 2299,
+            "id": 15863,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "decimals",
-            "nameLocation": "479:8:11",
+            "nameLocation": "1485:8:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2295,
+              "id": 15859,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "487:2:11"
+              "src": "1493:2:54"
             },
             "returnParameters": {
-              "id": 2298,
+              "id": 15862,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2297,
+                  "id": 15861,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2299,
-                  "src": "513:5:11",
+                  "scope": 15863,
+                  "src": "1519:5:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -575,10 +899,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 2296,
+                    "id": 15860,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "513:5:11",
+                    "src": "1519:5:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -587,352 +911,82 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "512:7:11"
+              "src": "1518:7:54"
             },
-            "scope": 2326,
-            "src": "470:50:11",
+            "scope": 15870,
+            "src": "1476:50:54",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "58cf9672",
-            "id": 2306,
+            "documentation": {
+              "id": 15864,
+              "nodeType": "StructuredDocumentation",
+              "src": "1530:40:54",
+              "text": " @return Same as decimals."
+            },
+            "functionSelector": "cc23a4a3",
+            "id": 15869,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "debitGasFees",
-            "nameLocation": "533:12:11",
+            "name": "expectedDecimals",
+            "nameLocation": "1582:16:54",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2304,
+              "id": 15865,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1598:2:54"
+            },
+            "returnParameters": {
+              "id": 15868,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2301,
+                  "id": 15867,
                   "mutability": "mutable",
-                  "name": "from",
-                  "nameLocation": "554:4:11",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2306,
-                  "src": "546:12:11",
+                  "scope": 15869,
+                  "src": "1624:5:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 2300,
-                    "name": "address",
+                    "id": 15866,
+                    "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "546:7:11",
-                    "stateMutability": "nonpayable",
+                    "src": "1624:5:54",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2303,
-                  "mutability": "mutable",
-                  "name": "value",
-                  "nameLocation": "568:5:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2306,
-                  "src": "560:13:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2302,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "560:7:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "545:29:11"
+              "src": "1623:7:54"
             },
-            "returnParameters": {
-              "id": 2305,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "583:0:11"
-            },
-            "scope": 2326,
-            "src": "524:60:11",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "6a30b253",
-            "id": 2325,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "creditGasFees",
-            "nameLocation": "597:13:11",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 2323,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2308,
-                  "mutability": "mutable",
-                  "name": "refundRecipient",
-                  "nameLocation": "624:15:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "616:23:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 2307,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "616:7:11",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2310,
-                  "mutability": "mutable",
-                  "name": "tipRecipient",
-                  "nameLocation": "653:12:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "645:20:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 2309,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "645:7:11",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2312,
-                  "mutability": "mutable",
-                  "name": "_gatewayFeeRecipient",
-                  "nameLocation": "679:20:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "671:28:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 2311,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "671:7:11",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2314,
-                  "mutability": "mutable",
-                  "name": "baseFeeRecipient",
-                  "nameLocation": "713:16:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "705:24:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 2313,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "705:7:11",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2316,
-                  "mutability": "mutable",
-                  "name": "refundAmount",
-                  "nameLocation": "743:12:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "735:20:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2315,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "735:7:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2318,
-                  "mutability": "mutable",
-                  "name": "tipAmount",
-                  "nameLocation": "769:9:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "761:17:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2317,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "761:7:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2320,
-                  "mutability": "mutable",
-                  "name": "_gatewayFeeAmount",
-                  "nameLocation": "792:17:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "784:25:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2319,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "784:7:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 2322,
-                  "mutability": "mutable",
-                  "name": "baseFeeAmount",
-                  "nameLocation": "823:13:11",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2325,
-                  "src": "815:21:11",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2321,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "815:7:11",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "610:230:11"
-            },
-            "returnParameters": {
-              "id": 2324,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "849:0:11"
-            },
-            "scope": 2326,
-            "src": "588:262:11",
-            "stateMutability": "nonpayable",
+            "scope": 15870,
+            "src": "1573:58:54",
+            "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2327,
-        "src": "76:776:11",
+        "scope": 15871,
+        "src": "76:1557:54",
         "usedErrors": []
       }
     ],
-    "src": "42:811:11"
+    "src": "42:1592:54"
   },
   "compiler": {
     "name": "solc",
@@ -940,15 +994,58 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:07.421Z",
+  "updatedAt": "2025-05-05T17:49:34.224Z",
   "devdoc": {
     "kind": "dev",
-    "methods": {},
+    "methods": {
+      "debited()": {
+        "returns": {
+          "_0": "The amount that is debited after calling debitGasFees() and before creditGasFees()."
+        }
+      },
+      "decimals()": {
+        "returns": {
+          "_0": "The decimals expected by the vm."
+        }
+      },
+      "digitDifference()": {
+        "returns": {
+          "_0": "The multiplier that should be used when upscaling and downscaling. This is the result of 10**(expectedDecimals - getAdaptedToken().decimals())."
+        }
+      },
+      "expectedDecimals()": {
+        "returns": {
+          "_0": "Same as decimals."
+        }
+      },
+      "getAdaptedToken()": {
+        "returns": {
+          "_0": "The address of the adapted token."
+        }
+      },
+      "name()": {
+        "returns": {
+          "_0": "The name of the adapted token."
+        }
+      },
+      "symbol()": {
+        "returns": {
+          "_0": "The symbol of adapted token."
+        }
+      }
+    },
     "version": 1
   },
   "userdoc": {
     "kind": "user",
-    "methods": {},
+    "methods": {
+      "creditGasFees(address,address,address,address,uint256,uint256,uint256,uint256)": {
+        "notice": "Same as creditGasFees in IFeeCurrency, always using the number of decimals the evm expects."
+      },
+      "debitGasFees(address,uint256)": {
+        "notice": "Same as debitGasFees in IFeeCurrency, always using the number of decimals the evm expects."
+      }
+    },
     "version": 1
   }
 }

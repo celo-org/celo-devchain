@@ -1,0 +1,317 @@
+{
+  "contractName": "IGasPriceMinimum",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "blockGasTotal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "blockGasLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateGasPriceMinimum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getGasPriceMinimum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"getGasPriceMinimum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"blockGasTotal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"blockGasLimit\",\"type\":\"uint256\"}],\"name\":\"updateGasPriceMinimum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts-0.8/common/interfaces/IGasPriceMinimum.sol\":\"IGasPriceMinimum\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts-0.8/common/interfaces/IGasPriceMinimum.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\n// TODO add to GasPrice\\ninterface IGasPriceMinimum {\\n  function updateGasPriceMinimum(\\n    uint256 blockGasTotal,\\n    uint256 blockGasLimit\\n  ) external returns (uint256);\\n  function getGasPriceMinimum(address tokenAddress) external view returns (uint256);\\n}\\n\",\"keccak256\":\"0x1e11d168f528686805a294d74fd898d16cabea67f1fe18f6118d50e5905a7c19\",\"license\":\"LGPL-3.0-only\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\n// TODO add to GasPrice\ninterface IGasPriceMinimum {\n  function updateGasPriceMinimum(\n    uint256 blockGasTotal,\n    uint256 blockGasLimit\n  ) external returns (uint256);\n  function getGasPriceMinimum(address tokenAddress) external view returns (uint256);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts-0.8/common/interfaces/IGasPriceMinimum.sol",
+  "ast": {
+    "absolutePath": "project:/contracts-0.8/common/interfaces/IGasPriceMinimum.sol",
+    "exportedSymbols": {
+      "IGasPriceMinimum": [
+        7369
+      ]
+    },
+    "id": 7370,
+    "license": "LGPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7352,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:32:25"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IGasPriceMinimum",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 7369,
+        "linearizedBaseContracts": [
+          7369
+        ],
+        "name": "IGasPriceMinimum",
+        "nameLocation": "110:16:25",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "c12398b4",
+            "id": 7361,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateGasPriceMinimum",
+            "nameLocation": "140:21:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7357,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7354,
+                  "mutability": "mutable",
+                  "name": "blockGasTotal",
+                  "nameLocation": "175:13:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7361,
+                  "src": "167:21:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7353,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "167:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7356,
+                  "mutability": "mutable",
+                  "name": "blockGasLimit",
+                  "nameLocation": "202:13:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7361,
+                  "src": "194:21:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7355,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "194:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "161:58:25"
+            },
+            "returnParameters": {
+              "id": 7360,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7359,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7361,
+                  "src": "238:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7358,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "238:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "237:9:25"
+            },
+            "scope": 7369,
+            "src": "131:116:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "a54b7fc0",
+            "id": 7368,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getGasPriceMinimum",
+            "nameLocation": "259:18:25",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7364,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7363,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nameLocation": "286:12:25",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7368,
+                  "src": "278:20:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7362,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "278:7:25",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "277:22:25"
+            },
+            "returnParameters": {
+              "id": 7367,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7366,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7368,
+                  "src": "323:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7365,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "323:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "322:9:25"
+            },
+            "scope": 7369,
+            "src": "250:82:25",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7370,
+        "src": "100:234:25",
+        "usedErrors": []
+      }
+    ],
+    "src": "42:293:25"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:34.164Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
