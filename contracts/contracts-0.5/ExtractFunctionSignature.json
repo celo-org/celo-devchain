@@ -4,22 +4,22 @@
   "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/ExtractFunctionSignature.sol\":\"ExtractFunctionSignature\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/ExtractFunctionSignature.sol\":{\"content\":\"pragma solidity ^0.5.13;\\n\\nlibrary ExtractFunctionSignature {\\n  /**\\n   * @notice Extracts the first four bytes of a byte array.\\n   * @param input The byte array.\\n   * @return The first four bytes of `input`.\\n   */\\n  function extractFunctionSignature(bytes memory input) internal pure returns (bytes4) {\\n    return (bytes4(input[0]) |\\n      (bytes4(input[1]) >> 8) |\\n      (bytes4(input[2]) >> 16) |\\n      (bytes4(input[3]) >> 24));\\n  }\\n}\\n\",\"keccak256\":\"0x3b56d6895c40c94dac019ad89bb4bd362e9deb0bbb2c46b0b1e23bd23c042e79\"}},\"version\":1}",
   "bytecode": "0x60556023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820ce8300dd1e8f4f86a17db70154f802bd34d7e1c4dff0d8bed54948a066a970b764736f6c634300050d0032",
   "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820ce8300dd1e8f4f86a17db70154f802bd34d7e1c4dff0d8bed54948a066a970b764736f6c634300050d0032",
-  "sourceMap": "26:410:16:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
-  "deployedSourceMap": "26:410:16:-;;;;;;;;",
+  "sourceMap": "26:410:20:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
+  "deployedSourceMap": "26:410:20:-;;;;;;;;",
   "source": "pragma solidity ^0.5.13;\n\nlibrary ExtractFunctionSignature {\n  /**\n   * @notice Extracts the first four bytes of a byte array.\n   * @param input The byte array.\n   * @return The first four bytes of `input`.\n   */\n  function extractFunctionSignature(bytes memory input) internal pure returns (bytes4) {\n    return (bytes4(input[0]) |\n      (bytes4(input[1]) >> 8) |\n      (bytes4(input[2]) >> 16) |\n      (bytes4(input[3]) >> 24));\n  }\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts/common/ExtractFunctionSignature.sol",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/ExtractFunctionSignature.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/ExtractFunctionSignature.sol",
     "exportedSymbols": {
       "ExtractFunctionSignature": [
-        4522
+        5686
       ]
     },
-    "id": 4523,
+    "id": 5687,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4479,
+        "id": 5643,
         "literals": [
           "solidity",
           "^",
@@ -27,7 +27,7 @@
           ".13"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:16"
+        "src": "0:24:20"
       },
       {
         "baseContracts": [],
@@ -35,18 +35,18 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 4522,
+        "id": 5686,
         "linearizedBaseContracts": [
-          4522
+          5686
         ],
         "name": "ExtractFunctionSignature",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 4520,
+              "id": 5684,
               "nodeType": "Block",
-              "src": "300:134:16",
+              "src": "300:134:20",
               "statements": [
                 {
                   "expression": {
@@ -58,7 +58,7 @@
                           "typeIdentifier": "t_bytes4",
                           "typeString": "bytes4"
                         },
-                        "id": 4517,
+                        "id": 5681,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -69,7 +69,7 @@
                             "typeIdentifier": "t_bytes4",
                             "typeString": "bytes4"
                           },
-                          "id": 4508,
+                          "id": 5672,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -80,7 +80,7 @@
                               "typeIdentifier": "t_bytes4",
                               "typeString": "bytes4"
                             },
-                            "id": 4499,
+                            "id": 5663,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -92,29 +92,29 @@
                                   "argumentTypes": null,
                                   "baseExpression": {
                                     "argumentTypes": null,
-                                    "id": 4487,
+                                    "id": 5651,
                                     "name": "input",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 4481,
-                                    "src": "321:5:16",
+                                    "referencedDeclaration": 5645,
+                                    "src": "321:5:20",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes_memory_ptr",
                                       "typeString": "bytes memory"
                                     }
                                   },
-                                  "id": 4489,
+                                  "id": 5653,
                                   "indexExpression": {
                                     "argumentTypes": null,
                                     "hexValue": "30",
-                                    "id": 4488,
+                                    "id": 5652,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
                                     "kind": "number",
                                     "lValueRequested": false,
                                     "nodeType": "Literal",
-                                    "src": "327:1:16",
+                                    "src": "327:1:20",
                                     "subdenomination": null,
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_rational_0_by_1",
@@ -127,7 +127,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "nodeType": "IndexAccess",
-                                  "src": "321:8:16",
+                                  "src": "321:8:20",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_bytes1",
                                     "typeString": "bytes1"
@@ -141,20 +141,20 @@
                                     "typeString": "bytes1"
                                   }
                                 ],
-                                "id": 4486,
+                                "id": 5650,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "lValueRequested": false,
                                 "nodeType": "ElementaryTypeNameExpression",
-                                "src": "314:6:16",
+                                "src": "314:6:20",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_type$_t_bytes4_$",
                                   "typeString": "type(bytes4)"
                                 },
                                 "typeName": "bytes4"
                               },
-                              "id": 4490,
+                              "id": 5654,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -162,7 +162,7 @@
                               "lValueRequested": false,
                               "names": [],
                               "nodeType": "FunctionCall",
-                              "src": "314:16:16",
+                              "src": "314:16:20",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes4",
                                 "typeString": "bytes4"
@@ -179,7 +179,7 @@
                                     "typeIdentifier": "t_bytes4",
                                     "typeString": "bytes4"
                                   },
-                                  "id": 4497,
+                                  "id": 5661,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -191,29 +191,29 @@
                                         "argumentTypes": null,
                                         "baseExpression": {
                                           "argumentTypes": null,
-                                          "id": 4492,
+                                          "id": 5656,
                                           "name": "input",
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
-                                          "referencedDeclaration": 4481,
-                                          "src": "347:5:16",
+                                          "referencedDeclaration": 5645,
+                                          "src": "347:5:20",
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_bytes_memory_ptr",
                                             "typeString": "bytes memory"
                                           }
                                         },
-                                        "id": 4494,
+                                        "id": 5658,
                                         "indexExpression": {
                                           "argumentTypes": null,
                                           "hexValue": "31",
-                                          "id": 4493,
+                                          "id": 5657,
                                           "isConstant": false,
                                           "isLValue": false,
                                           "isPure": true,
                                           "kind": "number",
                                           "lValueRequested": false,
                                           "nodeType": "Literal",
-                                          "src": "353:1:16",
+                                          "src": "353:1:20",
                                           "subdenomination": null,
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_rational_1_by_1",
@@ -226,7 +226,7 @@
                                         "isPure": false,
                                         "lValueRequested": false,
                                         "nodeType": "IndexAccess",
-                                        "src": "347:8:16",
+                                        "src": "347:8:20",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_bytes1",
                                           "typeString": "bytes1"
@@ -240,20 +240,20 @@
                                           "typeString": "bytes1"
                                         }
                                       ],
-                                      "id": 4491,
+                                      "id": 5655,
                                       "isConstant": false,
                                       "isLValue": false,
                                       "isPure": true,
                                       "lValueRequested": false,
                                       "nodeType": "ElementaryTypeNameExpression",
-                                      "src": "340:6:16",
+                                      "src": "340:6:20",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_type$_t_bytes4_$",
                                         "typeString": "type(bytes4)"
                                       },
                                       "typeName": "bytes4"
                                     },
-                                    "id": 4495,
+                                    "id": 5659,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -261,7 +261,7 @@
                                     "lValueRequested": false,
                                     "names": [],
                                     "nodeType": "FunctionCall",
-                                    "src": "340:16:16",
+                                    "src": "340:16:20",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes4",
                                       "typeString": "bytes4"
@@ -272,14 +272,14 @@
                                   "rightExpression": {
                                     "argumentTypes": null,
                                     "hexValue": "38",
-                                    "id": 4496,
+                                    "id": 5660,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
                                     "kind": "number",
                                     "lValueRequested": false,
                                     "nodeType": "Literal",
-                                    "src": "360:1:16",
+                                    "src": "360:1:20",
                                     "subdenomination": null,
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_rational_8_by_1",
@@ -287,27 +287,27 @@
                                     },
                                     "value": "8"
                                   },
-                                  "src": "340:21:16",
+                                  "src": "340:21:20",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_bytes4",
                                     "typeString": "bytes4"
                                   }
                                 }
                               ],
-                              "id": 4498,
+                              "id": 5662,
                               "isConstant": false,
                               "isInlineArray": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "nodeType": "TupleExpression",
-                              "src": "339:23:16",
+                              "src": "339:23:20",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes4",
                                 "typeString": "bytes4"
                               }
                             },
-                            "src": "314:48:16",
+                            "src": "314:48:20",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes4",
                               "typeString": "bytes4"
@@ -324,7 +324,7 @@
                                   "typeIdentifier": "t_bytes4",
                                   "typeString": "bytes4"
                                 },
-                                "id": 4506,
+                                "id": 5670,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -336,29 +336,29 @@
                                       "argumentTypes": null,
                                       "baseExpression": {
                                         "argumentTypes": null,
-                                        "id": 4501,
+                                        "id": 5665,
                                         "name": "input",
                                         "nodeType": "Identifier",
                                         "overloadedDeclarations": [],
-                                        "referencedDeclaration": 4481,
-                                        "src": "379:5:16",
+                                        "referencedDeclaration": 5645,
+                                        "src": "379:5:20",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_bytes_memory_ptr",
                                           "typeString": "bytes memory"
                                         }
                                       },
-                                      "id": 4503,
+                                      "id": 5667,
                                       "indexExpression": {
                                         "argumentTypes": null,
                                         "hexValue": "32",
-                                        "id": 4502,
+                                        "id": 5666,
                                         "isConstant": false,
                                         "isLValue": false,
                                         "isPure": true,
                                         "kind": "number",
                                         "lValueRequested": false,
                                         "nodeType": "Literal",
-                                        "src": "385:1:16",
+                                        "src": "385:1:20",
                                         "subdenomination": null,
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_rational_2_by_1",
@@ -371,7 +371,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "nodeType": "IndexAccess",
-                                      "src": "379:8:16",
+                                      "src": "379:8:20",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_bytes1",
                                         "typeString": "bytes1"
@@ -385,20 +385,20 @@
                                         "typeString": "bytes1"
                                       }
                                     ],
-                                    "id": 4500,
+                                    "id": 5664,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
                                     "lValueRequested": false,
                                     "nodeType": "ElementaryTypeNameExpression",
-                                    "src": "372:6:16",
+                                    "src": "372:6:20",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_type$_t_bytes4_$",
                                       "typeString": "type(bytes4)"
                                     },
                                     "typeName": "bytes4"
                                   },
-                                  "id": 4504,
+                                  "id": 5668,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -406,7 +406,7 @@
                                   "lValueRequested": false,
                                   "names": [],
                                   "nodeType": "FunctionCall",
-                                  "src": "372:16:16",
+                                  "src": "372:16:20",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_bytes4",
                                     "typeString": "bytes4"
@@ -417,14 +417,14 @@
                                 "rightExpression": {
                                   "argumentTypes": null,
                                   "hexValue": "3136",
-                                  "id": 4505,
+                                  "id": 5669,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
                                   "kind": "number",
                                   "lValueRequested": false,
                                   "nodeType": "Literal",
-                                  "src": "392:2:16",
+                                  "src": "392:2:20",
                                   "subdenomination": null,
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_rational_16_by_1",
@@ -432,27 +432,27 @@
                                   },
                                   "value": "16"
                                 },
-                                "src": "372:22:16",
+                                "src": "372:22:20",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bytes4",
                                   "typeString": "bytes4"
                                 }
                               }
                             ],
-                            "id": 4507,
+                            "id": 5671,
                             "isConstant": false,
                             "isInlineArray": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "nodeType": "TupleExpression",
-                            "src": "371:24:16",
+                            "src": "371:24:20",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes4",
                               "typeString": "bytes4"
                             }
                           },
-                          "src": "314:81:16",
+                          "src": "314:81:20",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes4",
                             "typeString": "bytes4"
@@ -469,7 +469,7 @@
                                 "typeIdentifier": "t_bytes4",
                                 "typeString": "bytes4"
                               },
-                              "id": 4515,
+                              "id": 5679,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -481,29 +481,29 @@
                                     "argumentTypes": null,
                                     "baseExpression": {
                                       "argumentTypes": null,
-                                      "id": 4510,
+                                      "id": 5674,
                                       "name": "input",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 4481,
-                                      "src": "412:5:16",
+                                      "referencedDeclaration": 5645,
+                                      "src": "412:5:20",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_bytes_memory_ptr",
                                         "typeString": "bytes memory"
                                       }
                                     },
-                                    "id": 4512,
+                                    "id": 5676,
                                     "indexExpression": {
                                       "argumentTypes": null,
                                       "hexValue": "33",
-                                      "id": 4511,
+                                      "id": 5675,
                                       "isConstant": false,
                                       "isLValue": false,
                                       "isPure": true,
                                       "kind": "number",
                                       "lValueRequested": false,
                                       "nodeType": "Literal",
-                                      "src": "418:1:16",
+                                      "src": "418:1:20",
                                       "subdenomination": null,
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_rational_3_by_1",
@@ -516,7 +516,7 @@
                                     "isPure": false,
                                     "lValueRequested": false,
                                     "nodeType": "IndexAccess",
-                                    "src": "412:8:16",
+                                    "src": "412:8:20",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes1",
                                       "typeString": "bytes1"
@@ -530,20 +530,20 @@
                                       "typeString": "bytes1"
                                     }
                                   ],
-                                  "id": 4509,
+                                  "id": 5673,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
                                   "lValueRequested": false,
                                   "nodeType": "ElementaryTypeNameExpression",
-                                  "src": "405:6:16",
+                                  "src": "405:6:20",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_type$_t_bytes4_$",
                                     "typeString": "type(bytes4)"
                                   },
                                   "typeName": "bytes4"
                                 },
-                                "id": 4513,
+                                "id": 5677,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -551,7 +551,7 @@
                                 "lValueRequested": false,
                                 "names": [],
                                 "nodeType": "FunctionCall",
-                                "src": "405:16:16",
+                                "src": "405:16:20",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bytes4",
                                   "typeString": "bytes4"
@@ -562,14 +562,14 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "3234",
-                                "id": 4514,
+                                "id": 5678,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "kind": "number",
                                 "lValueRequested": false,
                                 "nodeType": "Literal",
-                                "src": "425:2:16",
+                                "src": "425:2:20",
                                 "subdenomination": null,
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_rational_24_by_1",
@@ -577,71 +577,71 @@
                                 },
                                 "value": "24"
                               },
-                              "src": "405:22:16",
+                              "src": "405:22:20",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes4",
                                 "typeString": "bytes4"
                               }
                             }
                           ],
-                          "id": 4516,
+                          "id": 5680,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "TupleExpression",
-                          "src": "404:24:16",
+                          "src": "404:24:20",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes4",
                             "typeString": "bytes4"
                           }
                         },
-                        "src": "314:114:16",
+                        "src": "314:114:20",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes4",
                           "typeString": "bytes4"
                         }
                       }
                     ],
-                    "id": 4518,
+                    "id": 5682,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "313:116:16",
+                    "src": "313:116:20",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
                     }
                   },
-                  "functionReturnParameters": 4485,
-                  "id": 4519,
+                  "functionReturnParameters": 5649,
+                  "id": 5683,
                   "nodeType": "Return",
-                  "src": "306:123:16"
+                  "src": "306:123:20"
                 }
               ]
             },
             "documentation": "@notice Extracts the first four bytes of a byte array.\n@param input The byte array.\n@return The first four bytes of `input`.",
-            "id": 4521,
+            "id": 5685,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "extractFunctionSignature",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4482,
+              "id": 5646,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4481,
+                  "id": 5645,
                   "name": "input",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4521,
-                  "src": "249:18:16",
+                  "scope": 5685,
+                  "src": "249:18:20",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -649,10 +649,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 4480,
+                    "id": 5644,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "249:5:16",
+                    "src": "249:5:20",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -662,19 +662,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "248:20:16"
+              "src": "248:20:20"
             },
             "returnParameters": {
-              "id": 4485,
+              "id": 5649,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4484,
+                  "id": 5648,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4521,
-                  "src": "292:6:16",
+                  "scope": 5685,
+                  "src": "292:6:20",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -682,10 +682,10 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 4483,
+                    "id": 5647,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "292:6:16",
+                    "src": "292:6:20",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -695,27 +695,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "291:8:16"
+              "src": "291:8:20"
             },
-            "scope": 4522,
-            "src": "215:219:16",
+            "scope": 5686,
+            "src": "215:219:20",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 4523,
-        "src": "26:410:16"
+        "scope": 5687,
+        "src": "26:410:20"
       }
     ],
-    "src": "0:437:16"
+    "src": "0:437:20"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/common/ExtractFunctionSignature.sol",
       "exportedSymbols": {
         "ExtractFunctionSignature": [
-          4522
+          5686
         ]
       }
     },
@@ -729,9 +729,9 @@
             ".13"
           ]
         },
-        "id": 4479,
+        "id": 5643,
         "name": "PragmaDirective",
-        "src": "0:24:16"
+        "src": "0:24:20"
       },
       {
         "attributes": {
@@ -745,10 +745,10 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            4522
+            5686
           ],
           "name": "ExtractFunctionSignature",
-          "scope": 4523
+          "scope": 5687
         },
         "children": [
           {
@@ -761,7 +761,7 @@
                 null
               ],
               "name": "extractFunctionSignature",
-              "scope": 4522,
+              "scope": 5686,
               "stateMutability": "pure",
               "superFunction": null,
               "visibility": "internal"
@@ -773,7 +773,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "input",
-                      "scope": 4521,
+                      "scope": 5685,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "bytes",
@@ -786,19 +786,19 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 4480,
+                        "id": 5644,
                         "name": "ElementaryTypeName",
-                        "src": "249:5:16"
+                        "src": "249:5:20"
                       }
                     ],
-                    "id": 4481,
+                    "id": 5645,
                     "name": "VariableDeclaration",
-                    "src": "249:18:16"
+                    "src": "249:18:20"
                   }
                 ],
-                "id": 4482,
+                "id": 5646,
                 "name": "ParameterList",
-                "src": "248:20:16"
+                "src": "248:20:20"
               },
               {
                 "children": [
@@ -806,7 +806,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 4521,
+                      "scope": 5685,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -819,25 +819,25 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 4483,
+                        "id": 5647,
                         "name": "ElementaryTypeName",
-                        "src": "292:6:16"
+                        "src": "292:6:20"
                       }
                     ],
-                    "id": 4484,
+                    "id": 5648,
                     "name": "VariableDeclaration",
-                    "src": "292:6:16"
+                    "src": "292:6:20"
                   }
                 ],
-                "id": 4485,
+                "id": 5649,
                 "name": "ParameterList",
-                "src": "291:8:16"
+                "src": "291:8:20"
               },
               {
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 4485
+                      "functionReturnParameters": 5649
                     },
                     "children": [
                       {
@@ -926,9 +926,9 @@
                                               "type": "type(bytes4)",
                                               "value": "bytes4"
                                             },
-                                            "id": 4486,
+                                            "id": 5650,
                                             "name": "ElementaryTypeNameExpression",
-                                            "src": "314:6:16"
+                                            "src": "314:6:20"
                                           },
                                           {
                                             "attributes": {
@@ -946,13 +946,13 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 4481,
+                                                  "referencedDeclaration": 5645,
                                                   "type": "bytes memory",
                                                   "value": "input"
                                                 },
-                                                "id": 4487,
+                                                "id": 5651,
                                                 "name": "Identifier",
-                                                "src": "321:5:16"
+                                                "src": "321:5:20"
                                               },
                                               {
                                                 "attributes": {
@@ -967,19 +967,19 @@
                                                   "type": "int_const 0",
                                                   "value": "0"
                                                 },
-                                                "id": 4488,
+                                                "id": 5652,
                                                 "name": "Literal",
-                                                "src": "327:1:16"
+                                                "src": "327:1:20"
                                               }
                                             ],
-                                            "id": 4489,
+                                            "id": 5653,
                                             "name": "IndexAccess",
-                                            "src": "321:8:16"
+                                            "src": "321:8:20"
                                           }
                                         ],
-                                        "id": 4490,
+                                        "id": 5654,
                                         "name": "FunctionCall",
-                                        "src": "314:16:16"
+                                        "src": "314:16:20"
                                       },
                                       {
                                         "attributes": {
@@ -1037,9 +1037,9 @@
                                                       "type": "type(bytes4)",
                                                       "value": "bytes4"
                                                     },
-                                                    "id": 4491,
+                                                    "id": 5655,
                                                     "name": "ElementaryTypeNameExpression",
-                                                    "src": "340:6:16"
+                                                    "src": "340:6:20"
                                                   },
                                                   {
                                                     "attributes": {
@@ -1057,13 +1057,13 @@
                                                           "overloadedDeclarations": [
                                                             null
                                                           ],
-                                                          "referencedDeclaration": 4481,
+                                                          "referencedDeclaration": 5645,
                                                           "type": "bytes memory",
                                                           "value": "input"
                                                         },
-                                                        "id": 4492,
+                                                        "id": 5656,
                                                         "name": "Identifier",
-                                                        "src": "347:5:16"
+                                                        "src": "347:5:20"
                                                       },
                                                       {
                                                         "attributes": {
@@ -1078,19 +1078,19 @@
                                                           "type": "int_const 1",
                                                           "value": "1"
                                                         },
-                                                        "id": 4493,
+                                                        "id": 5657,
                                                         "name": "Literal",
-                                                        "src": "353:1:16"
+                                                        "src": "353:1:20"
                                                       }
                                                     ],
-                                                    "id": 4494,
+                                                    "id": 5658,
                                                     "name": "IndexAccess",
-                                                    "src": "347:8:16"
+                                                    "src": "347:8:20"
                                                   }
                                                 ],
-                                                "id": 4495,
+                                                "id": 5659,
                                                 "name": "FunctionCall",
-                                                "src": "340:16:16"
+                                                "src": "340:16:20"
                                               },
                                               {
                                                 "attributes": {
@@ -1105,24 +1105,24 @@
                                                   "type": "int_const 8",
                                                   "value": "8"
                                                 },
-                                                "id": 4496,
+                                                "id": 5660,
                                                 "name": "Literal",
-                                                "src": "360:1:16"
+                                                "src": "360:1:20"
                                               }
                                             ],
-                                            "id": 4497,
+                                            "id": 5661,
                                             "name": "BinaryOperation",
-                                            "src": "340:21:16"
+                                            "src": "340:21:20"
                                           }
                                         ],
-                                        "id": 4498,
+                                        "id": 5662,
                                         "name": "TupleExpression",
-                                        "src": "339:23:16"
+                                        "src": "339:23:20"
                                       }
                                     ],
-                                    "id": 4499,
+                                    "id": 5663,
                                     "name": "BinaryOperation",
-                                    "src": "314:48:16"
+                                    "src": "314:48:20"
                                   },
                                   {
                                     "attributes": {
@@ -1180,9 +1180,9 @@
                                                   "type": "type(bytes4)",
                                                   "value": "bytes4"
                                                 },
-                                                "id": 4500,
+                                                "id": 5664,
                                                 "name": "ElementaryTypeNameExpression",
-                                                "src": "372:6:16"
+                                                "src": "372:6:20"
                                               },
                                               {
                                                 "attributes": {
@@ -1200,13 +1200,13 @@
                                                       "overloadedDeclarations": [
                                                         null
                                                       ],
-                                                      "referencedDeclaration": 4481,
+                                                      "referencedDeclaration": 5645,
                                                       "type": "bytes memory",
                                                       "value": "input"
                                                     },
-                                                    "id": 4501,
+                                                    "id": 5665,
                                                     "name": "Identifier",
-                                                    "src": "379:5:16"
+                                                    "src": "379:5:20"
                                                   },
                                                   {
                                                     "attributes": {
@@ -1221,19 +1221,19 @@
                                                       "type": "int_const 2",
                                                       "value": "2"
                                                     },
-                                                    "id": 4502,
+                                                    "id": 5666,
                                                     "name": "Literal",
-                                                    "src": "385:1:16"
+                                                    "src": "385:1:20"
                                                   }
                                                 ],
-                                                "id": 4503,
+                                                "id": 5667,
                                                 "name": "IndexAccess",
-                                                "src": "379:8:16"
+                                                "src": "379:8:20"
                                               }
                                             ],
-                                            "id": 4504,
+                                            "id": 5668,
                                             "name": "FunctionCall",
-                                            "src": "372:16:16"
+                                            "src": "372:16:20"
                                           },
                                           {
                                             "attributes": {
@@ -1248,24 +1248,24 @@
                                               "type": "int_const 16",
                                               "value": "16"
                                             },
-                                            "id": 4505,
+                                            "id": 5669,
                                             "name": "Literal",
-                                            "src": "392:2:16"
+                                            "src": "392:2:20"
                                           }
                                         ],
-                                        "id": 4506,
+                                        "id": 5670,
                                         "name": "BinaryOperation",
-                                        "src": "372:22:16"
+                                        "src": "372:22:20"
                                       }
                                     ],
-                                    "id": 4507,
+                                    "id": 5671,
                                     "name": "TupleExpression",
-                                    "src": "371:24:16"
+                                    "src": "371:24:20"
                                   }
                                 ],
-                                "id": 4508,
+                                "id": 5672,
                                 "name": "BinaryOperation",
-                                "src": "314:81:16"
+                                "src": "314:81:20"
                               },
                               {
                                 "attributes": {
@@ -1323,9 +1323,9 @@
                                               "type": "type(bytes4)",
                                               "value": "bytes4"
                                             },
-                                            "id": 4509,
+                                            "id": 5673,
                                             "name": "ElementaryTypeNameExpression",
-                                            "src": "405:6:16"
+                                            "src": "405:6:20"
                                           },
                                           {
                                             "attributes": {
@@ -1343,13 +1343,13 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 4481,
+                                                  "referencedDeclaration": 5645,
                                                   "type": "bytes memory",
                                                   "value": "input"
                                                 },
-                                                "id": 4510,
+                                                "id": 5674,
                                                 "name": "Identifier",
-                                                "src": "412:5:16"
+                                                "src": "412:5:20"
                                               },
                                               {
                                                 "attributes": {
@@ -1364,19 +1364,19 @@
                                                   "type": "int_const 3",
                                                   "value": "3"
                                                 },
-                                                "id": 4511,
+                                                "id": 5675,
                                                 "name": "Literal",
-                                                "src": "418:1:16"
+                                                "src": "418:1:20"
                                               }
                                             ],
-                                            "id": 4512,
+                                            "id": 5676,
                                             "name": "IndexAccess",
-                                            "src": "412:8:16"
+                                            "src": "412:8:20"
                                           }
                                         ],
-                                        "id": 4513,
+                                        "id": 5677,
                                         "name": "FunctionCall",
-                                        "src": "405:16:16"
+                                        "src": "405:16:20"
                                       },
                                       {
                                         "attributes": {
@@ -1391,54 +1391,54 @@
                                           "type": "int_const 24",
                                           "value": "24"
                                         },
-                                        "id": 4514,
+                                        "id": 5678,
                                         "name": "Literal",
-                                        "src": "425:2:16"
+                                        "src": "425:2:20"
                                       }
                                     ],
-                                    "id": 4515,
+                                    "id": 5679,
                                     "name": "BinaryOperation",
-                                    "src": "405:22:16"
+                                    "src": "405:22:20"
                                   }
                                 ],
-                                "id": 4516,
+                                "id": 5680,
                                 "name": "TupleExpression",
-                                "src": "404:24:16"
+                                "src": "404:24:20"
                               }
                             ],
-                            "id": 4517,
+                            "id": 5681,
                             "name": "BinaryOperation",
-                            "src": "314:114:16"
+                            "src": "314:114:20"
                           }
                         ],
-                        "id": 4518,
+                        "id": 5682,
                         "name": "TupleExpression",
-                        "src": "313:116:16"
+                        "src": "313:116:20"
                       }
                     ],
-                    "id": 4519,
+                    "id": 5683,
                     "name": "Return",
-                    "src": "306:123:16"
+                    "src": "306:123:20"
                   }
                 ],
-                "id": 4520,
+                "id": 5684,
                 "name": "Block",
-                "src": "300:134:16"
+                "src": "300:134:20"
               }
             ],
-            "id": 4521,
+            "id": 5685,
             "name": "FunctionDefinition",
-            "src": "215:219:16"
+            "src": "215:219:20"
           }
         ],
-        "id": 4522,
+        "id": 5686,
         "name": "ContractDefinition",
-        "src": "26:410:16"
+        "src": "26:410:20"
       }
     ],
-    "id": 4523,
+    "id": 5687,
     "name": "SourceUnit",
-    "src": "0:437:16"
+    "src": "0:437:20"
   },
   "compiler": {
     "name": "solc",
@@ -1446,7 +1446,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:23.969Z",
+  "updatedAt": "2025-05-05T17:49:51.084Z",
   "devdoc": {
     "methods": {}
   },

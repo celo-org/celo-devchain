@@ -1,0 +1,395 @@
+{
+  "contractName": "IGovernanceApproverMultiSigInitializer",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_owners",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_required",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_internalRequired",
+          "type": "uint256"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_owners\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"_required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_internalRequired\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/governance/interfaces/IGovernanceApproverMultiSigInitializer.sol\":\"IGovernanceApproverMultiSigInitializer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/governance/interfaces/IGovernanceApproverMultiSigInitializer.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n// TODO change to just MultiSig\\n\\ninterface IGovernanceApproverMultiSigInitializer {\\n  function initialize(\\n    address[] calldata _owners,\\n    uint256 _required,\\n    uint256 _internalRequired\\n  ) external;\\n}\\n\",\"keccak256\":\"0xb05879a1f747f8651d9ff83b6c0784127ea2c6d7c13d3f4bca8fa1014acfd498\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n// TODO change to just MultiSig\n\ninterface IGovernanceApproverMultiSigInitializer {\n  function initialize(\n    address[] calldata _owners,\n    uint256 _required,\n    uint256 _internalRequired\n  ) external;\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/governance/interfaces/IGovernanceApproverMultiSigInitializer.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/governance/interfaces/IGovernanceApproverMultiSigInitializer.sol",
+    "exportedSymbols": {
+      "IGovernanceApproverMultiSigInitializer": [
+        43090
+      ]
+    },
+    "id": 43091,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 43079,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:131"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 43090,
+        "linearizedBaseContracts": [
+          43090
+        ],
+        "name": "IGovernanceApproverMultiSigInitializer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 43089,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 43087,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43082,
+                  "name": "_owners",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43089,
+                  "src": "144:26:131",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 43080,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "144:7:131",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 43081,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "144:9:131",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43084,
+                  "name": "_required",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43089,
+                  "src": "176:17:131",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 43083,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "176:7:131",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43086,
+                  "name": "_internalRequired",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43089,
+                  "src": "199:25:131",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 43085,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "199:7:131",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "138:90:131"
+            },
+            "returnParameters": {
+              "id": 43088,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "237:0:131"
+            },
+            "scope": 43090,
+            "src": "119:119:131",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 43091,
+        "src": "66:174:131"
+      }
+    ],
+    "src": "0:241:131"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/governance/interfaces/IGovernanceApproverMultiSigInitializer.sol",
+      "exportedSymbols": {
+        "IGovernanceApproverMultiSigInitializer": [
+          43090
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 43079,
+        "name": "PragmaDirective",
+        "src": "0:32:131"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            43090
+          ],
+          "name": "IGovernanceApproverMultiSigInitializer",
+          "scope": 43091
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "initialize",
+              "scope": 43090,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_owners",
+                      "scope": 43089,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 43080,
+                            "name": "ElementaryTypeName",
+                            "src": "144:7:131"
+                          }
+                        ],
+                        "id": 43081,
+                        "name": "ArrayTypeName",
+                        "src": "144:9:131"
+                      }
+                    ],
+                    "id": 43082,
+                    "name": "VariableDeclaration",
+                    "src": "144:26:131"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_required",
+                      "scope": 43089,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 43083,
+                        "name": "ElementaryTypeName",
+                        "src": "176:7:131"
+                      }
+                    ],
+                    "id": 43084,
+                    "name": "VariableDeclaration",
+                    "src": "176:17:131"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_internalRequired",
+                      "scope": 43089,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 43085,
+                        "name": "ElementaryTypeName",
+                        "src": "199:7:131"
+                      }
+                    ],
+                    "id": 43086,
+                    "name": "VariableDeclaration",
+                    "src": "199:25:131"
+                  }
+                ],
+                "id": 43087,
+                "name": "ParameterList",
+                "src": "138:90:131"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 43088,
+                "name": "ParameterList",
+                "src": "237:0:131"
+              }
+            ],
+            "id": 43089,
+            "name": "FunctionDefinition",
+            "src": "119:119:131"
+          }
+        ],
+        "id": 43090,
+        "name": "ContractDefinition",
+        "src": "66:174:131"
+      }
+    ],
+    "id": 43091,
+    "name": "SourceUnit",
+    "src": "0:241:131"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.450Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -3,6 +3,15 @@
   "abi": [
     {
       "constant": false,
+      "inputs": [],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address",
@@ -32,25 +41,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"addToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getWhitelist\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol\":\"IFeeCurrencyWhitelist\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IFeeCurrencyWhitelist {\\n  function addToken(address) external;\\n  function getWhitelist() external view returns (address[] memory);\\n}\\n\",\"keccak256\":\"0x4a91e634d22e8b8c36ef16113d7403029f334affb38f2453f0453f4ba06a925e\"}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"addToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getWhitelist\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"initialize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol\":\"IFeeCurrencyWhitelist\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IFeeCurrencyWhitelist {\\n  function initialize() external;\\n  function addToken(address) external;\\n  function getWhitelist() external view returns (address[] memory);\\n}\\n\",\"keccak256\":\"0xa732071c691bf1ba84774ac5301fa5b18e1ecf6ea6f6210ecac00f5130341621\"}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ninterface IFeeCurrencyWhitelist {\n  function addToken(address) external;\n  function getWhitelist() external view returns (address[] memory);\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts/common/interfaces/IFeeCurrencyWhitelist.sol",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ninterface IFeeCurrencyWhitelist {\n  function initialize() external;\n  function addToken(address) external;\n  function getWhitelist() external view returns (address[] memory);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/IFeeCurrencyWhitelist.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol",
     "exportedSymbols": {
       "IFeeCurrencyWhitelist": [
-        12007
+        14802
       ]
     },
-    "id": 12008,
+    "id": 14803,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 11995,
+        "id": 14787,
         "literals": [
           "solidity",
           ">=",
@@ -61,7 +70,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "42:32:40"
+        "src": "42:32:54"
       },
       {
         "baseContracts": [],
@@ -69,9 +78,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 12007,
+        "id": 14802,
         "linearizedBaseContracts": [
-          12007
+          14802
         ],
         "name": "IFeeCurrencyWhitelist",
         "nodeType": "ContractDefinition",
@@ -79,23 +88,50 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12000,
+            "id": 14790,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14788,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "131:2:54"
+            },
+            "returnParameters": {
+              "id": 14789,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "142:0:54"
+            },
+            "scope": 14802,
+            "src": "112:31:54",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14795,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11998,
+              "id": 14793,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11997,
+                  "id": 14792,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12000,
-                  "src": "130:7:40",
+                  "scope": 14795,
+                  "src": "164:7:54",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -103,10 +139,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 11996,
+                    "id": 14791,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "130:7:40",
+                    "src": "164:7:54",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -117,16 +153,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "129:9:40"
+              "src": "163:9:54"
             },
             "returnParameters": {
-              "id": 11999,
+              "id": 14794,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "147:0:40"
+              "src": "181:0:54"
             },
-            "scope": 12007,
-            "src": "112:36:40",
+            "scope": 14802,
+            "src": "146:36:54",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -134,29 +170,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12006,
+            "id": 14801,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getWhitelist",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12001,
+              "id": 14796,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "172:2:40"
+              "src": "206:2:54"
             },
             "returnParameters": {
-              "id": 12005,
+              "id": 14800,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12004,
+                  "id": 14799,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12006,
-                  "src": "198:16:40",
+                  "scope": 14801,
+                  "src": "232:16:54",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -165,20 +201,20 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 12002,
+                      "id": 14797,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "198:7:40",
+                      "src": "232:7:54",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 12003,
+                    "id": 14798,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "198:9:40",
+                    "src": "232:9:54",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -188,27 +224,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "197:18:40"
+              "src": "231:18:54"
             },
-            "scope": 12007,
-            "src": "151:65:40",
+            "scope": 14802,
+            "src": "185:65:54",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 12008,
-        "src": "76:142:40"
+        "scope": 14803,
+        "src": "76:176:54"
       }
     ],
-    "src": "42:177:40"
+    "src": "42:211:54"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/common/interfaces/IFeeCurrencyWhitelist.sol",
       "exportedSymbols": {
         "IFeeCurrencyWhitelist": [
-          12007
+          14802
         ]
       }
     },
@@ -225,9 +261,9 @@
             ".0"
           ]
         },
-        "id": 11995,
+        "id": 14787,
         "name": "PragmaDirective",
-        "src": "42:32:40"
+        "src": "42:32:54"
       },
       {
         "attributes": {
@@ -241,10 +277,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            12007
+            14802
           ],
           "name": "IFeeCurrencyWhitelist",
-          "scope": 12008
+          "scope": 14803
         },
         "children": [
           {
@@ -257,8 +293,52 @@
               "modifiers": [
                 null
               ],
+              "name": "initialize",
+              "scope": 14802,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14788,
+                "name": "ParameterList",
+                "src": "131:2:54"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14789,
+                "name": "ParameterList",
+                "src": "142:0:54"
+              }
+            ],
+            "id": 14790,
+            "name": "FunctionDefinition",
+            "src": "112:31:54"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
               "name": "addToken",
-              "scope": 12007,
+              "scope": 14802,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -270,7 +350,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 12000,
+                      "scope": 14795,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -284,19 +364,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 11996,
+                        "id": 14791,
                         "name": "ElementaryTypeName",
-                        "src": "130:7:40"
+                        "src": "164:7:54"
                       }
                     ],
-                    "id": 11997,
+                    "id": 14792,
                     "name": "VariableDeclaration",
-                    "src": "130:7:40"
+                    "src": "164:7:54"
                   }
                 ],
-                "id": 11998,
+                "id": 14793,
                 "name": "ParameterList",
-                "src": "129:9:40"
+                "src": "163:9:54"
               },
               {
                 "attributes": {
@@ -305,14 +385,14 @@
                   ]
                 },
                 "children": [],
-                "id": 11999,
+                "id": 14794,
                 "name": "ParameterList",
-                "src": "147:0:40"
+                "src": "181:0:54"
               }
             ],
-            "id": 12000,
+            "id": 14795,
             "name": "FunctionDefinition",
-            "src": "112:36:40"
+            "src": "146:36:54"
           },
           {
             "attributes": {
@@ -325,7 +405,7 @@
                 null
               ],
               "name": "getWhitelist",
-              "scope": 12007,
+              "scope": 14802,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "external"
@@ -338,9 +418,9 @@
                   ]
                 },
                 "children": [],
-                "id": 12001,
+                "id": 14796,
                 "name": "ParameterList",
-                "src": "172:2:40"
+                "src": "206:2:54"
               },
               {
                 "children": [
@@ -348,7 +428,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 12006,
+                      "scope": 14801,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "address[]",
@@ -368,39 +448,39 @@
                               "stateMutability": "nonpayable",
                               "type": "address"
                             },
-                            "id": 12002,
+                            "id": 14797,
                             "name": "ElementaryTypeName",
-                            "src": "198:7:40"
+                            "src": "232:7:54"
                           }
                         ],
-                        "id": 12003,
+                        "id": 14798,
                         "name": "ArrayTypeName",
-                        "src": "198:9:40"
+                        "src": "232:9:54"
                       }
                     ],
-                    "id": 12004,
+                    "id": 14799,
                     "name": "VariableDeclaration",
-                    "src": "198:16:40"
+                    "src": "232:16:54"
                   }
                 ],
-                "id": 12005,
+                "id": 14800,
                 "name": "ParameterList",
-                "src": "197:18:40"
+                "src": "231:18:54"
               }
             ],
-            "id": 12006,
+            "id": 14801,
             "name": "FunctionDefinition",
-            "src": "151:65:40"
+            "src": "185:65:54"
           }
         ],
-        "id": 12007,
+        "id": 14802,
         "name": "ContractDefinition",
-        "src": "76:142:40"
+        "src": "76:176:54"
       }
     ],
-    "id": 12008,
+    "id": 14803,
     "name": "SourceUnit",
-    "src": "42:177:40"
+    "src": "42:211:54"
   },
   "compiler": {
     "name": "solc",
@@ -408,7 +488,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:24.028Z",
+  "updatedAt": "2025-05-05T17:49:51.154Z",
   "devdoc": {
     "methods": {}
   },

@@ -4,22 +4,22 @@
   "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/CalledByVm.sol\":\"CalledByVm\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/CalledByVm.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ncontract CalledByVm {\\n  modifier onlyVm() {\\n    require(msg.sender == address(0), \\\"Only VM can call\\\");\\n    _;\\n  }\\n}\\n\",\"keccak256\":\"0xb94d2b580a505f5d4ef51bb14b12b6fa19d69e4fa94c96f2f105091673a0a0a4\"}},\"version\":1}",
   "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723158206fdbe702c9374647d0822067baa7e20ee02edfbadd34d072e2eba37a6583c9d764736f6c634300050d0032",
   "deployedBytecode": "0x6080604052600080fdfea265627a7a723158206fdbe702c9374647d0822067baa7e20ee02edfbadd34d072e2eba37a6583c9d764736f6c634300050d0032",
-  "sourceMap": "76:115:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;76:115:13;;;;;;;",
-  "deployedSourceMap": "76:115:13:-;;;;;",
+  "sourceMap": "76:115:17:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;76:115:17;;;;;;;",
+  "deployedSourceMap": "76:115:17:-;;;;;",
   "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ncontract CalledByVm {\n  modifier onlyVm() {\n    require(msg.sender == address(0), \"Only VM can call\");\n    _;\n  }\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts/common/CalledByVm.sol",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/CalledByVm.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/CalledByVm.sol",
     "exportedSymbols": {
       "CalledByVm": [
-        4374
+        5538
       ]
     },
-    "id": 4375,
+    "id": 5539,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4359,
+        "id": 5523,
         "literals": [
           "solidity",
           ">=",
@@ -30,7 +30,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "42:32:13"
+        "src": "42:32:17"
       },
       {
         "baseContracts": [],
@@ -38,18 +38,18 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 4374,
+        "id": 5538,
         "linearizedBaseContracts": [
-          4374
+          5538
         ],
         "name": "CalledByVm",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 4372,
+              "id": 5536,
               "nodeType": "Block",
-              "src": "118:71:13",
+              "src": "118:71:17",
               "statements": [
                 {
                   "expression": {
@@ -61,7 +61,7 @@
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
                         },
-                        "id": 4367,
+                        "id": 5531,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -70,18 +70,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 4362,
+                            "id": 5526,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 58414,
-                            "src": "132:3:13",
+                            "referencedDeclaration": 59923,
+                            "src": "132:3:17",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 4363,
+                          "id": 5527,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -89,7 +89,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "132:10:13",
+                          "src": "132:10:17",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
@@ -103,14 +103,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 4365,
+                              "id": 5529,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "154:1:13",
+                              "src": "154:1:17",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -126,20 +126,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 4364,
+                            "id": 5528,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "146:7:13",
+                            "src": "146:7:17",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 4366,
+                          "id": 5530,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -147,13 +147,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "146:10:13",
+                          "src": "146:10:17",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
                           }
                         },
-                        "src": "132:24:13",
+                        "src": "132:24:17",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -162,14 +162,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4f6e6c7920564d2063616e2063616c6c",
-                        "id": 4368,
+                        "id": 5532,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "158:18:13",
+                        "src": "158:18:17",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_952607dfd16d11dfdf90c18f6142a68af14c41694106cb4ca9d22c7c3186d750",
@@ -189,21 +189,21 @@
                           "typeString": "literal_string \"Only VM can call\""
                         }
                       ],
-                      "id": 4361,
+                      "id": 5525,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        58417,
-                        58418
+                        59926,
+                        59927
                       ],
-                      "referencedDeclaration": 58418,
-                      "src": "124:7:13",
+                      "referencedDeclaration": 59927,
+                      "src": "124:7:17",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 4369,
+                    "id": 5533,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -211,49 +211,49 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "124:53:13",
+                    "src": "124:53:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4370,
+                  "id": 5534,
                   "nodeType": "ExpressionStatement",
-                  "src": "124:53:13"
+                  "src": "124:53:17"
                 },
                 {
-                  "id": 4371,
+                  "id": 5535,
                   "nodeType": "PlaceholderStatement",
-                  "src": "183:1:13"
+                  "src": "183:1:17"
                 }
               ]
             },
             "documentation": null,
-            "id": 4373,
+            "id": 5537,
             "name": "onlyVm",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 4360,
+              "id": 5524,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "115:2:13"
+              "src": "115:2:17"
             },
-            "src": "100:89:13",
+            "src": "100:89:17",
             "visibility": "internal"
           }
         ],
-        "scope": 4375,
-        "src": "76:115:13"
+        "scope": 5539,
+        "src": "76:115:17"
       }
     ],
-    "src": "42:150:13"
+    "src": "42:150:17"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/common/CalledByVm.sol",
       "exportedSymbols": {
         "CalledByVm": [
-          4374
+          5538
         ]
       }
     },
@@ -270,9 +270,9 @@
             ".0"
           ]
         },
-        "id": 4359,
+        "id": 5523,
         "name": "PragmaDirective",
-        "src": "42:32:13"
+        "src": "42:32:17"
       },
       {
         "attributes": {
@@ -286,10 +286,10 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            4374
+            5538
           ],
           "name": "CalledByVm",
-          "scope": 4375
+          "scope": 5539
         },
         "children": [
           {
@@ -306,9 +306,9 @@
                   ]
                 },
                 "children": [],
-                "id": 4360,
+                "id": 5524,
                 "name": "ParameterList",
-                "src": "115:2:13"
+                "src": "115:2:17"
               },
               {
                 "children": [
@@ -342,16 +342,16 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                58417,
-                                58418
+                                59926,
+                                59927
                               ],
-                              "referencedDeclaration": 58418,
+                              "referencedDeclaration": 59927,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
-                            "id": 4361,
+                            "id": 5525,
                             "name": "Identifier",
-                            "src": "124:7:13"
+                            "src": "124:7:17"
                           },
                           {
                             "attributes": {
@@ -386,18 +386,18 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 58414,
+                                      "referencedDeclaration": 59923,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 4362,
+                                    "id": 5526,
                                     "name": "Identifier",
-                                    "src": "132:3:13"
+                                    "src": "132:3:17"
                                   }
                                 ],
-                                "id": 4363,
+                                "id": 5527,
                                 "name": "MemberAccess",
-                                "src": "132:10:13"
+                                "src": "132:10:17"
                               },
                               {
                                 "attributes": {
@@ -429,9 +429,9 @@
                                       "type": "type(address)",
                                       "value": "address"
                                     },
-                                    "id": 4364,
+                                    "id": 5528,
                                     "name": "ElementaryTypeNameExpression",
-                                    "src": "146:7:13"
+                                    "src": "146:7:17"
                                   },
                                   {
                                     "attributes": {
@@ -446,19 +446,19 @@
                                       "type": "int_const 0",
                                       "value": "0"
                                     },
-                                    "id": 4365,
+                                    "id": 5529,
                                     "name": "Literal",
-                                    "src": "154:1:13"
+                                    "src": "154:1:17"
                                   }
                                 ],
-                                "id": 4366,
+                                "id": 5530,
                                 "name": "FunctionCall",
-                                "src": "146:10:13"
+                                "src": "146:10:17"
                               }
                             ],
-                            "id": 4367,
+                            "id": 5531,
                             "name": "BinaryOperation",
-                            "src": "132:24:13"
+                            "src": "132:24:17"
                           },
                           {
                             "attributes": {
@@ -473,44 +473,44 @@
                               "type": "literal_string \"Only VM can call\"",
                               "value": "Only VM can call"
                             },
-                            "id": 4368,
+                            "id": 5532,
                             "name": "Literal",
-                            "src": "158:18:13"
+                            "src": "158:18:17"
                           }
                         ],
-                        "id": 4369,
+                        "id": 5533,
                         "name": "FunctionCall",
-                        "src": "124:53:13"
+                        "src": "124:53:17"
                       }
                     ],
-                    "id": 4370,
+                    "id": 5534,
                     "name": "ExpressionStatement",
-                    "src": "124:53:13"
+                    "src": "124:53:17"
                   },
                   {
-                    "id": 4371,
+                    "id": 5535,
                     "name": "PlaceholderStatement",
-                    "src": "183:1:13"
+                    "src": "183:1:17"
                   }
                 ],
-                "id": 4372,
+                "id": 5536,
                 "name": "Block",
-                "src": "118:71:13"
+                "src": "118:71:17"
               }
             ],
-            "id": 4373,
+            "id": 5537,
             "name": "ModifierDefinition",
-            "src": "100:89:13"
+            "src": "100:89:17"
           }
         ],
-        "id": 4374,
+        "id": 5538,
         "name": "ContractDefinition",
-        "src": "76:115:13"
+        "src": "76:115:17"
       }
     ],
-    "id": 4375,
+    "id": 5539,
     "name": "SourceUnit",
-    "src": "42:150:13"
+    "src": "42:150:17"
   },
   "compiler": {
     "name": "solc",
@@ -518,7 +518,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:23.967Z",
+  "updatedAt": "2025-05-05T17:49:51.082Z",
   "devdoc": {
     "methods": {}
   },

@@ -5,21 +5,6 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "uint256",
-          "name": "fraction",
-          "type": "uint256"
-        }
-      ],
-      "name": "setBurnFraction",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
           "internalType": "address",
           "name": "tokenAddress",
           "type": "address"
@@ -203,44 +188,62 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "setCarbonFeeBeneficiary",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"activateToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"handlerAddress\",\"type\":\"address\"}],\"name\":\"addToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"burnCelo\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"deactivateToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"distribute\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"distributeAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"handle\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"handleAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"removeToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"sell\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"fraction\",\"type\":\"uint256\"}],\"name\":\"setBurnFraction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"handlerAddress\",\"type\":\"address\"}],\"name\":\"setHandler\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IFeeHandler.sol\":\"IFeeHandler\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/FixidityLib.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\n/**\\n * @title FixidityLib\\n * @author Gadi Guy, Alberto Cuesta Canada\\n * @notice This library provides fixed point arithmetic with protection against\\n * overflow.\\n * All operations are done with uint256 and the operands must have been created\\n * with any of the newFrom* functions, which shift the comma digits() to the\\n * right and check for limits, or with wrap() which expects a number already\\n * in the internal representation of a fraction.\\n * When using this library be sure to use maxNewFixed() as the upper limit for\\n * creation of fixed point numbers.\\n * @dev All contained functions are pure and thus marked internal to be inlined\\n * on consuming contracts at compile time for gas efficiency.\\n */\\nlibrary FixidityLib {\\n  struct Fraction {\\n    uint256 value;\\n  }\\n\\n  /**\\n   * @notice Number of positions that the comma is shifted to the right.\\n   */\\n  function digits() internal pure returns (uint8) {\\n    return 24;\\n  }\\n\\n  uint256 private constant FIXED1_UINT = 1000000000000000000000000;\\n\\n  /**\\n   * @notice This is 1 in the fixed point units used in this library.\\n   * @dev Test fixed1() equals 10^digits()\\n   * Hardcoded to 24 digits.\\n   */\\n  function fixed1() internal pure returns (Fraction memory) {\\n    return Fraction(FIXED1_UINT);\\n  }\\n\\n  /**\\n   * @notice Wrap a uint256 that represents a 24-decimal fraction in a Fraction\\n   * struct.\\n   * @param x Number that already represents a 24-decimal fraction.\\n   * @return A Fraction struct with contents x.\\n   */\\n  function wrap(uint256 x) internal pure returns (Fraction memory) {\\n    return Fraction(x);\\n  }\\n\\n  /**\\n   * @notice Unwraps the uint256 inside of a Fraction struct.\\n   */\\n  function unwrap(Fraction memory x) internal pure returns (uint256) {\\n    return x.value;\\n  }\\n\\n  /**\\n   * @notice The amount of decimals lost on each multiplication operand.\\n   * @dev Test mulPrecision() equals sqrt(fixed1)\\n   */\\n  function mulPrecision() internal pure returns (uint256) {\\n    return 1000000000000;\\n  }\\n\\n  /**\\n   * @notice Maximum value that can be converted to fixed point. Optimize for deployment.\\n   * @dev\\n   * Test maxNewFixed() equals maxUint256() / fixed1()\\n   */\\n  function maxNewFixed() internal pure returns (uint256) {\\n    return 115792089237316195423570985008687907853269984665640564;\\n  }\\n\\n  /**\\n   * @notice Converts a uint256 to fixed point Fraction\\n   * @dev Test newFixed(0) returns 0\\n   * Test newFixed(1) returns fixed1()\\n   * Test newFixed(maxNewFixed()) returns maxNewFixed() * fixed1()\\n   * Test newFixed(maxNewFixed()+1) fails\\n   */\\n  function newFixed(uint256 x) internal pure returns (Fraction memory) {\\n    require(x <= maxNewFixed(), \\\"can't create fixidity number larger than maxNewFixed()\\\");\\n    return Fraction(x * FIXED1_UINT);\\n  }\\n\\n  /**\\n   * @notice Converts a uint256 in the fixed point representation of this\\n   * library to a non decimal. All decimal digits will be truncated.\\n   */\\n  function fromFixed(Fraction memory x) internal pure returns (uint256) {\\n    return x.value / FIXED1_UINT;\\n  }\\n\\n  /**\\n   * @notice Converts two uint256 representing a fraction to fixed point units,\\n   * equivalent to multiplying dividend and divisor by 10^digits().\\n   * @param numerator numerator must be <= maxNewFixed()\\n   * @param denominator denominator must be <= maxNewFixed() and denominator can't be 0\\n   * @dev\\n   * Test newFixedFraction(1,0) fails\\n   * Test newFixedFraction(0,1) returns 0\\n   * Test newFixedFraction(1,1) returns fixed1()\\n   * Test newFixedFraction(1,fixed1()) returns 1\\n   */\\n  function newFixedFraction(uint256 numerator, uint256 denominator)\\n    internal\\n    pure\\n    returns (Fraction memory)\\n  {\\n    Fraction memory convertedNumerator = newFixed(numerator);\\n    Fraction memory convertedDenominator = newFixed(denominator);\\n    return divide(convertedNumerator, convertedDenominator);\\n  }\\n\\n  /**\\n   * @notice Returns the integer part of a fixed point number.\\n   * @dev\\n   * Test integer(0) returns 0\\n   * Test integer(fixed1()) returns fixed1()\\n   * Test integer(newFixed(maxNewFixed())) returns maxNewFixed()*fixed1()\\n   */\\n  function integer(Fraction memory x) internal pure returns (Fraction memory) {\\n    return Fraction((x.value / FIXED1_UINT) * FIXED1_UINT); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice Returns the fractional part of a fixed point number.\\n   * In the case of a negative number the fractional is also negative.\\n   * @dev\\n   * Test fractional(0) returns 0\\n   * Test fractional(fixed1()) returns 0\\n   * Test fractional(fixed1()-1) returns 10^24-1\\n   */\\n  function fractional(Fraction memory x) internal pure returns (Fraction memory) {\\n    return Fraction(x.value - (x.value / FIXED1_UINT) * FIXED1_UINT); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice x+y.\\n   * @dev The maximum value that can be safely used as an addition operator is defined as\\n   * maxFixedAdd = maxUint256()-1 / 2, or\\n   * 57896044618658097711785492504343953926634992332820282019728792003956564819967.\\n   * Test add(maxFixedAdd,maxFixedAdd) equals maxFixedAdd + maxFixedAdd\\n   * Test add(maxFixedAdd+1,maxFixedAdd+1) throws\\n   */\\n  function add(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    uint256 z = x.value + y.value;\\n    require(z >= x.value, \\\"add overflow detected\\\");\\n    return Fraction(z);\\n  }\\n\\n  /**\\n   * @notice x-y.\\n   * @dev\\n   * Test subtract(6, 10) fails\\n   */\\n  function subtract(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    require(x.value >= y.value, \\\"substraction underflow detected\\\");\\n    return Fraction(x.value - y.value);\\n  }\\n\\n  /**\\n   * @notice x*y. If any of the operators is higher than the max multiplier value it\\n   * might overflow.\\n   * @dev The maximum value that can be safely used as a multiplication operator\\n   * (maxFixedMul) is calculated as sqrt(maxUint256()*fixed1()),\\n   * or 340282366920938463463374607431768211455999999999999\\n   * Test multiply(0,0) returns 0\\n   * Test multiply(maxFixedMul,0) returns 0\\n   * Test multiply(0,maxFixedMul) returns 0\\n   * Test multiply(fixed1()/mulPrecision(),fixed1()*mulPrecision()) returns fixed1()\\n   * Test multiply(maxFixedMul,maxFixedMul) is around maxUint256()\\n   * Test multiply(maxFixedMul+1,maxFixedMul+1) fails\\n   */\\n  function multiply(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    if (x.value == 0 || y.value == 0) return Fraction(0);\\n    if (y.value == FIXED1_UINT) return x;\\n    if (x.value == FIXED1_UINT) return y;\\n\\n    // Separate into integer and fractional parts\\n    // x = x1 + x2, y = y1 + y2\\n    uint256 x1 = integer(x).value / FIXED1_UINT;\\n    uint256 x2 = fractional(x).value;\\n    uint256 y1 = integer(y).value / FIXED1_UINT;\\n    uint256 y2 = fractional(y).value;\\n\\n    // (x1 + x2) * (y1 + y2) = (x1 * y1) + (x1 * y2) + (x2 * y1) + (x2 * y2)\\n    uint256 x1y1 = x1 * y1;\\n    if (x1 != 0) require(x1y1 / x1 == y1, \\\"overflow x1y1 detected\\\");\\n\\n    // x1y1 needs to be multiplied back by fixed1\\n    // solium-disable-next-line mixedcase\\n    uint256 fixed_x1y1 = x1y1 * FIXED1_UINT;\\n    if (x1y1 != 0) require(fixed_x1y1 / x1y1 == FIXED1_UINT, \\\"overflow x1y1 * fixed1 detected\\\");\\n    x1y1 = fixed_x1y1;\\n\\n    uint256 x2y1 = x2 * y1;\\n    if (x2 != 0) require(x2y1 / x2 == y1, \\\"overflow x2y1 detected\\\");\\n\\n    uint256 x1y2 = x1 * y2;\\n    if (x1 != 0) require(x1y2 / x1 == y2, \\\"overflow x1y2 detected\\\");\\n\\n    x2 = x2 / mulPrecision();\\n    y2 = y2 / mulPrecision();\\n    uint256 x2y2 = x2 * y2;\\n    if (x2 != 0) require(x2y2 / x2 == y2, \\\"overflow x2y2 detected\\\");\\n\\n    // result = fixed1() * x1 * y1 + x1 * y2 + x2 * y1 + x2 * y2 / fixed1();\\n    Fraction memory result = Fraction(x1y1);\\n    result = add(result, Fraction(x2y1)); // Add checks for overflow\\n    result = add(result, Fraction(x1y2)); // Add checks for overflow\\n    result = add(result, Fraction(x2y2)); // Add checks for overflow\\n    return result;\\n  }\\n\\n  /**\\n   * @notice 1/x\\n   * @dev\\n   * Test reciprocal(0) fails\\n   * Test reciprocal(fixed1()) returns fixed1()\\n   * Test reciprocal(fixed1()*fixed1()) returns 1 // Testing how the fractional is truncated\\n   * Test reciprocal(1+fixed1()*fixed1()) returns 0 // Testing how the fractional is truncated\\n   * Test reciprocal(newFixedFraction(1, 1e24)) returns newFixed(1e24)\\n   */\\n  function reciprocal(Fraction memory x) internal pure returns (Fraction memory) {\\n    require(x.value != 0, \\\"can't call reciprocal(0)\\\");\\n    return Fraction((FIXED1_UINT * FIXED1_UINT) / x.value); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice x/y. If the dividend is higher than the max dividend value, it\\n   * might overflow. You can use multiply(x,reciprocal(y)) instead.\\n   * @dev The maximum value that can be safely used as a dividend (maxNewFixed) is defined as\\n   * divide(maxNewFixed,newFixedFraction(1,fixed1())) is around maxUint256().\\n   * This yields the value 115792089237316195423570985008687907853269984665640564.\\n   * Test maxNewFixed equals maxUint256()/fixed1()\\n   * Test divide(maxNewFixed,1) equals maxNewFixed*(fixed1)\\n   * Test divide(maxNewFixed+1,multiply(mulPrecision(),mulPrecision())) throws\\n   * Test divide(fixed1(),0) fails\\n   * Test divide(maxNewFixed,1) = maxNewFixed*(10^digits())\\n   * Test divide(maxNewFixed+1,1) throws\\n   */\\n  function divide(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    require(y.value != 0, \\\"can't divide by 0\\\");\\n    uint256 X = x.value * FIXED1_UINT;\\n    require(X / FIXED1_UINT == x.value, \\\"overflow at divide\\\");\\n    return Fraction(X / y.value);\\n  }\\n\\n  /**\\n   * @notice x > y\\n   */\\n  function gt(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value > y.value;\\n  }\\n\\n  /**\\n   * @notice x >= y\\n   */\\n  function gte(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value >= y.value;\\n  }\\n\\n  /**\\n   * @notice x < y\\n   */\\n  function lt(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value < y.value;\\n  }\\n\\n  /**\\n   * @notice x <= y\\n   */\\n  function lte(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value <= y.value;\\n  }\\n\\n  /**\\n   * @notice x == y\\n   */\\n  function equals(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value == y.value;\\n  }\\n\\n  /**\\n   * @notice x <= 1\\n   */\\n  function isProperFraction(Fraction memory x) internal pure returns (bool) {\\n    return lte(x, fixed1());\\n  }\\n}\\n\",\"keccak256\":\"0xf1cebbfcf298ef05f24e940ab4351049e2da6e5ee77b272257d2c86b4cd1cc1c\"},\"project:/contracts/common/interfaces/IFeeHandler.sol\":{\"content\":\"pragma solidity ^0.5.13;\\n\\nimport \\\"../FixidityLib.sol\\\";\\n\\ninterface IFeeHandler {\\n  // sets the portion of the fee that should be burned.\\n  function setBurnFraction(uint256 fraction) external;\\n\\n  function addToken(address tokenAddress, address handlerAddress) external;\\n  function removeToken(address tokenAddress) external;\\n\\n  function setHandler(address tokenAddress, address handlerAddress) external;\\n\\n  // marks token to be handled in \\\"handleAll())\\n  function activateToken(address tokenAddress) external;\\n  function deactivateToken(address tokenAddress) external;\\n\\n  function sell(address tokenAddress) external;\\n\\n  // calls exchange(tokenAddress), and distribute(tokenAddress)\\n  function handle(address tokenAddress) external;\\n\\n  // main entrypoint for a burn, iterates over token and calles handle\\n  function handleAll() external;\\n\\n  // Sends the balance of token at tokenAddress to feesBeneficiary,\\n  // according to the entry tokensToDistribute[tokenAddress]\\n  function distribute(address tokenAddress) external;\\n\\n  // burns the balance of Celo in the contract minus the entry of tokensToDistribute[CeloAddress]\\n  function burnCelo() external;\\n\\n  // calls distribute for all the nonCeloTokens\\n  function distributeAll() external;\\n\\n  // in case some funds need to be returned or moved to another contract\\n  function transfer(address token, address recipient, uint256 value) external returns (bool);\\n\\n}\\n\",\"keccak256\":\"0xe82c2afdb4e879fef72063d2fdff31fc6ad389b82f4fdb9a6f8c43ec7108e531\"}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"activateToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"handlerAddress\",\"type\":\"address\"}],\"name\":\"addToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"burnCelo\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"deactivateToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"distribute\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"distributeAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"handle\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"handleAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"removeToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"}],\"name\":\"sell\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"setCarbonFeeBeneficiary\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"handlerAddress\",\"type\":\"address\"}],\"name\":\"setHandler\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IFeeHandler.sol\":\"IFeeHandler\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/FixidityLib.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\n/**\\n * @title FixidityLib\\n * @author Gadi Guy, Alberto Cuesta Canada\\n * @notice This library provides fixed point arithmetic with protection against\\n * overflow.\\n * All operations are done with uint256 and the operands must have been created\\n * with any of the newFrom* functions, which shift the comma digits() to the\\n * right and check for limits, or with wrap() which expects a number already\\n * in the internal representation of a fraction.\\n * When using this library be sure to use maxNewFixed() as the upper limit for\\n * creation of fixed point numbers.\\n * @dev All contained functions are pure and thus marked internal to be inlined\\n * on consuming contracts at compile time for gas efficiency.\\n */\\nlibrary FixidityLib {\\n  struct Fraction {\\n    uint256 value;\\n  }\\n\\n  uint256 private constant FIXED1_UINT = 1000000000000000000000000;\\n\\n  /**\\n   * @notice Number of positions that the comma is shifted to the right.\\n   */\\n  function digits() internal pure returns (uint8) {\\n    return 24;\\n  }\\n\\n  /**\\n   * @notice This is 1 in the fixed point units used in this library.\\n   * @dev Test fixed1() equals 10^digits()\\n   * Hardcoded to 24 digits.\\n   */\\n  function fixed1() internal pure returns (Fraction memory) {\\n    return Fraction(FIXED1_UINT);\\n  }\\n\\n  /**\\n   * @notice Wrap a uint256 that represents a 24-decimal fraction in a Fraction\\n   * struct.\\n   * @param x Number that already represents a 24-decimal fraction.\\n   * @return A Fraction struct with contents x.\\n   */\\n  function wrap(uint256 x) internal pure returns (Fraction memory) {\\n    return Fraction(x);\\n  }\\n\\n  /**\\n   * @notice Unwraps the uint256 inside of a Fraction struct.\\n   */\\n  function unwrap(Fraction memory x) internal pure returns (uint256) {\\n    return x.value;\\n  }\\n\\n  /**\\n   * @notice The amount of decimals lost on each multiplication operand.\\n   * @dev Test mulPrecision() equals sqrt(fixed1)\\n   */\\n  function mulPrecision() internal pure returns (uint256) {\\n    return 1000000000000;\\n  }\\n\\n  /**\\n   * @notice Maximum value that can be converted to fixed point. Optimize for deployment.\\n   * @dev\\n   * Test maxNewFixed() equals maxUint256() / fixed1()\\n   */\\n  function maxNewFixed() internal pure returns (uint256) {\\n    return 115792089237316195423570985008687907853269984665640564;\\n  }\\n\\n  /**\\n   * @notice Converts a uint256 to fixed point Fraction\\n   * @dev Test newFixed(0) returns 0\\n   * Test newFixed(1) returns fixed1()\\n   * Test newFixed(maxNewFixed()) returns maxNewFixed() * fixed1()\\n   * Test newFixed(maxNewFixed()+1) fails\\n   */\\n  function newFixed(uint256 x) internal pure returns (Fraction memory) {\\n    require(x <= maxNewFixed(), \\\"can't create fixidity number larger than maxNewFixed()\\\");\\n    return Fraction(x * FIXED1_UINT);\\n  }\\n\\n  /**\\n   * @notice Converts a uint256 in the fixed point representation of this\\n   * library to a non decimal. All decimal digits will be truncated.\\n   */\\n  function fromFixed(Fraction memory x) internal pure returns (uint256) {\\n    return x.value / FIXED1_UINT;\\n  }\\n\\n  /**\\n   * @notice Converts two uint256 representing a fraction to fixed point units,\\n   * equivalent to multiplying dividend and divisor by 10^digits().\\n   * @param numerator numerator must be <= maxNewFixed()\\n   * @param denominator denominator must be <= maxNewFixed() and denominator can't be 0\\n   * @dev\\n   * Test newFixedFraction(1,0) fails\\n   * Test newFixedFraction(0,1) returns 0\\n   * Test newFixedFraction(1,1) returns fixed1()\\n   * Test newFixedFraction(1,fixed1()) returns 1\\n   */\\n  function newFixedFraction(\\n    uint256 numerator,\\n    uint256 denominator\\n  ) internal pure returns (Fraction memory) {\\n    Fraction memory convertedNumerator = newFixed(numerator);\\n    Fraction memory convertedDenominator = newFixed(denominator);\\n    return divide(convertedNumerator, convertedDenominator);\\n  }\\n\\n  /**\\n   * @notice Returns the integer part of a fixed point number.\\n   * @dev\\n   * Test integer(0) returns 0\\n   * Test integer(fixed1()) returns fixed1()\\n   * Test integer(newFixed(maxNewFixed())) returns maxNewFixed()*fixed1()\\n   */\\n  function integer(Fraction memory x) internal pure returns (Fraction memory) {\\n    return Fraction((x.value / FIXED1_UINT) * FIXED1_UINT); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice Returns the fractional part of a fixed point number.\\n   * In the case of a negative number the fractional is also negative.\\n   * @dev\\n   * Test fractional(0) returns 0\\n   * Test fractional(fixed1()) returns 0\\n   * Test fractional(fixed1()-1) returns 10^24-1\\n   */\\n  function fractional(Fraction memory x) internal pure returns (Fraction memory) {\\n    return Fraction(x.value - (x.value / FIXED1_UINT) * FIXED1_UINT); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice x+y.\\n   * @dev The maximum value that can be safely used as an addition operator is defined as\\n   * maxFixedAdd = maxUint256()-1 / 2, or\\n   * 57896044618658097711785492504343953926634992332820282019728792003956564819967.\\n   * Test add(maxFixedAdd,maxFixedAdd) equals maxFixedAdd + maxFixedAdd\\n   * Test add(maxFixedAdd+1,maxFixedAdd+1) throws\\n   */\\n  function add(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    uint256 z = x.value + y.value;\\n    require(z >= x.value, \\\"add overflow detected\\\");\\n    return Fraction(z);\\n  }\\n\\n  /**\\n   * @notice x-y.\\n   * @dev\\n   * Test subtract(6, 10) fails\\n   */\\n  function subtract(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    require(x.value >= y.value, \\\"substraction underflow detected\\\");\\n    return Fraction(x.value - y.value);\\n  }\\n\\n  /**\\n   * @notice x*y. If any of the operators is higher than the max multiplier value it\\n   * might overflow.\\n   * @dev The maximum value that can be safely used as a multiplication operator\\n   * (maxFixedMul) is calculated as sqrt(maxUint256()*fixed1()),\\n   * or 340282366920938463463374607431768211455999999999999\\n   * Test multiply(0,0) returns 0\\n   * Test multiply(maxFixedMul,0) returns 0\\n   * Test multiply(0,maxFixedMul) returns 0\\n   * Test multiply(fixed1()/mulPrecision(),fixed1()*mulPrecision()) returns fixed1()\\n   * Test multiply(maxFixedMul,maxFixedMul) is around maxUint256()\\n   * Test multiply(maxFixedMul+1,maxFixedMul+1) fails\\n   */\\n  function multiply(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    if (x.value == 0 || y.value == 0) return Fraction(0);\\n    if (y.value == FIXED1_UINT) return x;\\n    if (x.value == FIXED1_UINT) return y;\\n\\n    // Separate into integer and fractional parts\\n    // x = x1 + x2, y = y1 + y2\\n    uint256 x1 = integer(x).value / FIXED1_UINT;\\n    uint256 x2 = fractional(x).value;\\n    uint256 y1 = integer(y).value / FIXED1_UINT;\\n    uint256 y2 = fractional(y).value;\\n\\n    // (x1 + x2) * (y1 + y2) = (x1 * y1) + (x1 * y2) + (x2 * y1) + (x2 * y2)\\n    uint256 x1y1 = x1 * y1;\\n    if (x1 != 0) require(x1y1 / x1 == y1, \\\"overflow x1y1 detected\\\");\\n\\n    // x1y1 needs to be multiplied back by fixed1\\n    // solium-disable-next-line mixedcase\\n    uint256 fixed_x1y1 = x1y1 * FIXED1_UINT;\\n    if (x1y1 != 0) require(fixed_x1y1 / x1y1 == FIXED1_UINT, \\\"overflow x1y1 * fixed1 detected\\\");\\n    x1y1 = fixed_x1y1;\\n\\n    uint256 x2y1 = x2 * y1;\\n    if (x2 != 0) require(x2y1 / x2 == y1, \\\"overflow x2y1 detected\\\");\\n\\n    uint256 x1y2 = x1 * y2;\\n    if (x1 != 0) require(x1y2 / x1 == y2, \\\"overflow x1y2 detected\\\");\\n\\n    x2 = x2 / mulPrecision();\\n    y2 = y2 / mulPrecision();\\n    uint256 x2y2 = x2 * y2;\\n    if (x2 != 0) require(x2y2 / x2 == y2, \\\"overflow x2y2 detected\\\");\\n\\n    // result = fixed1() * x1 * y1 + x1 * y2 + x2 * y1 + x2 * y2 / fixed1();\\n    Fraction memory result = Fraction(x1y1);\\n    result = add(result, Fraction(x2y1)); // Add checks for overflow\\n    result = add(result, Fraction(x1y2)); // Add checks for overflow\\n    result = add(result, Fraction(x2y2)); // Add checks for overflow\\n    return result;\\n  }\\n\\n  /**\\n   * @notice 1/x\\n   * @dev\\n   * Test reciprocal(0) fails\\n   * Test reciprocal(fixed1()) returns fixed1()\\n   * Test reciprocal(fixed1()*fixed1()) returns 1 // Testing how the fractional is truncated\\n   * Test reciprocal(1+fixed1()*fixed1()) returns 0 // Testing how the fractional is truncated\\n   * Test reciprocal(newFixedFraction(1, 1e24)) returns newFixed(1e24)\\n   */\\n  function reciprocal(Fraction memory x) internal pure returns (Fraction memory) {\\n    require(x.value != 0, \\\"can't call reciprocal(0)\\\");\\n    return Fraction((FIXED1_UINT * FIXED1_UINT) / x.value); // Can't overflow\\n  }\\n\\n  /**\\n   * @notice x/y. If the dividend is higher than the max dividend value, it\\n   * might overflow. You can use multiply(x,reciprocal(y)) instead.\\n   * @dev The maximum value that can be safely used as a dividend (maxNewFixed) is defined as\\n   * divide(maxNewFixed,newFixedFraction(1,fixed1())) is around maxUint256().\\n   * This yields the value 115792089237316195423570985008687907853269984665640564.\\n   * Test maxNewFixed equals maxUint256()/fixed1()\\n   * Test divide(maxNewFixed,1) equals maxNewFixed*(fixed1)\\n   * Test divide(maxNewFixed+1,multiply(mulPrecision(),mulPrecision())) throws\\n   * Test divide(fixed1(),0) fails\\n   * Test divide(maxNewFixed,1) = maxNewFixed*(10^digits())\\n   * Test divide(maxNewFixed+1,1) throws\\n   */\\n  function divide(Fraction memory x, Fraction memory y) internal pure returns (Fraction memory) {\\n    require(y.value != 0, \\\"can't divide by 0\\\");\\n    uint256 X = x.value * FIXED1_UINT;\\n    require(X / FIXED1_UINT == x.value, \\\"overflow at divide\\\");\\n    return Fraction(X / y.value);\\n  }\\n\\n  /**\\n   * @notice x > y\\n   */\\n  function gt(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value > y.value;\\n  }\\n\\n  /**\\n   * @notice x >= y\\n   */\\n  function gte(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value >= y.value;\\n  }\\n\\n  /**\\n   * @notice x < y\\n   */\\n  function lt(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value < y.value;\\n  }\\n\\n  /**\\n   * @notice x <= y\\n   */\\n  function lte(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value <= y.value;\\n  }\\n\\n  /**\\n   * @notice x == y\\n   */\\n  function equals(Fraction memory x, Fraction memory y) internal pure returns (bool) {\\n    return x.value == y.value;\\n  }\\n\\n  /**\\n   * @notice x <= 1\\n   */\\n  function isProperFraction(Fraction memory x) internal pure returns (bool) {\\n    return lte(x, fixed1());\\n  }\\n}\\n\",\"keccak256\":\"0x546944b106cf70ad6f793e71dffd41733bec3e03ca820a3d08213fc795c042b0\"},\"project:/contracts/common/interfaces/IFeeHandler.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\nimport \\\"../FixidityLib.sol\\\";\\n\\ninterface IFeeHandler {\\n  // sets the portion of the fee that should be burned.\\n  // function setBurnFraction(uint256 fraction) external;\\n\\n  function addToken(address tokenAddress, address handlerAddress) external;\\n  function removeToken(address tokenAddress) external;\\n\\n  function setHandler(address tokenAddress, address handlerAddress) external;\\n\\n  // marks token to be handled in \\\"handleAll())\\n  function activateToken(address tokenAddress) external;\\n  function deactivateToken(address tokenAddress) external;\\n\\n  function sell(address tokenAddress) external;\\n\\n  // calls exchange(tokenAddress), and distribute(tokenAddress)\\n  function handle(address tokenAddress) external;\\n\\n  // main entrypoint for a burn, iterates over token and calles handle\\n  function handleAll() external;\\n\\n  // Sends the balance of token at tokenAddress to feesBeneficiary,\\n  // according to the entry tokensToDistribute[tokenAddress]\\n  function distribute(address tokenAddress) external;\\n\\n  // burns the balance of Celo in the contract minus the entry of tokensToDistribute[CeloAddress]\\n  function burnCelo() external;\\n\\n  // calls distribute for all the nonCeloTokens\\n  function distributeAll() external;\\n\\n  // in case some funds need to be returned or moved to another contract\\n  function transfer(address token, address recipient, uint256 value) external returns (bool);\\n  function setCarbonFeeBeneficiary(address beneficiary) external;\\n}\\n\",\"keccak256\":\"0x24a4bc8a5a43e91fd39361cd632a09924eec25295d8ae2e0cb6612f72ab806e1\"}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.13;\n\nimport \"../FixidityLib.sol\";\n\ninterface IFeeHandler {\n  // sets the portion of the fee that should be burned.\n  function setBurnFraction(uint256 fraction) external;\n\n  function addToken(address tokenAddress, address handlerAddress) external;\n  function removeToken(address tokenAddress) external;\n\n  function setHandler(address tokenAddress, address handlerAddress) external;\n\n  // marks token to be handled in \"handleAll())\n  function activateToken(address tokenAddress) external;\n  function deactivateToken(address tokenAddress) external;\n\n  function sell(address tokenAddress) external;\n\n  // calls exchange(tokenAddress), and distribute(tokenAddress)\n  function handle(address tokenAddress) external;\n\n  // main entrypoint for a burn, iterates over token and calles handle\n  function handleAll() external;\n\n  // Sends the balance of token at tokenAddress to feesBeneficiary,\n  // according to the entry tokensToDistribute[tokenAddress]\n  function distribute(address tokenAddress) external;\n\n  // burns the balance of Celo in the contract minus the entry of tokensToDistribute[CeloAddress]\n  function burnCelo() external;\n\n  // calls distribute for all the nonCeloTokens\n  function distributeAll() external;\n\n  // in case some funds need to be returned or moved to another contract\n  function transfer(address token, address recipient, uint256 value) external returns (bool);\n\n}\n",
-  "sourcePath": "/Users/beaver/Development/celo/celo-monorepo/packages/protocol/contracts/common/interfaces/IFeeHandler.sol",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n\nimport \"../FixidityLib.sol\";\n\ninterface IFeeHandler {\n  // sets the portion of the fee that should be burned.\n  // function setBurnFraction(uint256 fraction) external;\n\n  function addToken(address tokenAddress, address handlerAddress) external;\n  function removeToken(address tokenAddress) external;\n\n  function setHandler(address tokenAddress, address handlerAddress) external;\n\n  // marks token to be handled in \"handleAll())\n  function activateToken(address tokenAddress) external;\n  function deactivateToken(address tokenAddress) external;\n\n  function sell(address tokenAddress) external;\n\n  // calls exchange(tokenAddress), and distribute(tokenAddress)\n  function handle(address tokenAddress) external;\n\n  // main entrypoint for a burn, iterates over token and calles handle\n  function handleAll() external;\n\n  // Sends the balance of token at tokenAddress to feesBeneficiary,\n  // according to the entry tokensToDistribute[tokenAddress]\n  function distribute(address tokenAddress) external;\n\n  // burns the balance of Celo in the contract minus the entry of tokensToDistribute[CeloAddress]\n  function burnCelo() external;\n\n  // calls distribute for all the nonCeloTokens\n  function distributeAll() external;\n\n  // in case some funds need to be returned or moved to another contract\n  function transfer(address token, address recipient, uint256 value) external returns (bool);\n  function setCarbonFeeBeneficiary(address beneficiary) external;\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/IFeeHandler.sol",
   "ast": {
     "absolutePath": "project:/contracts/common/interfaces/IFeeHandler.sol",
     "exportedSymbols": {
       "IFeeHandler": [
-        12080
+        14875
       ]
     },
-    "id": 12081,
+    "id": 14876,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 12009,
+        "id": 14804,
         "literals": [
           "solidity",
-          "^",
+          ">=",
           "0.5",
-          ".13"
+          ".13",
+          "<",
+          "0.9",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:41"
+        "src": "0:32:55"
       },
       {
         "absolutePath": "project:/contracts/common/FixidityLib.sol",
         "file": "../FixidityLib.sol",
-        "id": 12010,
+        "id": 14805,
         "nodeType": "ImportDirective",
-        "scope": 12081,
-        "sourceUnit": 6815,
-        "src": "26:28:41",
+        "scope": 14876,
+        "sourceUnit": 8745,
+        "src": "34:28:55",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -250,9 +253,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 12080,
+        "id": 14875,
         "linearizedBaseContracts": [
-          12080
+          14875
         ],
         "name": "IFeeHandler",
         "nodeType": "ContractDefinition",
@@ -260,77 +263,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12015,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "setBurnFraction",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 12013,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 12012,
-                  "name": "fraction",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 12015,
-                  "src": "163:16:41",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 12011,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "163:7:41",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "162:18:41"
-            },
-            "returnParameters": {
-              "id": 12014,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "189:0:41"
-            },
-            "scope": 12080,
-            "src": "138:52:41",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 12022,
+            "id": 14812,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12020,
+              "id": 14810,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12017,
+                  "id": 14807,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12022,
-                  "src": "212:20:41",
+                  "scope": 14812,
+                  "src": "223:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -338,10 +287,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12016,
+                    "id": 14806,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "212:7:41",
+                    "src": "223:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -353,11 +302,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 12019,
+                  "id": 14809,
                   "name": "handlerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12022,
-                  "src": "234:22:41",
+                  "scope": 14812,
+                  "src": "245:22:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -365,10 +314,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12018,
+                    "id": 14808,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "234:7:41",
+                    "src": "245:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -379,16 +328,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "211:46:41"
+              "src": "222:46:55"
             },
             "returnParameters": {
-              "id": 12021,
+              "id": 14811,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "266:0:41"
+              "src": "277:0:55"
             },
-            "scope": 12080,
-            "src": "194:73:41",
+            "scope": 14875,
+            "src": "205:73:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -396,23 +345,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12027,
+            "id": 14817,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12025,
+              "id": 14815,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12024,
+                  "id": 14814,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12027,
-                  "src": "291:20:41",
+                  "scope": 14817,
+                  "src": "302:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -420,10 +369,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12023,
+                    "id": 14813,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "291:7:41",
+                    "src": "302:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -434,16 +383,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "290:22:41"
+              "src": "301:22:55"
             },
             "returnParameters": {
-              "id": 12026,
+              "id": 14816,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "321:0:41"
+              "src": "332:0:55"
             },
-            "scope": 12080,
-            "src": "270:52:41",
+            "scope": 14875,
+            "src": "281:52:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -451,23 +400,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12034,
+            "id": 14824,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setHandler",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12032,
+              "id": 14822,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12029,
+                  "id": 14819,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12034,
-                  "src": "346:20:41",
+                  "scope": 14824,
+                  "src": "357:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -475,10 +424,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12028,
+                    "id": 14818,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "346:7:41",
+                    "src": "357:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -490,11 +439,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 12031,
+                  "id": 14821,
                   "name": "handlerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12034,
-                  "src": "368:22:41",
+                  "scope": 14824,
+                  "src": "379:22:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -502,10 +451,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12030,
+                    "id": 14820,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "368:7:41",
+                    "src": "379:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -516,16 +465,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "345:46:41"
+              "src": "356:46:55"
             },
             "returnParameters": {
-              "id": 12033,
+              "id": 14823,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "400:0:41"
+              "src": "411:0:55"
             },
-            "scope": 12080,
-            "src": "326:75:41",
+            "scope": 14875,
+            "src": "337:75:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -533,23 +482,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12039,
+            "id": 14829,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "activateToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12037,
+              "id": 14827,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12036,
+                  "id": 14826,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12039,
-                  "src": "476:20:41",
+                  "scope": 14829,
+                  "src": "487:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -557,10 +506,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12035,
+                    "id": 14825,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "476:7:41",
+                    "src": "487:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -571,16 +520,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "475:22:41"
+              "src": "486:22:55"
             },
             "returnParameters": {
-              "id": 12038,
+              "id": 14828,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "506:0:41"
+              "src": "517:0:55"
             },
-            "scope": 12080,
-            "src": "453:54:41",
+            "scope": 14875,
+            "src": "464:54:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -588,23 +537,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12044,
+            "id": 14834,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deactivateToken",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12042,
+              "id": 14832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12041,
+                  "id": 14831,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12044,
-                  "src": "535:20:41",
+                  "scope": 14834,
+                  "src": "546:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -612,10 +561,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12040,
+                    "id": 14830,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "535:7:41",
+                    "src": "546:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -626,16 +575,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "534:22:41"
+              "src": "545:22:55"
             },
             "returnParameters": {
-              "id": 12043,
+              "id": 14833,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "565:0:41"
+              "src": "576:0:55"
             },
-            "scope": 12080,
-            "src": "510:56:41",
+            "scope": 14875,
+            "src": "521:56:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -643,23 +592,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12049,
+            "id": 14839,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sell",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12047,
+              "id": 14837,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12046,
+                  "id": 14836,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12049,
-                  "src": "584:20:41",
+                  "scope": 14839,
+                  "src": "595:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -667,10 +616,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12045,
+                    "id": 14835,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "584:7:41",
+                    "src": "595:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -681,16 +630,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "583:22:41"
+              "src": "594:22:55"
             },
             "returnParameters": {
-              "id": 12048,
+              "id": 14838,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "614:0:41"
+              "src": "625:0:55"
             },
-            "scope": 12080,
-            "src": "570:45:41",
+            "scope": 14875,
+            "src": "581:45:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -698,23 +647,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12054,
+            "id": 14844,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "handle",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12052,
+              "id": 14842,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12051,
+                  "id": 14841,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12054,
-                  "src": "699:20:41",
+                  "scope": 14844,
+                  "src": "710:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -722,10 +671,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12050,
+                    "id": 14840,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "699:7:41",
+                    "src": "710:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -736,16 +685,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "698:22:41"
+              "src": "709:22:55"
             },
             "returnParameters": {
-              "id": 12053,
+              "id": 14843,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "729:0:41"
+              "src": "740:0:55"
             },
-            "scope": 12080,
-            "src": "683:47:41",
+            "scope": 14875,
+            "src": "694:47:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -753,26 +702,26 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12057,
+            "id": 14847,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "handleAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12055,
+              "id": 14845,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "823:2:41"
+              "src": "834:2:55"
             },
             "returnParameters": {
-              "id": 12056,
+              "id": 14846,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "834:0:41"
+              "src": "845:0:55"
             },
-            "scope": 12080,
-            "src": "805:30:41",
+            "scope": 14875,
+            "src": "816:30:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -780,23 +729,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12062,
+            "id": 14852,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "distribute",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12060,
+              "id": 14850,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12059,
+                  "id": 14849,
                   "name": "tokenAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12062,
-                  "src": "988:20:41",
+                  "scope": 14852,
+                  "src": "999:20:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -804,10 +753,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12058,
+                    "id": 14848,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "988:7:41",
+                    "src": "999:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -818,16 +767,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "987:22:41"
+              "src": "998:22:55"
             },
             "returnParameters": {
-              "id": 12061,
+              "id": 14851,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1018:0:41"
+              "src": "1029:0:55"
             },
-            "scope": 12080,
-            "src": "968:51:41",
+            "scope": 14875,
+            "src": "979:51:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -835,26 +784,26 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12065,
+            "id": 14855,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "burnCelo",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12063,
+              "id": 14853,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1138:2:41"
+              "src": "1149:2:55"
             },
             "returnParameters": {
-              "id": 12064,
+              "id": 14854,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1149:0:41"
+              "src": "1160:0:55"
             },
-            "scope": 12080,
-            "src": "1121:29:41",
+            "scope": 14875,
+            "src": "1132:29:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -862,26 +811,26 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12068,
+            "id": 14858,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "distributeAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12066,
+              "id": 14856,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1224:2:41"
+              "src": "1235:2:55"
             },
             "returnParameters": {
-              "id": 12067,
+              "id": 14857,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1235:0:41"
+              "src": "1246:0:55"
             },
-            "scope": 12080,
-            "src": "1202:34:41",
+            "scope": 14875,
+            "src": "1213:34:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -889,23 +838,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 12079,
+            "id": 14869,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "transfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 12075,
+              "id": 14865,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12070,
+                  "id": 14860,
                   "name": "token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12079,
-                  "src": "1331:13:41",
+                  "scope": 14869,
+                  "src": "1342:13:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -913,10 +862,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12069,
+                    "id": 14859,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1331:7:41",
+                    "src": "1342:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -928,11 +877,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 12072,
+                  "id": 14862,
                   "name": "recipient",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12079,
-                  "src": "1346:17:41",
+                  "scope": 14869,
+                  "src": "1357:17:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -940,10 +889,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 12071,
+                    "id": 14861,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1346:7:41",
+                    "src": "1357:7:55",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -955,11 +904,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 12074,
+                  "id": 14864,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12079,
-                  "src": "1365:13:41",
+                  "scope": 14869,
+                  "src": "1376:13:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -967,10 +916,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 12073,
+                    "id": 14863,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1365:7:41",
+                    "src": "1376:7:55",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -980,19 +929,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1330:49:41"
+              "src": "1341:49:55"
             },
             "returnParameters": {
-              "id": 12078,
+              "id": 14868,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 12077,
+                  "id": 14867,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12079,
-                  "src": "1398:4:41",
+                  "scope": 14869,
+                  "src": "1409:4:55",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1000,10 +949,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 12076,
+                    "id": 14866,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1398:4:41",
+                    "src": "1409:4:55",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1013,27 +962,82 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1397:6:41"
+              "src": "1408:6:55"
             },
-            "scope": 12080,
-            "src": "1313:91:41",
+            "scope": 14875,
+            "src": "1324:91:55",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14874,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setCarbonFeeBeneficiary",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14872,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14871,
+                  "name": "beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14874,
+                  "src": "1451:19:55",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14870,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1451:7:55",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1450:21:55"
+            },
+            "returnParameters": {
+              "id": 14873,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1480:0:55"
+            },
+            "scope": 14875,
+            "src": "1418:63:55",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 12081,
-        "src": "56:1351:41"
+        "scope": 14876,
+        "src": "64:1419:55"
       }
     ],
-    "src": "0:1408:41"
+    "src": "0:1484:55"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/common/interfaces/IFeeHandler.sol",
       "exportedSymbols": {
         "IFeeHandler": [
-          12080
+          14875
         ]
       }
     },
@@ -1042,29 +1046,32 @@
         "attributes": {
           "literals": [
             "solidity",
-            "^",
+            ">=",
             "0.5",
-            ".13"
+            ".13",
+            "<",
+            "0.9",
+            ".0"
           ]
         },
-        "id": 12009,
+        "id": 14804,
         "name": "PragmaDirective",
-        "src": "0:24:41"
+        "src": "0:32:55"
       },
       {
         "attributes": {
-          "SourceUnit": 6815,
+          "SourceUnit": 8745,
           "absolutePath": "project:/contracts/common/FixidityLib.sol",
           "file": "../FixidityLib.sol",
-          "scope": 12081,
+          "scope": 14876,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 12010,
+        "id": 14805,
         "name": "ImportDirective",
-        "src": "26:28:41"
+        "src": "34:28:55"
       },
       {
         "attributes": {
@@ -1078,10 +1085,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            12080
+            14875
           ],
           "name": "IFeeHandler",
-          "scope": 12081
+          "scope": 14876
         },
         "children": [
           {
@@ -1094,74 +1101,8 @@
               "modifiers": [
                 null
               ],
-              "name": "setBurnFraction",
-              "scope": 12080,
-              "stateMutability": "nonpayable",
-              "superFunction": null,
-              "visibility": "external"
-            },
-            "children": [
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "fraction",
-                      "scope": 12015,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "uint256",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "uint256",
-                          "type": "uint256"
-                        },
-                        "id": 12011,
-                        "name": "ElementaryTypeName",
-                        "src": "163:7:41"
-                      }
-                    ],
-                    "id": 12012,
-                    "name": "VariableDeclaration",
-                    "src": "163:16:41"
-                  }
-                ],
-                "id": 12013,
-                "name": "ParameterList",
-                "src": "162:18:41"
-              },
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 12014,
-                "name": "ParameterList",
-                "src": "189:0:41"
-              }
-            ],
-            "id": 12015,
-            "name": "FunctionDefinition",
-            "src": "138:52:41"
-          },
-          {
-            "attributes": {
-              "body": null,
-              "documentation": null,
-              "implemented": false,
-              "isConstructor": false,
-              "kind": "function",
-              "modifiers": [
-                null
-              ],
               "name": "addToken",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1173,7 +1114,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12022,
+                      "scope": 14812,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1187,20 +1128,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12016,
+                        "id": 14806,
                         "name": "ElementaryTypeName",
-                        "src": "212:7:41"
+                        "src": "223:7:55"
                       }
                     ],
-                    "id": 12017,
+                    "id": 14807,
                     "name": "VariableDeclaration",
-                    "src": "212:20:41"
+                    "src": "223:20:55"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "handlerAddress",
-                      "scope": 12022,
+                      "scope": 14812,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1214,19 +1155,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12018,
+                        "id": 14808,
                         "name": "ElementaryTypeName",
-                        "src": "234:7:41"
+                        "src": "245:7:55"
                       }
                     ],
-                    "id": 12019,
+                    "id": 14809,
                     "name": "VariableDeclaration",
-                    "src": "234:22:41"
+                    "src": "245:22:55"
                   }
                 ],
-                "id": 12020,
+                "id": 14810,
                 "name": "ParameterList",
-                "src": "211:46:41"
+                "src": "222:46:55"
               },
               {
                 "attributes": {
@@ -1235,14 +1176,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12021,
+                "id": 14811,
                 "name": "ParameterList",
-                "src": "266:0:41"
+                "src": "277:0:55"
               }
             ],
-            "id": 12022,
+            "id": 14812,
             "name": "FunctionDefinition",
-            "src": "194:73:41"
+            "src": "205:73:55"
           },
           {
             "attributes": {
@@ -1255,7 +1196,7 @@
                 null
               ],
               "name": "removeToken",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1267,7 +1208,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12027,
+                      "scope": 14817,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1281,19 +1222,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12023,
+                        "id": 14813,
                         "name": "ElementaryTypeName",
-                        "src": "291:7:41"
+                        "src": "302:7:55"
                       }
                     ],
-                    "id": 12024,
+                    "id": 14814,
                     "name": "VariableDeclaration",
-                    "src": "291:20:41"
+                    "src": "302:20:55"
                   }
                 ],
-                "id": 12025,
+                "id": 14815,
                 "name": "ParameterList",
-                "src": "290:22:41"
+                "src": "301:22:55"
               },
               {
                 "attributes": {
@@ -1302,14 +1243,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12026,
+                "id": 14816,
                 "name": "ParameterList",
-                "src": "321:0:41"
+                "src": "332:0:55"
               }
             ],
-            "id": 12027,
+            "id": 14817,
             "name": "FunctionDefinition",
-            "src": "270:52:41"
+            "src": "281:52:55"
           },
           {
             "attributes": {
@@ -1322,7 +1263,7 @@
                 null
               ],
               "name": "setHandler",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1334,7 +1275,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12034,
+                      "scope": 14824,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1348,20 +1289,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12028,
+                        "id": 14818,
                         "name": "ElementaryTypeName",
-                        "src": "346:7:41"
+                        "src": "357:7:55"
                       }
                     ],
-                    "id": 12029,
+                    "id": 14819,
                     "name": "VariableDeclaration",
-                    "src": "346:20:41"
+                    "src": "357:20:55"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "handlerAddress",
-                      "scope": 12034,
+                      "scope": 14824,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1375,19 +1316,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12030,
+                        "id": 14820,
                         "name": "ElementaryTypeName",
-                        "src": "368:7:41"
+                        "src": "379:7:55"
                       }
                     ],
-                    "id": 12031,
+                    "id": 14821,
                     "name": "VariableDeclaration",
-                    "src": "368:22:41"
+                    "src": "379:22:55"
                   }
                 ],
-                "id": 12032,
+                "id": 14822,
                 "name": "ParameterList",
-                "src": "345:46:41"
+                "src": "356:46:55"
               },
               {
                 "attributes": {
@@ -1396,14 +1337,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12033,
+                "id": 14823,
                 "name": "ParameterList",
-                "src": "400:0:41"
+                "src": "411:0:55"
               }
             ],
-            "id": 12034,
+            "id": 14824,
             "name": "FunctionDefinition",
-            "src": "326:75:41"
+            "src": "337:75:55"
           },
           {
             "attributes": {
@@ -1416,7 +1357,7 @@
                 null
               ],
               "name": "activateToken",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1428,7 +1369,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12039,
+                      "scope": 14829,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1442,19 +1383,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12035,
+                        "id": 14825,
                         "name": "ElementaryTypeName",
-                        "src": "476:7:41"
+                        "src": "487:7:55"
                       }
                     ],
-                    "id": 12036,
+                    "id": 14826,
                     "name": "VariableDeclaration",
-                    "src": "476:20:41"
+                    "src": "487:20:55"
                   }
                 ],
-                "id": 12037,
+                "id": 14827,
                 "name": "ParameterList",
-                "src": "475:22:41"
+                "src": "486:22:55"
               },
               {
                 "attributes": {
@@ -1463,14 +1404,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12038,
+                "id": 14828,
                 "name": "ParameterList",
-                "src": "506:0:41"
+                "src": "517:0:55"
               }
             ],
-            "id": 12039,
+            "id": 14829,
             "name": "FunctionDefinition",
-            "src": "453:54:41"
+            "src": "464:54:55"
           },
           {
             "attributes": {
@@ -1483,7 +1424,7 @@
                 null
               ],
               "name": "deactivateToken",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1495,7 +1436,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12044,
+                      "scope": 14834,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1509,19 +1450,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12040,
+                        "id": 14830,
                         "name": "ElementaryTypeName",
-                        "src": "535:7:41"
+                        "src": "546:7:55"
                       }
                     ],
-                    "id": 12041,
+                    "id": 14831,
                     "name": "VariableDeclaration",
-                    "src": "535:20:41"
+                    "src": "546:20:55"
                   }
                 ],
-                "id": 12042,
+                "id": 14832,
                 "name": "ParameterList",
-                "src": "534:22:41"
+                "src": "545:22:55"
               },
               {
                 "attributes": {
@@ -1530,14 +1471,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12043,
+                "id": 14833,
                 "name": "ParameterList",
-                "src": "565:0:41"
+                "src": "576:0:55"
               }
             ],
-            "id": 12044,
+            "id": 14834,
             "name": "FunctionDefinition",
-            "src": "510:56:41"
+            "src": "521:56:55"
           },
           {
             "attributes": {
@@ -1550,7 +1491,7 @@
                 null
               ],
               "name": "sell",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1562,7 +1503,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12049,
+                      "scope": 14839,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1576,19 +1517,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12045,
+                        "id": 14835,
                         "name": "ElementaryTypeName",
-                        "src": "584:7:41"
+                        "src": "595:7:55"
                       }
                     ],
-                    "id": 12046,
+                    "id": 14836,
                     "name": "VariableDeclaration",
-                    "src": "584:20:41"
+                    "src": "595:20:55"
                   }
                 ],
-                "id": 12047,
+                "id": 14837,
                 "name": "ParameterList",
-                "src": "583:22:41"
+                "src": "594:22:55"
               },
               {
                 "attributes": {
@@ -1597,14 +1538,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12048,
+                "id": 14838,
                 "name": "ParameterList",
-                "src": "614:0:41"
+                "src": "625:0:55"
               }
             ],
-            "id": 12049,
+            "id": 14839,
             "name": "FunctionDefinition",
-            "src": "570:45:41"
+            "src": "581:45:55"
           },
           {
             "attributes": {
@@ -1617,7 +1558,7 @@
                 null
               ],
               "name": "handle",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1629,7 +1570,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12054,
+                      "scope": 14844,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1643,19 +1584,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12050,
+                        "id": 14840,
                         "name": "ElementaryTypeName",
-                        "src": "699:7:41"
+                        "src": "710:7:55"
                       }
                     ],
-                    "id": 12051,
+                    "id": 14841,
                     "name": "VariableDeclaration",
-                    "src": "699:20:41"
+                    "src": "710:20:55"
                   }
                 ],
-                "id": 12052,
+                "id": 14842,
                 "name": "ParameterList",
-                "src": "698:22:41"
+                "src": "709:22:55"
               },
               {
                 "attributes": {
@@ -1664,14 +1605,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12053,
+                "id": 14843,
                 "name": "ParameterList",
-                "src": "729:0:41"
+                "src": "740:0:55"
               }
             ],
-            "id": 12054,
+            "id": 14844,
             "name": "FunctionDefinition",
-            "src": "683:47:41"
+            "src": "694:47:55"
           },
           {
             "attributes": {
@@ -1684,7 +1625,7 @@
                 null
               ],
               "name": "handleAll",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1697,9 +1638,9 @@
                   ]
                 },
                 "children": [],
-                "id": 12055,
+                "id": 14845,
                 "name": "ParameterList",
-                "src": "823:2:41"
+                "src": "834:2:55"
               },
               {
                 "attributes": {
@@ -1708,14 +1649,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12056,
+                "id": 14846,
                 "name": "ParameterList",
-                "src": "834:0:41"
+                "src": "845:0:55"
               }
             ],
-            "id": 12057,
+            "id": 14847,
             "name": "FunctionDefinition",
-            "src": "805:30:41"
+            "src": "816:30:55"
           },
           {
             "attributes": {
@@ -1728,7 +1669,7 @@
                 null
               ],
               "name": "distribute",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1740,7 +1681,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "tokenAddress",
-                      "scope": 12062,
+                      "scope": 14852,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1754,19 +1695,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12058,
+                        "id": 14848,
                         "name": "ElementaryTypeName",
-                        "src": "988:7:41"
+                        "src": "999:7:55"
                       }
                     ],
-                    "id": 12059,
+                    "id": 14849,
                     "name": "VariableDeclaration",
-                    "src": "988:20:41"
+                    "src": "999:20:55"
                   }
                 ],
-                "id": 12060,
+                "id": 14850,
                 "name": "ParameterList",
-                "src": "987:22:41"
+                "src": "998:22:55"
               },
               {
                 "attributes": {
@@ -1775,14 +1716,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12061,
+                "id": 14851,
                 "name": "ParameterList",
-                "src": "1018:0:41"
+                "src": "1029:0:55"
               }
             ],
-            "id": 12062,
+            "id": 14852,
             "name": "FunctionDefinition",
-            "src": "968:51:41"
+            "src": "979:51:55"
           },
           {
             "attributes": {
@@ -1795,7 +1736,7 @@
                 null
               ],
               "name": "burnCelo",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1808,9 +1749,9 @@
                   ]
                 },
                 "children": [],
-                "id": 12063,
+                "id": 14853,
                 "name": "ParameterList",
-                "src": "1138:2:41"
+                "src": "1149:2:55"
               },
               {
                 "attributes": {
@@ -1819,14 +1760,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12064,
+                "id": 14854,
                 "name": "ParameterList",
-                "src": "1149:0:41"
+                "src": "1160:0:55"
               }
             ],
-            "id": 12065,
+            "id": 14855,
             "name": "FunctionDefinition",
-            "src": "1121:29:41"
+            "src": "1132:29:55"
           },
           {
             "attributes": {
@@ -1839,7 +1780,7 @@
                 null
               ],
               "name": "distributeAll",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1852,9 +1793,9 @@
                   ]
                 },
                 "children": [],
-                "id": 12066,
+                "id": 14856,
                 "name": "ParameterList",
-                "src": "1224:2:41"
+                "src": "1235:2:55"
               },
               {
                 "attributes": {
@@ -1863,14 +1804,14 @@
                   ]
                 },
                 "children": [],
-                "id": 12067,
+                "id": 14857,
                 "name": "ParameterList",
-                "src": "1235:0:41"
+                "src": "1246:0:55"
               }
             ],
-            "id": 12068,
+            "id": 14858,
             "name": "FunctionDefinition",
-            "src": "1202:34:41"
+            "src": "1213:34:55"
           },
           {
             "attributes": {
@@ -1883,7 +1824,7 @@
                 null
               ],
               "name": "transfer",
-              "scope": 12080,
+              "scope": 14875,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1895,7 +1836,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "token",
-                      "scope": 12079,
+                      "scope": 14869,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1909,20 +1850,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12069,
+                        "id": 14859,
                         "name": "ElementaryTypeName",
-                        "src": "1331:7:41"
+                        "src": "1342:7:55"
                       }
                     ],
-                    "id": 12070,
+                    "id": 14860,
                     "name": "VariableDeclaration",
-                    "src": "1331:13:41"
+                    "src": "1342:13:55"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "recipient",
-                      "scope": 12079,
+                      "scope": 14869,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1936,20 +1877,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 12071,
+                        "id": 14861,
                         "name": "ElementaryTypeName",
-                        "src": "1346:7:41"
+                        "src": "1357:7:55"
                       }
                     ],
-                    "id": 12072,
+                    "id": 14862,
                     "name": "VariableDeclaration",
-                    "src": "1346:17:41"
+                    "src": "1357:17:55"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "value",
-                      "scope": 12079,
+                      "scope": 14869,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1962,19 +1903,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 12073,
+                        "id": 14863,
                         "name": "ElementaryTypeName",
-                        "src": "1365:7:41"
+                        "src": "1376:7:55"
                       }
                     ],
-                    "id": 12074,
+                    "id": 14864,
                     "name": "VariableDeclaration",
-                    "src": "1365:13:41"
+                    "src": "1376:13:55"
                   }
                 ],
-                "id": 12075,
+                "id": 14865,
                 "name": "ParameterList",
-                "src": "1330:49:41"
+                "src": "1341:49:55"
               },
               {
                 "children": [
@@ -1982,7 +1923,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 12079,
+                      "scope": 14869,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1995,34 +1936,101 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 12076,
+                        "id": 14866,
                         "name": "ElementaryTypeName",
-                        "src": "1398:4:41"
+                        "src": "1409:4:55"
                       }
                     ],
-                    "id": 12077,
+                    "id": 14867,
                     "name": "VariableDeclaration",
-                    "src": "1398:4:41"
+                    "src": "1409:4:55"
                   }
                 ],
-                "id": 12078,
+                "id": 14868,
                 "name": "ParameterList",
-                "src": "1397:6:41"
+                "src": "1408:6:55"
               }
             ],
-            "id": 12079,
+            "id": 14869,
             "name": "FunctionDefinition",
-            "src": "1313:91:41"
+            "src": "1324:91:55"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setCarbonFeeBeneficiary",
+              "scope": 14875,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "beneficiary",
+                      "scope": 14874,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 14870,
+                        "name": "ElementaryTypeName",
+                        "src": "1451:7:55"
+                      }
+                    ],
+                    "id": 14871,
+                    "name": "VariableDeclaration",
+                    "src": "1451:19:55"
+                  }
+                ],
+                "id": 14872,
+                "name": "ParameterList",
+                "src": "1450:21:55"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14873,
+                "name": "ParameterList",
+                "src": "1480:0:55"
+              }
+            ],
+            "id": 14874,
+            "name": "FunctionDefinition",
+            "src": "1418:63:55"
           }
         ],
-        "id": 12080,
+        "id": 14875,
         "name": "ContractDefinition",
-        "src": "56:1351:41"
+        "src": "64:1419:55"
       }
     ],
-    "id": 12081,
+    "id": 14876,
     "name": "SourceUnit",
-    "src": "0:1408:41"
+    "src": "0:1484:55"
   },
   "compiler": {
     "name": "solc",
@@ -2030,7 +2038,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2024-03-05T15:18:24.028Z",
+  "updatedAt": "2025-05-05T17:49:51.154Z",
   "devdoc": {
     "methods": {}
   },

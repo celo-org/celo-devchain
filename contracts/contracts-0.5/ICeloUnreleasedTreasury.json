@@ -1,0 +1,463 @@
+{
+  "contractName": "ICeloUnreleasedTreasury",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "release",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getRemainingBalanceToRelease",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getRemainingBalanceToRelease\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"release\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"release(address,uint256)\":{\"params\":{\"amount\":\"The amount to release.\",\"to\":\"The address to release the amount to.\"}}}},\"userdoc\":{\"methods\":{\"release(address,uint256)\":{\"notice\":\"Releases the Celo to the specified address.\"}}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/ICeloUnreleasedTreasury.sol\":\"ICeloUnreleasedTreasury\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/ICeloUnreleasedTreasury.sol\":{\"content\":\"// SPDX-License-Identifier: LGPL-3.0-only\\npragma solidity >=0.5.13 <0.9.0;\\n\\ninterface ICeloUnreleasedTreasury {\\n  /**\\n   * @notice Releases the Celo to the specified address.\\n   * @param to The address to release the amount to.\\n   * @param amount The amount to release.\\n   */\\n  function release(address to, uint256 amount) external;\\n\\n  function getRemainingBalanceToRelease() external view returns (uint256);\\n}\\n\",\"keccak256\":\"0x41f4cda8fd14ba24261d9e6ef9c2f62ac15432ac78107e74045d2a880b50df82\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: LGPL-3.0-only\npragma solidity >=0.5.13 <0.9.0;\n\ninterface ICeloUnreleasedTreasury {\n  /**\n   * @notice Releases the Celo to the specified address.\n   * @param to The address to release the amount to.\n   * @param amount The amount to release.\n   */\n  function release(address to, uint256 amount) external;\n\n  function getRemainingBalanceToRelease() external view returns (uint256);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/ICeloUnreleasedTreasury.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/interfaces/ICeloUnreleasedTreasury.sol",
+    "exportedSymbols": {
+      "ICeloUnreleasedTreasury": [
+        14580
+      ]
+    },
+    "id": 14581,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14567,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "42:32:50"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 14580,
+        "linearizedBaseContracts": [
+          14580
+        ],
+        "name": "ICeloUnreleasedTreasury",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice Releases the Celo to the specified address.\n@param to The address to release the amount to.\n@param amount The amount to release.",
+            "id": 14574,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "release",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14572,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14569,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14574,
+                  "src": "295:10:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14568,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14571,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14574,
+                  "src": "307:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14570,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "307:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "294:28:50"
+            },
+            "returnParameters": {
+              "id": 14573,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "331:0:50"
+            },
+            "scope": 14580,
+            "src": "278:54:50",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14579,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRemainingBalanceToRelease",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14575,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "373:2:50"
+            },
+            "returnParameters": {
+              "id": 14578,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14577,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14579,
+                  "src": "399:7:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14576,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "399:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "398:9:50"
+            },
+            "scope": 14580,
+            "src": "336:72:50",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14581,
+        "src": "76:334:50"
+      }
+    ],
+    "src": "42:369:50"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/interfaces/ICeloUnreleasedTreasury.sol",
+      "exportedSymbols": {
+        "ICeloUnreleasedTreasury": [
+          14580
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 14567,
+        "name": "PragmaDirective",
+        "src": "42:32:50"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            14580
+          ],
+          "name": "ICeloUnreleasedTreasury",
+          "scope": 14581
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": "@notice Releases the Celo to the specified address.\n@param to The address to release the amount to.\n@param amount The amount to release.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "release",
+              "scope": 14580,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "to",
+                      "scope": 14574,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 14568,
+                        "name": "ElementaryTypeName",
+                        "src": "295:7:50"
+                      }
+                    ],
+                    "id": 14569,
+                    "name": "VariableDeclaration",
+                    "src": "295:10:50"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "amount",
+                      "scope": 14574,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 14570,
+                        "name": "ElementaryTypeName",
+                        "src": "307:7:50"
+                      }
+                    ],
+                    "id": 14571,
+                    "name": "VariableDeclaration",
+                    "src": "307:14:50"
+                  }
+                ],
+                "id": 14572,
+                "name": "ParameterList",
+                "src": "294:28:50"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14573,
+                "name": "ParameterList",
+                "src": "331:0:50"
+              }
+            ],
+            "id": 14574,
+            "name": "FunctionDefinition",
+            "src": "278:54:50"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getRemainingBalanceToRelease",
+              "scope": 14580,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14575,
+                "name": "ParameterList",
+                "src": "373:2:50"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 14579,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 14576,
+                        "name": "ElementaryTypeName",
+                        "src": "399:7:50"
+                      }
+                    ],
+                    "id": 14577,
+                    "name": "VariableDeclaration",
+                    "src": "399:7:50"
+                  }
+                ],
+                "id": 14578,
+                "name": "ParameterList",
+                "src": "398:9:50"
+              }
+            ],
+            "id": 14579,
+            "name": "FunctionDefinition",
+            "src": "336:72:50"
+          }
+        ],
+        "id": 14580,
+        "name": "ContractDefinition",
+        "src": "76:334:50"
+      }
+    ],
+    "id": 14581,
+    "name": "SourceUnit",
+    "src": "42:369:50"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.152Z",
+  "devdoc": {
+    "methods": {
+      "release(address,uint256)": {
+        "params": {
+          "amount": "The amount to release.",
+          "to": "The address to release the amount to."
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "release(address,uint256)": {
+        "notice": "Releases the Celo to the specified address."
+      }
+    }
+  }
+}

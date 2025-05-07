@@ -18,8 +18,8 @@ const program = commander.program
   .option(
     "--core <core>",
     "Core contracts version to use. Default is `latest`. " +
-      "Supports: v10, v11",
-    "v11"
+      "Supports: v12",
+    "v12"
   )
   .option("-f --file <file>", "Path to custom core contracts build.")
   .option("--db <db>", "Path to store decompressed chain data.", undefined)

@@ -1,0 +1,532 @@
+{
+  "contractName": "IBlockable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_blockedBy",
+          "type": "address"
+        }
+      ],
+      "name": "setBlockedByContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isBlocked",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBlockedByContract",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getBlockedByContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isBlocked\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_blockedBy\",\"type\":\"address\"}],\"name\":\"setBlockedByContract\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/IBlockable.sol\":\"IBlockable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/IBlockable.sol\":{\"content\":\"pragma solidity >=0.5.13 <0.9.0;\\n\\ninterface IBlockable {\\n  function setBlockedByContract(address _blockedBy) external;\\n  function isBlocked() external view returns (bool);\\n  function getBlockedByContract() external view returns (address);\\n}\\n\",\"keccak256\":\"0x9fe23c7d5279c474067bfd621e0572b5930a9412437d40fad59c95f5c3178fee\"}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.5.13 <0.9.0;\n\ninterface IBlockable {\n  function setBlockedByContract(address _blockedBy) external;\n  function isBlocked() external view returns (bool);\n  function getBlockedByContract() external view returns (address);\n}\n",
+  "sourcePath": "/Users/beaver/Development/temp/celo-monorepo/packages/protocol/contracts/common/interfaces/IBlockable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/interfaces/IBlockable.sol",
+    "exportedSymbols": {
+      "IBlockable": [
+        14494
+      ]
+    },
+    "id": 14495,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14478,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:46"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 14494,
+        "linearizedBaseContracts": [
+          14494
+        ],
+        "name": "IBlockable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14483,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBlockedByContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14481,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14480,
+                  "name": "_blockedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14483,
+                  "src": "89:18:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14479,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "89:7:46",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "88:20:46"
+            },
+            "returnParameters": {
+              "id": 14482,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "117:0:46"
+            },
+            "scope": 14494,
+            "src": "59:59:46",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isBlocked",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14484,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "139:2:46"
+            },
+            "returnParameters": {
+              "id": 14487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14486,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14488,
+                  "src": "165:4:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 14485,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "165:4:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "164:6:46"
+            },
+            "scope": 14494,
+            "src": "121:50:46",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 14493,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBlockedByContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14489,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "203:2:46"
+            },
+            "returnParameters": {
+              "id": 14492,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14491,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 14493,
+                  "src": "229:7:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14490,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "229:7:46",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "228:9:46"
+            },
+            "scope": 14494,
+            "src": "174:64:46",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14495,
+        "src": "34:206:46"
+      }
+    ],
+    "src": "0:241:46"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/common/interfaces/IBlockable.sol",
+      "exportedSymbols": {
+        "IBlockable": [
+          14494
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 14478,
+        "name": "PragmaDirective",
+        "src": "0:32:46"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            14494
+          ],
+          "name": "IBlockable",
+          "scope": 14495
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setBlockedByContract",
+              "scope": 14494,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_blockedBy",
+                      "scope": 14483,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 14479,
+                        "name": "ElementaryTypeName",
+                        "src": "89:7:46"
+                      }
+                    ],
+                    "id": 14480,
+                    "name": "VariableDeclaration",
+                    "src": "89:18:46"
+                  }
+                ],
+                "id": 14481,
+                "name": "ParameterList",
+                "src": "88:20:46"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14482,
+                "name": "ParameterList",
+                "src": "117:0:46"
+              }
+            ],
+            "id": 14483,
+            "name": "FunctionDefinition",
+            "src": "59:59:46"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isBlocked",
+              "scope": 14494,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14484,
+                "name": "ParameterList",
+                "src": "139:2:46"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 14488,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 14485,
+                        "name": "ElementaryTypeName",
+                        "src": "165:4:46"
+                      }
+                    ],
+                    "id": 14486,
+                    "name": "VariableDeclaration",
+                    "src": "165:4:46"
+                  }
+                ],
+                "id": 14487,
+                "name": "ParameterList",
+                "src": "164:6:46"
+              }
+            ],
+            "id": 14488,
+            "name": "FunctionDefinition",
+            "src": "121:50:46"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getBlockedByContract",
+              "scope": 14494,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14489,
+                "name": "ParameterList",
+                "src": "203:2:46"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 14493,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 14490,
+                        "name": "ElementaryTypeName",
+                        "src": "229:7:46"
+                      }
+                    ],
+                    "id": 14491,
+                    "name": "VariableDeclaration",
+                    "src": "229:7:46"
+                  }
+                ],
+                "id": 14492,
+                "name": "ParameterList",
+                "src": "228:9:46"
+              }
+            ],
+            "id": 14493,
+            "name": "FunctionDefinition",
+            "src": "174:64:46"
+          }
+        ],
+        "id": 14494,
+        "name": "ContractDefinition",
+        "src": "34:206:46"
+      }
+    ],
+    "id": 14495,
+    "name": "SourceUnit",
+    "src": "0:241:46"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2025-05-05T17:49:51.151Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
