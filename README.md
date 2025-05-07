@@ -20,7 +20,7 @@ a locally signed transaction it will throw: `Error: Number can only safely store
 error and crash. Thus you have to make sure your ContractKit doesn't actually have the private
 keys for test addresses and send transactions to be signed by ganache-cli itself.
 
-Example code that uses this package: <https://github.com/zviadm/celo-hellocontracts>
+Example code that uses this package: <https://github.com/zviadm/celoterminal>
 
 ## Generate New Chain Data
 
