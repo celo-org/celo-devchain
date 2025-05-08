@@ -1,0 +1,17 @@
+name: 'NPM Publish'
+on:
+  workflow_dispatch:
+
+jobs:
+  NPM-Publish:
+    permissions:
+      contents: read
+      id-token: write
+
+    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v2.0.5
+    with:
+      node-version: 16
+      package-dir: '.'
+      akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
+      akeyless-github-access-id: p-kf9vjzruht6l
+      akeyless-token-path: /static-secrets/NPM/npm-publish-token
